@@ -1,5 +1,6 @@
 import React from 'react';
 import './Navbar.css';
+import SearchForm from './SearchForm';
 import FaUser from './Icons/UserWidget';
 import CartWidget from './Icons/CartWidget';
 import HeartWidget from './Icons/HeartWidget';
@@ -13,7 +14,7 @@ const Navbar = () => {
         <img src={Corona} alt='Inicio' height={100} width={100}/>
         </div>
         <div className='container col-4'>
-        <input class="form-control me-2" type="search" placeholder="Ingresar" aria-label="Search" id="cuadroBotonBuscar"></input>
+          <SearchForm/>
         </div>
         <div className="col-4" id="">
           <div className="navbar-icons">
