@@ -1,0 +1,12 @@
+.cart-widget, .heart-widget, .user-widget {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-icon, .heart-icon, .user-icon {
+    font-size: 27px;
+    color: #ffbd59;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
