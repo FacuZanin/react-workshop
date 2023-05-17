@@ -3,12 +3,11 @@ import './Switch.css';
 
 const Switch = () => {
   return (
-    <div className="wrapper">
-      <input type="checkbox" name="checkbox" className="switch" />
-    </div>
+    <label className="switch">
+      <input type="checkbox" />
+      <span className="slider"></span>
+    </label>
   );
 };
 
 export default Switch;
-
-
