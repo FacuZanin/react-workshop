@@ -4,8 +4,8 @@ import './Navbigator.css';
 
 const Navbigator = () => {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className='sticky-top'>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light ">
         <div className="container">
           <div className="d-flex justify-content-center w-100">
             <ul className="navbar-nav">
@@ -29,7 +29,7 @@ const Navbigator = () => {
               </li>
             </ul>
           </div>
-          <div className="ml-auto pr-3">
+          <div className="ml-auto pr-0">
             <Switch />
           </div>
         </div>

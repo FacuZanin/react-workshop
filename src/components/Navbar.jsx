@@ -8,10 +8,10 @@ import Corona from './images/Corona.jpeg';
 
 const Navbar = () => {
   return (
-    <div className='container'>
+    <header className="">
       {/* Barra ancha de navegacion */}
       <nav className="navbar navbar-expand-lg navbar-light bg-black">
-        <div className="container-fluid w-100">
+        <div className="container-fluid">
           <div className='col-4'>
             <img src={Corona} alt='Inicio' height={100} width={100}/>
           </div>
@@ -33,7 +33,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

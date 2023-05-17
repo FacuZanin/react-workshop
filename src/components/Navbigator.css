@@ -1,4 +1,9 @@
 .navbar {
     display: inline-block;
   }
+
+  .navbar {
+    width: 100%;
+  }
+  
   
