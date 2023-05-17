@@ -37,7 +37,7 @@
     display: none;
   }
   
-  /* Estilos para FontAwesome, si estás utilizando esa biblioteca de iconos */
+  /* Estilos para FontAwesome*/
   .fa-times:before {
     content: '\f00d';
   }
