@@ -4,6 +4,8 @@ import ItemListContainer from "./components/ItemListContainer";
 import Navbigator from "./components/Navbigator"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyCarousel from "./components/MyCarousel";
+import Footer from "./components/Footer";
+
 
 function App() {
   return (
@@ -43,6 +45,7 @@ function App() {
       <footer className="row">
         <div className="col">
           {/* Contenido del pie de página */}
+          <Footer/>
         </div>
       </footer>
     </div>

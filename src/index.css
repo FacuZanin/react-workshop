@@ -1,6 +1,8 @@
 body {
   scrollbar-width: none; /* Para navegadores Firefox */
   -ms-overflow-style: none; /* Para navegadores Internet Explorer y Microsoft Edge */
+  margin:0;
+  padding: 0;
 }
 
 body::-webkit-scrollbar {
