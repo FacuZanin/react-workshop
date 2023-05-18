@@ -16,6 +16,7 @@ function Footer() {
               <li><a href="#">Teléfono: (2473) 494750</a></li>
               <li><a href="#">Correo electrónico: info@AltaGama.com</a></li>
               <li><a href="#">Dirección: Colon Bs As </a></li>
+              <li><a href="#">Enviar CV </a></li>
             </ul>
           </div>
           <div className="footer-section">
@@ -28,7 +29,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <p className="footer-text">&copy; {new Date().getFullYear()} AltaGama. Todos los derechos reservados.</p>
+          <p className="footer-text">&copy; {new Date().getFullYear()} AltaGama. Todos los derechos reservados. Las fotos contenidas en este site, el logotipo y las marcas son propiedad de www.altagama.com.ar y/o de sus respectivos titulares. Está prohibida la reproducción total o parcial, sin la expresa autorización de la administradora de la tienda virtual.</p>
         </div>
       </div>
     </footer>

@@ -1,9 +1,38 @@
 .navbar {
     display: inline-block;
-  }
-
-  .navbar {
+    border-bottom: none;
+    box-shadow: none;
+    transition: background-color 0.3s ease-in-out;
     width: 100%;
   }
   
+  .navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .no-caret::after {
+    display: none !important;
+  }
   
+  navbar:hover {
+    background-color: #fff;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    position: relative;
+  }
+  
+  .navbar-nav .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover::before {
+    width: 100%;
+  }

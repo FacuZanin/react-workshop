@@ -5,7 +5,7 @@ import Navbigator from "./components/Navbigator"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import MyCarousel from "./components/MyCarousel";
 import Footer from "./components/Footer";
-
+import Section from "./components/Section"
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
           <ItemListContainer greeting="Alta Gama!" />
           <ItemListContainer greeting="Alta Gama!" />
           <ItemListContainer greeting="Alta Gama!" />
+          <Section/>
         </div>
         <div className="col-md-3">
           {/* Contenido secundario */}
