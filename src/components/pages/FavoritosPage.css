@@ -1,0 +1,101 @@
+.favoritos-page {
+  padding: 2rem;
+}
+
+.favoritos-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.favoritos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.favorito-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.favorito-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+.favorito-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #f9f9f9;
+}
+
+.favorito-info {
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* 🔹 Ahora usamos product-card-wrapper para posicionar botones */
+.product-card-wrapper {
+  position: relative;
+}
+
+/* 🔹 Estilos base compartidos entre los dos botones */
+.favorite-btn-card,
+.cart-btn-card {
+  position: absolute;
+  bottom: 10px;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;            /* ✅ centra el ícono */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, background 0.2s ease;
+  padding: 0; /* ✅ evita ovalado */
+}
+
+
+
+.favorite-btn-card svg {
+  stroke: #555;
+}
+
+.favorite-btn-card.active svg {
+  fill: red;
+  stroke: red;
+}
+
+/* 🛒 Botón de carrito a la derecha */
+.cart-btn-card {
+  right: 10px;
+}
+
+.cart-btn-card svg {
+  stroke: green;
+}
+
+.cart-btn-card.active svg {
+  fill: green;  /* 🟢 se pinta verde cuando está activo */
+  stroke: green;
+}
+
+.cart-btn-card:hover {
+  background: #e9f7ec;
+  transform: scale(1.1);
+}
+
+.no-favs {
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 2rem;
+  color: #555;
+}

@@ -1,0 +1,8 @@
+.product-detail-page {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  background: #fff;
+  max-width: 1200px;   /* limita ancho */
+  margin: 0 auto;      /* centra en pantalla */
+}

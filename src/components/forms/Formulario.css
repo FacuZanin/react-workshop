@@ -1,0 +1,120 @@
+.formulario {
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+.formulario.light {
+  background: #f4f4f4;
+}
+
+.formulario.dark {
+  background: #2c2c2c;
+}
+
+.fila-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.fila-inputs input {
+  flex: 1;
+}
+
+.checkbox-container {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.opciones {
+  margin-bottom: 15px;
+}
+
+.opcion {
+  margin: 5px 5px 0 0;
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.opcion.activo {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.opcion.activo-verde {
+  background-color: #28a745;
+  color: #fff;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 20px;
+  resize: none;
+}
+
+.colores-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.color {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.color.activo {
+  border: 3px solid #007bff;
+}
+
+.fila-imagen {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.fila-imagen input {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.btn-azul {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.btn-rojo {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.btn-verde {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.lista-variantes {
+  margin: 15px 0;
+}

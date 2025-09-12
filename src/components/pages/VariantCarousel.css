@@ -1,0 +1,143 @@
+/* Variantes recomendadas / Productos relacionados */
+.related-products {
+  margin: 50px auto;
+  max-width: 1200px;
+  position: relative;
+}
+
+.related-products h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: left;
+}
+
+.related-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* ✅ centra el carrusel */
+}
+
+.related-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scrollbar-width: none;
+  max-width: 100%;
+}
+.related-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.related-card {
+  flex: 0 0 220px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.related-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.related-img-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.related-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.related-card:hover .related-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.related-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.related-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.related-color {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.related-price {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #111;
+  margin-top: 4px;
+  text-decoration: none; /* 👈 evita subrayado */
+  display: inline-block; /* 👈 asegura que respete el estilo de texto */
+}
+
+.related-card .related-price {
+  color: #111 !important; /* 👈 fuerza color sobre el <Link> */
+}
+
+
+/* ✅ Flechas del carrusel */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  background: #f5f5f5;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow.left {
+  left: -20px;
+}
+
+.carousel-arrow.right {
+  right: -20px;
+}
+
+.carousel-arrow svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}

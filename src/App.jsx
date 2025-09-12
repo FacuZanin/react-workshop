@@ -1,55 +1,52 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import ItemListContainer from "./components/ItemListContainer";
-import Navbigator from "./components/Navbigator"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import MyCarousel from "./components/MyCarousel";
-import Footer from "./components/Footer";
-import Section from "./components/Section"
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/header/Header";
+import MyCarousel from "./components/carousel/MyCarousel";
+import Footer from "./components/footer/Footer";
+import MyComponent from "./components/section/MyComponent";
+import FavoritosPage from "./components/pages/FavoritosPage";
+import CarritoPage from "./components/pages/CarritoPage";
+import { CarritoProvider } from "./components/pages/CarritoContext";
 
 function App() {
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect(() => {
+    fetch("/data/productos.json")
+      .then((res) => res.json())
+      .then((data) => setProductsData(data))
+      .catch((err) => console.error("Error cargando productos.json:", err));
+  }, []);
+
   return (
-    <div className="container-fluid">
-      <header className="row">
-        <div className="col">
-          {/* Contenido del encabezado */}
-        </div>
-      </header>
-      <nav className="row">
-        <div className="col">
-          {/* Contenido de la barra de navegación */}
-          <Navbar />
-          <Navbigator/>
-          <MyCarousel/>
-        </div>
-      </nav>
-      <main className="row">
-        <div className="col-md-9">
-          {/* Contenido principal */}
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <ItemListContainer greeting="Alta Gama!" />
-          <Section/>
-        </div>
-        <div className="col-md-3">
-          {/* Contenido secundario */}
-        </div>
-      </main>
-      <footer className="row">
-        <div className="col">
-          {/* Contenido del pie de página */}
-          <Footer/>
-        </div>
-      </footer>
-    </div>
+    <CarritoProvider>
+      {/* Nuevo contenedor principal sin clases de Bootstrap */}
+      <div className="main-app-container">
+        <header>
+          <Header />
+          <MyCarousel />
+        </header>
+
+        {/* ✅ Nuevo: Contenedor principal para la sección de productos y el filtro */}
+        <main className="main-layout-grid">
+          <Routes>
+            <Route path="/" element={<MyComponent />} />
+            <Route
+              path="/favoritos"
+              element={<FavoritosPage products={productsData} />}
+            />
+            <Route
+              path="/carrito"
+              element={<CarritoPage />}
+            />
+          </Routes>
+        </main>
+
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    </CarritoProvider>
   );
 }
 

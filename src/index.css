@@ -1,10 +1,3 @@
-body {
-  scrollbar-width: none; /* Para navegadores Firefox */
-  -ms-overflow-style: none; /* Para navegadores Internet Explorer y Microsoft Edge */
-  margin:0;
-  padding: 0;
-}
-
-body::-webkit-scrollbar {
-  display: none; /* Para navegadores basados en WebKit (Google Chrome, Safari, etc.) */
+html {
+  overflow-y: scroll; /* Fuerza la barra de scroll vertical SIEMPRE */
 }

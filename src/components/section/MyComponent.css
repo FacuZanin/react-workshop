@@ -1,0 +1,157 @@
+.main-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.products-content {
+  flex: 1;
+}
+
+/* Oculta el filtro de escritorio en pantallas pequeñas */
+.desktop-filter {
+  min-width: 250px;
+}
+
+/* Oculta el botón del filtro móvil en pantallas grandes */
+.mobile-filter-btn-container {
+  display: none;
+}
+
+/* ➡️ Tablets y Desktop (768px y más) */
+@media (min-width: 768px) {
+  .mobile-filter-btn-container {
+    display: none;
+  }
+}
+
+/* ➡️ Mobile (hasta 767px) */
+@media (max-width: 767px) {
+  .main-container {
+    flex-direction: column;
+    gap: 0;
+  }
+  .desktop-filter {
+    display: none;
+  }
+.mobile-filter-btn-container {
+  display: block;
+  padding: 2px;
+}
+  .products-content {
+    padding: 0;
+  }
+}
+.filter-and-products-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+/* ➡️ Tablets y Desktop (a partir de 768px) */
+@media (min-width: 768px) {
+  .filter-and-products-container {
+    max-width: 1280px; /* Limita el ancho del contenedor principal */
+    margin: 0 auto; /* Centra el contenedor en la pantalla */
+  }
+}
+
+/* ➡️ Estilos para escritorios grandes (1025px y más) */
+@media (min-width: 1025px) {
+  .main-container {
+    /* Agrega un padding a los lados para crear los márgenes */
+    max-width: 1280px;
+    margin: 0 auto; /* Centra el contenedor en la pantalla */
+  }
+}
+
+/* ➡️ ESTILOS DEL OVERLAY Y PANEL DE FILTROS */
+
+/* ... (el resto de tus estilos) ... */
+
+/* Estilos para el overlay (el fondo que cubre toda la pantalla) */
+.mobile-filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Cuando el overlay está abierto */
+.mobile-filter-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenedor del panel de filtros (el cuadro blanco con las opciones) */
+.mobile-filter-panel {
+  width: 250px; /* Ancho fijo del panel de filtros */
+  height: 100%;
+  background-color: white;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Cuando el overlay está abierto, el panel de filtros también se mueve */
+.mobile-filter-overlay.open .mobile-filter-panel {
+  transform: translateX(0);
+}
+
+/* Botón de cerrar (la X) que se mostrará directamente en el overlay */
+.mobile-filter-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border: 1px;
+  color: white;
+  z-index: 1001;
+}
+.mobile-filter-close-btn svg {
+  stroke: white;
+}
+
+/* Encabezado del overlay */
+.mobile-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+/*ESTILOS DEL BOTON DEL FILTRO*/
+.mobile-filter-btn {
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  color: black;
+  background: #fff;
+  border: 1px solid #00719B;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}

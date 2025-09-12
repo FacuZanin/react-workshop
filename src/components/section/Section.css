@@ -1,0 +1,252 @@
+.section {
+  padding: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* ============================= */
+/* 📌 Grid de productos */
+/* ============================= */
+.product-grid {
+  display: grid;
+  /* Auto-fill para asegurar que las cards no queden demasiado anchas */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* ✅ Ancho más ajustado */
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+/* ============================= */
+/* 📌 Card de producto (Diseño corregido) */
+/* ============================= */
+.product-card {
+  background: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  height: 100%; /* Las cards se estiran para tener la misma altura en la fila */
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+/* ✅ Enlace principal de la card para asegurar que toda la información es clickeable */
+.product-link {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Permite que el contenido se estire para llenar el espacio */
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-image-container {
+  width: 100%;
+  height: 200px; /* Altura fija para la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  overflow: hidden; /* Asegura que la imagen no se desborde */
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.no-image {
+  width: 100%;
+  height: 200px; /* Coherente con product-image-container */
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.product-info {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* ✅ Permite que la información ocupe el espacio restante */
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-bottom: 0.25rem;
+}
+
+.product-type {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.product-price {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #111;
+  display: block;
+}
+
+/* ============================= */
+/* 📌 Botones de acción */
+/* ============================= */
+
+/* ✅ Botón de Favoritos */
+.favorite-btn-card {
+  position: absolute;
+  top: 10px; 
+  right: 10px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorite-btn-card:hover {
+  background: #f8f8f8;
+  transform: scale(1.1);
+}
+
+.favorite-btn-card svg {
+  stroke: #555;
+  width: 18px;
+  height: 18px;
+}
+
+.favorite-btn-card.active svg {
+  fill: red;
+  stroke: red;
+}
+
+/* ✅ Contenedor del Carrito (aparece al hover) */
+.cart-action-container {
+  display: none; /* Oculto por defecto */
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f7f7f7;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* ✅ Mostrar el botón del carrito al hacer hover sobre la card */
+.product-card:hover .cart-action-container {
+  display: flex; /* Mostrar al hover */
+}
+
+.cart-btn-desktop {
+  background: #006591;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  justify-content: center;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.cart-btn-desktop:hover {
+  background-color: #28a745;
+}
+
+.cart-btn-desktop.active {
+  background-color: #28a745;
+}
+
+/* ============================= */
+/* 📱 Responsive breakpoints */
+/* ============================= */
+
+/* ➡️ Mobile (hasta 767px): 2 columnas, borde a borde */
+@media (max-width: 767px) {
+  .section {
+    padding: 0;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  .product-card {
+    border-radius: 0;
+    border: none;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .product-grid > *:nth-child(2n) {
+    border-right: none;
+  }
+  .product-grid > *:nth-last-child(1),
+  .product-grid > *:nth-last-child(2) {
+    border-bottom: none;
+  }
+  /* Ocultar el botón de favoritos y carrito en móvil para simplificar */
+  .favorite-btn-card, .cart-action-container {
+    display: none;
+  }
+}
+
+/* ➡️ Tablets (a partir de 768px): 3 columnas */
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+  .section {
+    padding: 1rem; /* ✅ Padding más ajustado para tablets */
+  }
+  /* Asegura que el botón de favoritos sea visible */
+  .favorite-btn-card {
+    display: flex;
+  }
+  /* Asegura que el botón del carrito se muestre al hover */
+  .cart-action-container {
+    display: none; /* Oculto por defecto, se mostrará al hover de .product-card */
+  }
+}
+
+/* ➡️ Desktop (a partir de 1024px): 4 columnas */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .section {
+    padding: 1.5rem;
+  }
+}
