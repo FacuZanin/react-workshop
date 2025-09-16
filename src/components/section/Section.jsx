@@ -4,10 +4,63 @@ import "./Section.css";
 import PrecioGrid from "../precio/PrecioGrid";
 import { useFavoritos } from "./FavoritosContext";
 import { useCarrito } from "../pages/CarritoContext";
+import { useState, useEffect } from "react"; // ✅ Importa useEffect
 
 const Section = ({ title, products }) => {
   const { favoritos, toggleFavorito } = useFavoritos();
   const { carrito, toggleCarrito } = useCarrito();
+  const [talleSeleccionado, setTalleSeleccionado] = useState({});
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth); // ✅ Estado para el ancho de la ventana
+
+  // ✅ Lógica para actualizar el ancho de la ventana
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleTalleClick = (cardId, talle) => {
+    setTalleSeleccionado((prev) => ({
+      ...prev,
+      [cardId]: talle,
+    }));
+  };
+
+  const handleAddToCart = (productoCompleto, cardKey) => {
+    const isAlreadyInCart = carrito.some((item) => item.id === cardKey);
+    
+    if (!talleSeleccionado[cardKey] && !isAlreadyInCart) {
+      alert("Por favor, selecciona un talle antes de agregar al carrito.");
+      return;
+    }
+
+    const productoConTalle = {
+      ...productoCompleto,
+      talleSeleccionado: talleSeleccionado[cardKey],
+      distribucionSeleccionada: productoCompleto.distribucion[talleSeleccionado[cardKey]]
+    };
+
+    toggleCarrito(productoConTalle);
+
+    setTimeout(() => {
+      const updatedCart = JSON.parse(localStorage.getItem('carrito')) || [];
+      const isStillInCart = updatedCart.some(item => item.id === cardKey);
+      
+      if (!isStillInCart) {
+        setTalleSeleccionado(prev => {
+          const newTalles = { ...prev };
+          delete newTalles[cardKey];
+          return newTalles;
+        });
+      }
+    }, 0);
+  };
+  
+  // ✅ Lógica para definir el texto del botón
+  const buttonText = windowWidth <= 480 ? "Agregar" : "Agregar al carrito";
 
   return (
     <section className="section">
@@ -19,30 +72,33 @@ const Section = ({ title, products }) => {
               const imagenUrl = variante.imagenes?.[0] || "";
               const color = variante.color?.[0] || "default";
               const cardKey = variante.id;
-
               const isFavorito = favoritos[cardKey];
-
               const enCarrito = carrito.some((item) => item.id === cardKey);
-              const productoCarrito = {
-                id: cardKey,
-                nombre: producto.nombre,
-                variante: variante.id,
+              const talleElegido = talleSeleccionado[cardKey];
+
+              const productoCompleto = {
+                ...producto,
+                ...variante,
+                id: variante.id,
+                key: variante.id,
                 imagen: imagenUrl,
-                precio: variante.precio,
-                talles: variante.talles,
-                color: variante.color,
-                cantidad: 1,
+                precioCaja: producto.precioCaja ?? 0,
+                precioSinCaja: producto.precioSinCaja ?? 0,
               };
 
+              const buttonClasses = `cart-btn-desktop ${
+                enCarrito ? "active" : talleElegido ? "enabled" : "disabled"
+              }`;
+              const buttonDisabled = !talleElegido && !enCarrito;
+              
               return (
                 <div key={cardKey} className="product-card">
-                  {/* ✅ Botón de favoritos en la esquina superior derecha */}
                   <button
                     className={`favorite-btn-card ${
                       isFavorito ? "active" : ""
                     }`}
                     onClick={(e) => {
-                      e.preventDefault(); // Previene que el clic active el link
+                      e.preventDefault();
                       toggleFavorito(cardKey);
                     }}
                   >
@@ -52,7 +108,6 @@ const Section = ({ title, products }) => {
                       fill={isFavorito ? "red" : "none"}
                     />
                   </button>
-
                   <Link
                     to={`/producto/${producto.id}/${variante.id}`}
                     className="product-link"
@@ -78,31 +133,35 @@ const Section = ({ title, products }) => {
                     </div>
                   </Link>
 
+                  <div className="product-sizes-container">
+                    {variante.talles.map((talle) => (
+                      <button
+                        key={talle}
+                        className={`size-btn ${
+                          talleElegido === talle ? "active" : ""
+                        }`}
+                        onClick={() => handleTalleClick(cardKey, talle)}
+                        disabled={enCarrito}
+                      >
+                        {talle}
+                      </button>
+                    ))}
+                  </div>
+
                   <div className="cart-action-container">
                     <button
-                      className={`cart-btn-desktop ${
-                        enCarrito ? "active" : ""
-                      }`}
-                      onClick={() => {
-                        const productoCompleto = {
-                          ...producto,
-                          ...variante,
-                          id: variante.id,
-                          key: variante.id,
-                          precioCaja: producto.precioCaja ?? 0,
-                          precioSinCaja: producto.precioSinCaja ?? 0,
-                        };
-                        toggleCarrito(productoCompleto);
-                      }}
+                      className={buttonClasses}
+                      onClick={() => handleAddToCart(productoCompleto, cardKey)}
+                      disabled={buttonDisabled}
                     >
                       <ShoppingCart
                         size={20}
                         strokeWidth={2}
-                        fill={enCarrito ? "green" : "none"}
-                        color={enCarrito ? "green" : "black"}
+                        fill={enCarrito ? "green" : (talleElegido ? "green" : "none")}
+                        color={enCarrito ? "green" : (talleElegido ? "green" : "black")}
                       />
                       <span>
-                        {enCarrito ? " En el carrito" : " Agregar al carrito"}
+                        {enCarrito ? "En el carrito" : buttonText} {/* ✅ Uso de la variable */}
                       </span>
                     </button>
                   </div>

@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-// Hook genérico para manejar localStorage con estado de React
-export function useLocalStorage(key, initialValue) {
-  const [storedValue, setStoredValue] = useState(() => {
-    try {
-      const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.error(`Error leyendo localStorage (${key}):`, error);
-      return initialValue;
-    }
+function getStorageValue(key, defaultValue) {
+  // Verificamos si estamos en el navegador
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem(key);
+    const initial = saved !== null ? JSON.parse(saved) : defaultValue;
+    return initial;
+  }
+  return defaultValue;
+}
+
+export const useLocalStorage = (key, defaultValue) => {
+  const [value, setValue] = useState(() => {
+    return getStorageValue(key, defaultValue);
   });
 
   useEffect(() => {
-    try {
-      localStorage.setItem(key, JSON.stringify(storedValue));
-    } catch (error) {
-      console.error(`Error guardando localStorage (${key}):`, error);
-    }
-  }, [key, storedValue]);
+    // Guardamos el valor en localStorage cada vez que cambia
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
 
-  return [storedValue, setStoredValue];
-}
+  return [value, setValue];
+};

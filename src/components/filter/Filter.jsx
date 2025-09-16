@@ -1,12 +1,14 @@
 import { useState } from "react";
 import "./Filter.css";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const filterCategories = [
   {
     title: "Color",
     key: "color",
     options: [
+      "Animal Print",
       "Amarillo",
       "Azul",
       "Beige",
@@ -63,9 +65,19 @@ const filterCategories = [
     ],
   },
   {
+    title: "Fábrica",
+    key: "fabrica",
+    options: ["Bob", "Bobitos", "Nacional", "Lali", "Ceci"],
+  },
+  {
     title: "Origen",
     key: "origen",
-    options: ["Argentina", "Brasil", "China"],
+    options: ["Brasil", "China", "Argentina"],
+  },
+  {
+    title: "Suela",
+    key: "suela",
+    options: ["Caucho TR", "EVA", "Microexpandido", "PVC", "Vulcanizado"],
   },
   {
     title: "Talles",
@@ -73,58 +85,92 @@ const filterCategories = [
     options: ["21 - 26", "27 - 34", "35 - 40", "39 - 44", "45 +"],
   },
   {
-    title: "Fábrica",
-    key: "fabrica",
-    options: ["JR", "BOB", "MD", "Milla", "Maycon", "Di Fabrica"],
-  },
-  {
-    title: "Tipo de suela",
-    key: "suela",
-    options: ["Caucho TR", "EVA", "Microexpandido", "PVC", "Vulcanizado"],
-  },
-  {
-    title: "Caja",
-    key: "caja",
-    options: ["Con caja", "Sin caja"],
-  },
-  {
-    title: "Colaboración",
-    key: "colaboracion",
-    options: ["Colaboración"],
+    title: "Otros",
+    key: "otros",
+    options: ["Con caja", "Sin caja", "Colaboración"],
   },
 ];
 
 function Filter({ onFilterChange }) {
+  const [selectedFilters, setSelectedFilters] = useLocalStorage("filters", {}); // ✅ Esta línea está ahora correctamente implementada.
   const [openIndex, setOpenIndex] = useState(null);
-  const [selectedFilters, setSelectedFilters] = useState({});
 
   const toggleCategory = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   const handleCheckboxChange = (categoryKey, option) => {
-    setSelectedFilters((prev) => {
-      const prevOptions = prev[categoryKey] || [];
-      const newOptions = prevOptions.includes(option)
-        ? prevOptions.filter((item) => item !== option)
-        : [...prevOptions, option];
+    const newFilters = { ...selectedFilters };
 
-      const newFilters = { ...prev, [categoryKey]: newOptions };
+    if (!newFilters[categoryKey]) {
+      newFilters[categoryKey] = [];
+    }
+
+    if (newFilters[categoryKey].includes(option)) {
+      newFilters[categoryKey] = newFilters[categoryKey].filter(
+        (item) => item !== option
+      );
+    } else {
+      newFilters[categoryKey].push(option);
+    }
+
+    if (newFilters[categoryKey].length === 0) {
+      delete newFilters[categoryKey];
+    }
+
+    setSelectedFilters(newFilters);
+    onFilterChange(newFilters);
+  };
+
+  const handleRemoveActiveFilter = (categoryKey, option) => {
+    const newFilters = { ...selectedFilters };
+    if (newFilters[categoryKey]) {
+      newFilters[categoryKey] = newFilters[categoryKey].filter(
+        (item) => item !== option
+      );
+      if (newFilters[categoryKey].length === 0) {
+        delete newFilters[categoryKey];
+      }
+      setSelectedFilters(newFilters);
       onFilterChange(newFilters);
-      return newFilters;
-    });
+    }
   };
 
   return (
     <div className="sidebar-filter">
       <h3 className="filter-title">REFINÁ TU BÚSQUEDA</h3>
+      
+      {Object.keys(selectedFilters).length > 0 && (
+        <div className="active-filters">
+          <h4>Filtros Activos</h4>
+          <div className="active-filters-container">
+            {Object.entries(selectedFilters).map(([category, options]) =>
+              options.map((option) => (
+                <span key={option} className="filter-tag">
+                  {option}
+                  <button
+                    className="remove-filter-btn"
+                    onClick={() => handleRemoveActiveFilter(category, option)}
+                  >
+                    <X size={14} />
+                  </button>
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
       <div className="accordions">
         {filterCategories.map((category, index) => (
           <div
             key={index}
             className={`accordion-item ${openIndex === index ? "open" : ""}`}
           >
-            <div className="accordion-header" onClick={() => toggleCategory(index)}>
+            <div
+              className="accordion-header"
+              onClick={() => toggleCategory(index)}
+            >
               {category.title}
               <span className={`arrow ${openIndex === index ? "rotate" : ""}`}>
                 <ChevronDown size={18} strokeWidth={3} color="#111" />

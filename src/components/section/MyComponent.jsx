@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Section from "./Section";
 import Loader from "../common/Loader";
 import Filter from "../filter/Filter";
 import "./mycomponent.css";
 import { Funnel, X } from "lucide-react";
+import { useLocalStorage } from "../hooks/useLocalStorage"; // ✅ Importa el hook
 
 const MyComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filters, setFilters] = useState({});
   const [showMobileFilter, setShowMobileFilter] = useState(false);
+  const productsContainerRef = useRef(null);
+  
+  // ✅ Usa useLocalStorage para persistir los filtros en MyComponent
+  const [filters, setFilters] = useLocalStorage("filters", {});
 
   useEffect(() => {
     fetch("/data/productos.json")
@@ -33,59 +37,57 @@ const MyComponent = () => {
     setFilters(newFilters);
   };
 
-  const filteredProducts = data
-    .map((producto) => {
-      // ✅ Solución al error: Garantiza que se usa un array vacío si `variantes` es nulo o indefinido
-      const variantesFiltradas = (producto.variantes || []).filter((v) => {
-        return Object.entries(filters).every(([key, values]) => {
-          if (!values.length) return true;
+  const filteredProducts = data.flatMap((producto) => {
+    const variantesFiltradas = (producto.variantes || []).filter((v) => {
+      return Object.entries(filters).every(([key, values]) => {
+        if (!values.length) return true;
 
-          if (key === "talles") {
+        switch (key) {
+          case "color":
+            return v.color?.some((c) => values.includes(c));
+          case "talles":
             return v.talles?.some((t) => values.includes(t.trim()));
-          }
-
-          if (key === "color") {
-            return v.color?.some((c) => {
-              if (c.trim() === "Varios") {
-                return values.includes("Varios");
-              }
-              return values.includes(c.trim());
-            });
-          }
-
-          if (key === "caja") {
+          case "caja":
             if (values.includes("Con caja")) return producto.precioCaja > 0;
             if (values.includes("Sin caja")) return producto.precioSinCaja > 0;
-          }
-
-          if (key === "colaboracion") {
-            if (values.includes("Colaboración"))
-              return producto.colaboracion === true;
-          }
-
-          return values.includes(producto[key]);
-        });
+            return false;
+          case "colaboracion":
+            if (values.includes("Colaboración")) return producto.colaboracion === true;
+            return false;
+          case "fabrica":
+            return values.includes(producto.fabrica);
+          case "origen":
+            return values.includes(producto.origen);
+          case "suela":
+            return values.includes(producto.suela);
+          default:
+            return values.includes(producto[key]);
+        }
       });
+    });
 
-      if (variantesFiltradas.length > 0) {
-        return { ...producto, variantes: variantesFiltradas };
-      }
-      return null;
-    })
-    .filter(Boolean);
+    if (variantesFiltradas.length > 0) {
+      return { ...producto, variantes: variantesFiltradas };
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    if (productsContainerRef.current) {
+      productsContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [filteredProducts]);
 
   if (loading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="main-container">
-      {/* Desktop Filter: visible en pantallas más grandes */}
       <div className="desktop-filter">
         <Filter onFilterChange={handleFilterChange} />
       </div>
 
-      <div className="products-content">
-        {/* Mobile Filter Button: visible en móviles */}
+      <div className="products-content" ref={productsContainerRef}>
         <div className="mobile-filter-btn-container">
           <button
             className="mobile-filter-btn"
@@ -98,12 +100,10 @@ const MyComponent = () => {
         <Section products={filteredProducts} />
       </div>
 
-      {/* Mobile Filter Overlay */}
       <div
         className={`mobile-filter-overlay ${showMobileFilter ? "open" : ""}`}
         onClick={() => setShowMobileFilter(false)}
       >
-        {/* Botón de cerrar "X" - Se muestra sobre el fondo transparente */}
         <button
           className="mobile-filter-close-btn"
           onClick={() => setShowMobileFilter(false)}
@@ -111,7 +111,6 @@ const MyComponent = () => {
           <X size={24} />
         </button>
 
-        {/* Contenedor del panel de filtros (el recuadro blanco que se desliza) */}
         <div
           className="mobile-filter-panel"
           onClick={(e) => e.stopPropagation()}

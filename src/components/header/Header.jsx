@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ChevronDown,
@@ -15,6 +15,34 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Cargar productos una vez cuando el componente se monta
+  useEffect(() => {
+    fetch("/data/productos.json")
+      .then((res) => res.json())
+      .then((data) => setAllProducts(data))
+      .catch((err) => console.error("Error al cargar productos:", err));
+  }, []);
+
+  // Filtrar productos cada vez que cambia el texto de búsqueda
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      const filtered = allProducts.filter(
+        (product) =>
+          product.nombre
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          product.marca.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.tipo.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filtered);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery, allProducts]);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -27,14 +55,24 @@ const Header = () => {
 
   const toggleSearchBox = () => {
     setIsSearchBoxOpen((prev) => !prev);
+    if (isSearchBoxOpen) {
+      setSearchQuery("");
+    }
     if (isMenuOpen) setIsMenuOpen(false);
+  };
+
+  // ✅ Función para manejar el clic en los resultados y evitar la pantalla en blanco
+  const handleResultClick = () => {
+    // Se añade un pequeño retraso para permitir que la navegación se complete
+    setTimeout(() => {
+      toggleSearchBox();
+    }, 100);
   };
 
   return (
     <header className="main-header">
       <nav className="header-nav">
         <div className="header-container">
-          {/* Botón hamburguesa */}
           <button
             className={`nav-toggle ${isMenuOpen ? "open" : ""}`}
             onClick={toggleMenu}
@@ -46,14 +84,60 @@ const Header = () => {
             <span className="bar"></span>
           </button>
 
-          {/* Logo */}
-          <div className="header-logo">
-            <Link to="/">
-              <img src={Carpincho} alt="Inicio" />
-            </Link>
-          </div>
+          <Link to="/" className="header-logo">
+            <img src={Carpincho} alt="Carpincho Sneakers Logo" />
+          </Link>
 
-          {/* Iconos */}
+          {/* ✅ Se elimina el buscador de escritorio */}
+          {/* <div className="desktop-search">
+            <input
+              type="text"
+              placeholder="Buscar..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div> */}
+
+          <ul className={`nav-list ${isMenuOpen ? "open" : ""}`}>
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Inicio
+              </Link>
+            </li>
+            <li className="nav-item dropdown" onClick={toggleDropdown}>
+              <span className="nav-link">
+                Productos
+                <ChevronDown
+                  size={16}
+                  className={`dropdown-arrow ${
+                    isDropdownOpen ? "rotate" : ""
+                  }`}
+                />
+              </span>
+              {isDropdownOpen && (
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/zapatillas">Zapatillas</Link>
+                  </li>
+                  <li>
+                    <Link to="/fardos">Fardos</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            {/* ✅ Se eliminan los nav-items adicionales para mantener solo los que necesitas */}
+            {/* <li className="nav-item">
+              <Link className="nav-link" to="/zapatillas">
+                Zapatillas
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/fardos">
+                Fardos
+              </Link>
+            </li> */}
+          </ul>
+
           <div className="header-icons">
             <button
               className="mobile-search-toggle"
@@ -78,73 +162,38 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Searchbox desplegable para móvil */}
+        {/* Searchbox desplegable para móvil y resultados */}
         <div className={`mobile-search-box ${isSearchBoxOpen ? "open" : ""}`}>
-          <input type="text" placeholder="Buscar..." />
-          <button
-            className="close-search-button"
-            onClick={toggleSearchBox}
-            aria-label="Cerrar búsqueda"
-          >
-            <X size={24} />
-          </button>
-        </div>
-
-        {/* Menú principal de navegación */}
-        <ul className={`nav-list ${isMenuOpen ? "open" : ""}`}>
-          <li className={`nav-item dropdown ${isDropdownOpen ? "open" : ""}`}>
-            <button className="dropdown-toggle" onClick={toggleDropdown}>
-              Categorías <ChevronDown size={16} />
+          <div className="search-input-container">
+            <input
+              type="text"
+              placeholder="Buscar..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              className="close-search-button"
+              onClick={toggleSearchBox}
+              aria-label="Cerrar búsqueda"
+            >
+              <X size={24} />
             </button>
-            <ul className="dropdown-menu">
-              <li>
-                <Link className="dropdown-item" to="/urbanas">
-                  Urbanas
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to="/deportivas">
-                  Deportivas
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to="/basquet">
-                  Basquet
-                </Link>
-              </li>
-              <li>
-                <Link className="dropdown-item" to="/futbol">
-                  Futbol
-                </Link>
-              </li>
+          </div>
+          {searchQuery && searchResults.length > 0 && (
+            <ul className="search-results">
+              {searchResults.map((product) => (
+                <li key={product.id}>
+                  <Link
+                    to={`/producto/${product.id}`}
+                    onClick={handleResultClick} // ✅ Uso de la nueva función
+                  >
+                    {product.nombre}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/mujer">
-              Mujer
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/hombre">
-              Hombre
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/marcas">
-              Marcas
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/zapatillas">
-              Zapatillas
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link nav-liquidacion" to="/liquidacion">
-              🔥 Liquidación
-            </Link>
-          </li>
-        </ul>
+          )}
+        </div>
       </nav>
     </header>
   );
