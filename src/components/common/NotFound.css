@@ -1,0 +1,20 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh; /* Altura mínima para que sea visible */
+  text-align: center;
+  padding: 2rem;
+}
+
+.not-found-content h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.not-found-content p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}

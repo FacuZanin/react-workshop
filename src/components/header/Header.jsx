@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ChevronDown,
   Search,
@@ -18,8 +18,8 @@ const Header = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
-  // Cargar productos una vez cuando el componente se monta
   useEffect(() => {
     fetch("/data/productos.json")
       .then((res) => res.json())
@@ -27,7 +27,6 @@ const Header = () => {
       .catch((err) => console.error("Error al cargar productos:", err));
   }, []);
 
-  // Filtrar productos cada vez que cambia el texto de búsqueda
   useEffect(() => {
     if (searchQuery.length > 0) {
       const filtered = allProducts.filter(
@@ -61,12 +60,12 @@ const Header = () => {
     if (isMenuOpen) setIsMenuOpen(false);
   };
 
-  // ✅ Función para manejar el clic en los resultados y evitar la pantalla en blanco
-  const handleResultClick = () => {
-    // Se añade un pequeño retraso para permitir que la navegación se complete
-    setTimeout(() => {
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.length > 0) {
+      navigate(`/search?q=${searchQuery}`);
       toggleSearchBox();
-    }, 100);
+    }
   };
 
   return (
@@ -83,74 +82,35 @@ const Header = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </button>
-
+          
           <Link to="/" className="header-logo">
-            <img src={Carpincho} alt="Carpincho Sneakers Logo" />
+            <img src={Carpincho} alt="Logo Carpincho" />
           </Link>
-
-          {/* ✅ Se elimina el buscador de escritorio */}
-          {/* <div className="desktop-search">
-            <input
-              type="text"
-              placeholder="Buscar..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div> */}
-
+          
           <ul className={`nav-list ${isMenuOpen ? "open" : ""}`}>
+
+            {/* ✅ Enlaces fijos agregados aquí */}
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Inicio
-              </Link>
-            </li>
-            <li className="nav-item dropdown" onClick={toggleDropdown}>
-              <span className="nav-link">
-                Productos
-                <ChevronDown
-                  size={16}
-                  className={`dropdown-arrow ${
-                    isDropdownOpen ? "rotate" : ""
-                  }`}
-                />
-              </span>
-              {isDropdownOpen && (
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/zapatillas">Zapatillas</Link>
-                  </li>
-                  <li>
-                    <Link to="/fardos">Fardos</Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-            {/* ✅ Se eliminan los nav-items adicionales para mantener solo los que necesitas */}
-            {/* <li className="nav-item">
-              <Link className="nav-link" to="/zapatillas">
-                Zapatillas
+              <Link to="/zapatillas" className="nav-link" onClick={toggleMenu}>
+                Calzado
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/fardos">
+              <Link to="/fardos" className="nav-link" onClick={toggleMenu}>
                 Fardos
               </Link>
-            </li> */}
+            </li>
           </ul>
 
           <div className="header-icons">
             <button
               className="mobile-search-toggle"
               onClick={toggleSearchBox}
-              aria-label="Buscar"
+              aria-label="Abrir buscador"
             >
               <Search size={22} />
             </button>
-            <Link
-              to="/perfil"
-              aria-label="Perfil de usuario"
-              className="icon-link"
-            >
+            <Link to="/acceso" aria-label="Acceder" className="icon-link">
               <User size={22} />
             </Link>
             <Link to="/favoritos" aria-label="Favoritos" className="icon-link">
@@ -159,40 +119,33 @@ const Header = () => {
             <Link to="/carrito" aria-label="Carrito" className="icon-link">
               <ShoppingCart size={22} />
             </Link>
+            
+            <form className={`mobile-search-box ${isSearchBoxOpen ? "open" : ""}`} onSubmit={handleSearch}>
+              <div className="search-input-container">
+                <input
+                  type="text"
+                  placeholder="Buscar..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="search-submit-button"
+                  aria-label="Buscar"
+                >
+                  <Search size={24} />
+                </button>
+                <button
+                  type="button"
+                  className="close-search-button"
+                  onClick={toggleSearchBox}
+                  aria-label="Cerrar búsqueda"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+            </form>
           </div>
-        </div>
-
-        {/* Searchbox desplegable para móvil y resultados */}
-        <div className={`mobile-search-box ${isSearchBoxOpen ? "open" : ""}`}>
-          <div className="search-input-container">
-            <input
-              type="text"
-              placeholder="Buscar..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button
-              className="close-search-button"
-              onClick={toggleSearchBox}
-              aria-label="Cerrar búsqueda"
-            >
-              <X size={24} />
-            </button>
-          </div>
-          {searchQuery && searchResults.length > 0 && (
-            <ul className="search-results">
-              {searchResults.map((product) => (
-                <li key={product.id}>
-                  <Link
-                    to={`/producto/${product.id}`}
-                    onClick={handleResultClick} // ✅ Uso de la nueva función
-                  >
-                    {product.nombre}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
       </nav>
     </header>

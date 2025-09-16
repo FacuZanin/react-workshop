@@ -101,10 +101,12 @@
 }
 
 .mobile-search-box.open {
+  display: flex;
+  justify-content: flex-end;
   transform: translateY(0);
-  opacity: 0.8;
+  opacity: 1;
   pointer-events: auto;
-  background-color: white;
+  background-color: transparent;
 }
 
 .mobile-search-box input {
@@ -121,6 +123,12 @@
   border: none;
   color: #00719b;
   cursor: pointer;
+}
+
+.search-submit-button {
+  border:none;
+  background:none;
+  color: #00719b;
 }
 
 
@@ -150,6 +158,12 @@
   cursor: pointer;
 }
 
+.close-search-button:hover{
+  color: red;
+}
+.search-submit-button:hover {
+  color: #603fb7;
+}
 .nav-link:hover,
 .dropdown-toggle:hover {
   color: #603fb7;
@@ -220,6 +234,7 @@
 
   .nav-list.open {
     transform: translateX(0);
+    opacity: 0.95;
   }
 
   .nav-item {

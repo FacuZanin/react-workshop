@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import MyComponent from "./components/section/MyComponent";
 import FavoritosPage from "./components/pages/FavoritosPage";
 import CarritoPage from "./components/pages/CarritoPage";
+import SearchResultsPage from "./components/pages/SearchResultsPage";
 import { CarritoProvider } from "./components/pages/CarritoContext";
 
 function App() {
@@ -20,14 +21,12 @@ function App() {
 
   return (
     <CarritoProvider>
-      {/* Nuevo contenedor principal sin clases de Bootstrap */}
       <div className="main-app-container">
         <header>
           <Header />
           <MyCarousel />
         </header>
 
-        {/* ✅ Nuevo: Contenedor principal para la sección de productos y el filtro */}
         <main className="main-layout-grid">
           <Routes>
             <Route path="/" element={<MyComponent />} />
@@ -39,6 +38,8 @@ function App() {
               path="/carrito"
               element={<CarritoPage />}
             />
+            
+            <Route path="/search" element={<SearchResultsPage />} />
           </Routes>
         </main>
 
