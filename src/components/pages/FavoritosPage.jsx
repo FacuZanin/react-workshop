@@ -28,89 +28,81 @@ const FavoritosPage = ({ products }) => {
 
   return (
     <section className="favoritos-page">
-      <h2>Mis Favoritos</h2>
-      <div className="favoritos-grid">
-        {favoritosList.map(({ producto, variante, cardKey }) => {
-          const imagenUrl = variante.imagenes?.[0] || "";
-          const color = variante.color?.[0] || "default";
+      {/* ✅ NUEVO CONTENEDOR */}
+      <div className="favoritos-layout-wrapper">
+        <h2>Mis Favoritos</h2>
+        <div className="favoritos-grid">
+          {favoritosList.map(({ producto, variante, cardKey }) => {
+            const imagenUrl = variante.imagenes?.[0] || "";
+            const color = variante.color?.[0] || "default";
 
-          // 🔹 Objeto del carrito para este producto
-          const productoCarrito = {
-            key: cardKey,
-            id: producto.id,
-            nombre: producto.nombre,
-            precio: producto.precio?.conCaja || 0,
-            imagen: imagenUrl,
-          };
+            // 🔹 Objeto del carrito para este producto
+            const productoCarrito = {
+              key: cardKey,
+              id: producto.id,
+              nombre: producto.nombre,
+              precio: producto.precio?.conCaja || 0,
+              imagen: imagenUrl,
+            };
 
-          // 🔹 Verificar si ya está en el carrito
-          const enCarrito = carrito.some((item) => item.key === cardKey);
+            // 🔹 Verificar si ya está en el carrito
+            const enCarrito = carrito.some((item) => item.key === cardKey);
 
-          return (
-            <div key={cardKey} className="product-card-wrapper">
-              <Link
-                to={`/producto/${producto.id}/${encodeURIComponent(color)}`}
-                className="product-card"
-              >
-                {imagenUrl ? (
-                  <img
-                    src={imagenUrl}
-                    alt={`${producto.nombre} ${color}`}
-                    className="product-image"
+            return (
+              <div key={cardKey} className="favorito-card">
+                <Link
+                  to={`/producto/${producto.id}/${encodeURIComponent(color)}`}
+                >
+                  <img src={imagenUrl} alt="..." className="favorito-img" />
+                  <div className="favorito-info">
+                    <h3>
+                      {producto.marca} {producto.nombre}
+                    </h3>
+                    <p>{color}</p>
+                  </div>
+                </Link>
+
+                {/* ❤️ Botón Favorito (izquierda) */}
+                <button
+                  className={`favorite-btn-card ${
+                    favoritos[cardKey] ? "active" : ""
+                  }`}
+                  onClick={() => toggleFavorito(cardKey)}
+                  aria-label={
+                    favoritos[cardKey]
+                      ? "Quitar de favoritos"
+                      : "Agregar a favoritos"
+                  }
+                >
+                  <Heart
+                    size={20}
+                    strokeWidth={2}
+                    fill={favoritos[cardKey] ? "red" : "none"}
                   />
-                ) : (
-                  <div className="no-image">Sin imagen</div>
-                )}
+                </button>
 
-                <div className="product-info">
-                  <h3>
-                    {producto.marca} {producto.nombre}
-                  </h3>
-                  <p>{color}</p>
-                </div>
-              </Link>
-
-              {/* ❤️ Botón Favorito (izquierda) */}
-              <button
-                className={`favorite-btn-card ${
-                  favoritos[cardKey] ? "active" : ""
-                }`}
-                onClick={() => toggleFavorito(cardKey)}
-                aria-label={
-                  favoritos[cardKey]
-                    ? "Quitar de favoritos"
-                    : "Agregar a favoritos"
-                }
-              >
-                <Heart
-                  size={20}
-                  strokeWidth={2}
-                  fill={favoritos[cardKey] ? "red" : "none"}
-                />
-              </button>
-
-              {/* 🛒 Botón Carrito (derecha) */}
-              <button
-                className={`cart-btn-card ${enCarrito ? "active" : ""}`}
-                onClick={() => toggleCarrito(productoCarrito)}
-                aria-label={
-                  enCarrito ? "Quitar del carrito" : "Agregar al carrito"
-                }
-              >
-                <ShoppingCart
-                  size={20}
-                  strokeWidth={2}
-                  fill={enCarrito ? "green" : "none"} // verde si está en carrito
-                  color={enCarrito ? "green" : "black"}
-                />
-              </button>
-            </div>
-          );
-        })}
+                {/* 🛒 Botón Carrito (derecha) */}
+                <button
+                  className={`cart-btn-card ${enCarrito ? "active" : ""}`}
+                  onClick={() => toggleCarrito(productoCarrito)}
+                  aria-label={
+                    enCarrito ? "Quitar del carrito" : "Agregar al carrito"
+                  }
+                >
+                  <ShoppingCart
+                    size={20}
+                    strokeWidth={2}
+                    fill={enCarrito ? "green" : "none"} // verde si está en carrito
+                    color={enCarrito ? "green" : "black"}
+                  />
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 };
 
 export default FavoritosPage;
-

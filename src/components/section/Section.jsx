@@ -78,13 +78,22 @@ const Section = ({ title, products }) => {
                     </div>
                   </Link>
 
-                  {/* ✅ Contenedor del carrito que aparece al hover */}
                   <div className="cart-action-container">
                     <button
                       className={`cart-btn-desktop ${
                         enCarrito ? "active" : ""
                       }`}
-                      onClick={() => toggleCarrito(productoCarrito)}
+                      onClick={() => {
+                        const productoCompleto = {
+                          ...producto,
+                          ...variante,
+                          id: variante.id,
+                          key: variante.id,
+                          precioCaja: producto.precioCaja ?? 0,
+                          precioSinCaja: producto.precioSinCaja ?? 0,
+                        };
+                        toggleCarrito(productoCompleto);
+                      }}
                     >
                       <ShoppingCart
                         size={20}
@@ -92,7 +101,9 @@ const Section = ({ title, products }) => {
                         fill={enCarrito ? "green" : "none"}
                         color={enCarrito ? "green" : "black"}
                       />
-                      <span>{enCarrito ? " En el carrito" : " Agregar al carrito"}</span>
+                      <span>
+                        {enCarrito ? " En el carrito" : " Agregar al carrito"}
+                      </span>
                     </button>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import { useCotizacion } from "./CotizacionContext";
 
-const PrecioProducto = ({ producto }) => {
+const PrecioProducto = ({ producto, cantidad = 1 }) => {
   const { cotizacion, loading, error } = useCotizacion();
 
   // 🔹 Mientras carga
@@ -12,27 +12,31 @@ const PrecioProducto = ({ producto }) => {
   // 🔹 Si no hay cotización disponible
   if (!cotizacion) return <p>⚠️ Cotización no disponible</p>;
 
-  // 🔹 Convertimos a pesos y redondeamos
-  const precioCajaPesos = Math.floor(producto.precioCaja * cotizacion);
+  // 🔹 Calcular el precio en pesos
+  const precioCajaPesos = producto.precioCaja
+    ? producto.precioCaja * cotizacion
+    : 0;
   const precioSinCajaPesos = producto.precioSinCaja
-    ? Math.floor(producto.precioSinCaja * cotizacion)
-    : null;
+    ? producto.precioSinCaja * cotizacion
+    : 0;
+
+  // 🔹 Seleccionamos el precio a mostrar (se prefiere el precio con caja)
+  const precioFinal = precioCajaPesos > 0 ? precioCajaPesos : precioSinCajaPesos;
+
+  // ✅ Multiplicamos por la cantidad del producto
+  const precioTotal = precioFinal * cantidad;
 
   return (
     <div>
-      <p>
-        💵 Precio con caja: <strong>${precioCajaPesos.toLocaleString("es-AR")}</strong>
-      </p>
-      {precioSinCajaPesos ? (
+      {precioTotal > 0 ? (
         <p>
-          📦 Precio sin caja: <strong>${precioSinCajaPesos.toLocaleString("es-AR")}</strong>
+          <strong>${precioTotal.toLocaleString("es-AR")}</strong>
         </p>
       ) : (
-        <p>📦 Sin caja, no disponible</p>
+        <p>Consultar precio</p>
       )}
     </div>
   );
 };
 
 export default PrecioProducto;
-

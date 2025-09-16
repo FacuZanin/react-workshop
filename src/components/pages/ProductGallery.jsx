@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./ProductGallery.css";
+
 
 const ProductGallery = ({ variant }) => {
   const [mainImage, setMainImage] = useState("");

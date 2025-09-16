@@ -1,3 +1,4 @@
+import React from "react";
 import "./Formulario.css";
 
 const TALLE_OPCIONES = ["21 - 26", "27 - 34", "35 - 40", "39 - 44", "45 +"];
@@ -6,8 +7,7 @@ const MARCAS_OPCIONES = [
   "Lacoste", "Mizuno", "New Balance", "Nike", "Olympikus",
   "Puma", "Tommy Hilfiger", "Veja", "Vans"
 ];
-
-const ORIGEN_OPCIONES = ["Argentina","Brasil","China"]
+const ORIGEN_OPCIONES = ["Argentina", "Brasil", "China"];
 const TIPOS_OPCIONES = [
   "Borcego", "Botines", "Botita", "Crocs", "Infantil",
   "Ojota", "Sandalia", "Zapato", "Zapatilla"
@@ -33,20 +33,32 @@ const COLORES_OPCIONES = [
   { nombre: "Violeta", valor: "#4c2882" },
   { nombre: "Varios", valor: "linear-gradient(45deg, red, yellow, green, blue, violet)" }
 ];
+const CANTIDAD_OPCIONES = [1, 6, 12, 15, 20];
 
 const Formulario = ({
-  form, setForm,
-  nuevaVariante, setNuevaVariante,
-  handleFormChange, toggleColor, toggleTalle,
-  agregarVariante, eliminarVariante,
-  handleSubmit, darkMode,
-  mantenerContacto, setMantenerContacto,
-  mantenerDistribucion, setMantenerDistribucion   // ✅ AGREGADAS
+  form,
+  setForm,
+  nuevaVariante,
+  setNuevaVariante,
+  handleFormChange,
+  toggleColor,
+  toggleTalle,
+  agregarVariante,
+  eliminarVariante,
+  handleSubmit,
+  darkMode,
+  mantenerContacto,
+  setMantenerContacto,
+  errores,
+  varianteErrores
 }) => {
-
   const aplicarMarca = (marca) => setForm((prev) => ({ ...prev, marca: marca.trim() }));
   const aplicarTipo = (tipo) => setForm((prev) => ({ ...prev, tipo: tipo.trim() }));
   const aplicarSuela = (suela) => setForm((prev) => ({ ...prev, suela: suela.trim() }));
+
+  const aplicarCantidad = (cantidad) => {
+    setForm((prev) => ({ ...prev, cantidad }));
+  };
 
   return (
     <form
@@ -55,9 +67,24 @@ const Formulario = ({
     >
       {/* Fábrica + Modelo */}
       <div className="fila-inputs">
-        <input name="fabrica" placeholder="Fábrica" value={form.fabrica} onChange={handleFormChange} required />
-        <input name="nombre" placeholder="Modelo" value={form.nombre} onChange={handleFormChange} required />
+        <input
+          name="fabrica"
+          placeholder="Fábrica"
+          value={form.fabrica}
+          onChange={handleFormChange}
+          className={errores.fabrica ? "campo-error" : ""}
+        />
+        <input
+          name="nombre"
+          placeholder="Modelo"
+          value={form.nombre}
+          onChange={handleFormChange}
+          className={errores.nombre ? "campo-error" : ""}
+        />
       </div>
+      {errores.fabrica && <p className="mensaje-error">{errores.fabrica}</p>}
+      {errores.nombre && <p className="mensaje-error">{errores.nombre}</p>}
+
 
       {/* Checkbox mantener fábrica */}
       <div className="checkbox-container">
@@ -73,9 +100,23 @@ const Formulario = ({
 
       {/* Precios */}
       <div className="fila-inputs">
-        <input name="precioCaja" placeholder="Precio con caja" value={form.precioCaja} onChange={handleFormChange} required type="number" />
-        <input name="precioSinCaja" placeholder="Precio sin caja (opcional)" value={form.precioSinCaja} onChange={handleFormChange} type="number" />
+        <input
+          name="precioCaja"
+          placeholder="Precio con caja"
+          value={form.precioCaja}
+          onChange={handleFormChange}
+          type="number"
+          className={errores.precioCaja ? "campo-error" : ""}
+        />
+        <input
+          name="precioSinCaja"
+          placeholder="Precio sin caja (opcional)"
+          value={form.precioSinCaja}
+          onChange={handleFormChange}
+          type="number"
+        />
       </div>
+      {errores.precioCaja && <p className="mensaje-error">{errores.precioCaja}</p>}
 
       {/* Colaboración */}
       <div className="checkbox-container">
@@ -133,21 +174,36 @@ const Formulario = ({
           </button>
         ))}
       </div>
-      {/* Origen */}
-<div className="opciones">
-  <strong>Origen:</strong><br />
-  {ORIGEN_OPCIONES.map((o) => (
-    <button
-      key={o}
-      type="button"
-      onClick={() => setForm((prev) => ({ ...prev, origen: o }))}
-      className={`opcion ${form.origen === o ? "activo" : ""}`}
-    >
-      {o}
-    </button>
-  ))}
-</div>
 
+      {/* Cantidad - REPOSICIONADO */}
+      <div className="opciones">
+        <strong>Cantidad:</strong><br />
+        {CANTIDAD_OPCIONES.map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => aplicarCantidad(c)}
+            className={`opcion ${form.cantidad === c ? "activo" : ""}`}
+          >
+            x{c}
+          </button>
+        ))}
+      </div>
+
+      {/* Origen */}
+      <div className="opciones">
+        <strong>Origen:</strong><br />
+        {ORIGEN_OPCIONES.map((o) => (
+          <button
+            key={o}
+            type="button"
+            onClick={() => setForm((prev) => ({ ...prev, origen: o }))}
+            className={`opcion ${form.origen === o ? "activo" : ""}`}
+          >
+            {o}
+          </button>
+        ))}
+      </div>
 
       {/* Descripción */}
       <textarea
@@ -157,30 +213,11 @@ const Formulario = ({
         onChange={handleFormChange}
         rows={6}
       />
-<div className="form-group">
-  <label htmlFor="distribucion">Distribución de talles</label>
-  <textarea
-    id="distribucion"
-    name="distribucion"
-    value={form.distribucion}
-    onChange={handleFormChange}
-    placeholder="Ej: 1x 38, 2x 39, 2x 40, 1x 41..."
-  />
-  <div className="checkbox-group">
-    <label>
-      <input
-        type="checkbox"
-        checked={mantenerDistribucion}
-        onChange={(e) => setMantenerDistribucion(e.target.checked)}
-      />
-      Mantener distribución
-    </label>
-  </div>
-</div>
 
       {/* Colores */}
       <div className="colores">
         <strong>Seleccionar Color (uno o más):</strong><br />
+        {varianteErrores.color && <p className="mensaje-error">{varianteErrores.color}</p>}
         <div className="colores-container">
           {COLORES_OPCIONES.map(({ nombre, valor }) => (
             <div
@@ -197,6 +234,7 @@ const Formulario = ({
       {/* Imágenes */}
       <div className="imagenes">
         <strong>Imágenes:</strong>
+        {varianteErrores.imagenes && <p className="mensaje-error">{varianteErrores.imagenes}</p>}
         {(nuevaVariante.imagenes || []).map((img, index) => (
           <div key={`${nuevaVariante.key || ""}-${index}`} className="fila-imagen">
             <input
@@ -208,6 +246,7 @@ const Formulario = ({
                 nuevas[index] = e.target.value;
                 setNuevaVariante((prev) => ({ ...prev, imagenes: nuevas }));
               }}
+              className={varianteErrores.imagenes && !img ? "campo-error" : ""}
             />
             <button
               type="button"
@@ -268,25 +307,44 @@ const Formulario = ({
         ))}
       </ul>
 
-      {/* Talles */}
+      {/* Talles y Distribución */}
       <div className="opciones">
         <strong>Seleccionar Talles:</strong><br />
-        {TALLE_OPCIONES.map((t) => (
-          <button
-            key={t}
-            type="button"
-            onClick={() => toggleTalle(t)}
-            className={`opcion ${nuevaVariante.talles.includes(t) ? "activo-verde" : ""}`}
-          >
-            {t}
-          </button>
-        ))}
+        {varianteErrores.talles && <p className="mensaje-error">{varianteErrores.talles}</p>}
+        <div className="talles-container">
+          {TALLE_OPCIONES.map((t) => (
+            <div key={t} className="talle-group">
+              <button
+                type="button"
+                onClick={() => toggleTalle(t)}
+                className={`opcion ${nuevaVariante.talles.includes(t) ? "activo-verde" : ""}`}
+              >
+                {t}
+              </button>
+              {nuevaVariante.talles.includes(t) && (
+                <textarea
+                  name="distribucion"
+                  data-talle={t}
+                  value={nuevaVariante.distribucion[t] || ""}
+                  onChange={(e) => setNuevaVariante((prev) => ({
+                    ...prev,
+                    distribucion: { ...prev.distribucion, [t]: e.target.value }
+                  }))}
+                  placeholder={`Distribución para ${t}`}
+                  rows={3}
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Botón agregar variante */}
       <button type="button" className="btn-azul" onClick={agregarVariante}>
         Agregar Variante
       </button>
+      {errores.variantes && <p className="mensaje-error">{errores.variantes}</p>}
+
 
       {/* Lista variantes añadidas */}
       <div className="lista-variantes">
@@ -295,6 +353,11 @@ const Formulario = ({
           {form.variantes.map((v) => (
             <li key={v.id}>
               Colores: {v.color.join(", ")} — Talles: {v.talles.join(", ")}<br />
+              {v.distribucion && Object.keys(v.distribucion).map(talle => (
+                  <p key={talle}>
+                      <strong>{talle}:</strong> {v.distribucion[talle]}
+                  </p>
+              ))}
               {v.imagenes?.map((img, i) => (
                 <a key={i} href={img} target="_blank" rel="noopener noreferrer">🖼️ Imagen {i + 1} </a>
               ))}

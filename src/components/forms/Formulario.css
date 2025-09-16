@@ -10,6 +10,32 @@
 
 .formulario.dark {
   background: #2c2c2c;
+  color: #fff;
+}
+
+.formulario.dark input,
+.formulario.dark textarea {
+  background: #444;
+  color: #fff;
+  border: 1px solid #666;
+}
+
+.formulario.dark .opcion {
+  background-color: #555;
+  color: #fff;
+}
+
+.formulario.dark .opcion.activo {
+  background-color: #007bff;
+}
+
+.formulario.dark .opcion.activo-verde {
+  background-color: #28a745;
+}
+
+.formulario.dark .lista-variantes li {
+  background: #444;
+  color: #fff;
 }
 
 .fila-inputs {
@@ -87,21 +113,51 @@ textarea {
   margin-right: 5px;
 }
 
+.talles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.talle-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.talle-group textarea {
+  width: 250px;
+  height: 40px;
+  margin: 0;
+}
+
+.lista-variantes {
+  margin: 15px 0;
+}
+
+.lista-variantes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.lista-variantes li {
+  background: #eee;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.lista-variantes li button {
+  float: right;
+  margin-left: 10px;
+}
+
 .btn-azul {
   background-color: #17a2b8;
   color: white;
   border: none;
   border-radius: 6px;
   padding: 6px 12px;
-  cursor: pointer;
-}
-
-.btn-rojo {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 4px 8px;
   cursor: pointer;
 }
 
@@ -113,8 +169,26 @@ textarea {
   padding: 12px 24px;
   cursor: pointer;
   margin-top: 10px;
+  width: 100%;
 }
 
-.lista-variantes {
-  margin: 15px 0;
+.btn-rojo {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.campo-error {
+  border: 1px solid red !important;
+  background-color: #fffafa !important;
+}
+
+.mensaje-error {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
 }

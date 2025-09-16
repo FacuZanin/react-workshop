@@ -18,7 +18,7 @@ const convertirLinkDrive = (url) => {
     }
     const id = idMatch ? idMatch[1] : null;
     if (!id) return url;
-    return `https://lh3.googleusercontent.com/d/${id}=w1000`;
+    return `https://lh3.googleusercontent.com/d/$${id}=w1000`;
   } catch {
     return url;
   }
@@ -38,17 +38,18 @@ const generarId = (producto, variante) => {
 
 const getImageId = (url) => {
   if (!url) return null;
-  const match = url.match(/\/d\/([^/]+)=/); 
+  const match = url.match(/\/d\/([^/]+)=/);
   return match ? match[1] : null;
 };
 
 export default function MainForm() {
   const [form, setForm] = useState(inicializarForm());
   const [mantenerContacto, setMantenerContacto] = useState(false);
-  const [mantenerDistribucion, setMantenerDistribucion] = useState(false); // ✅ nuevo
   const [nuevaVariante, setNuevaVariante] = useState(inicializarVariante());
   const [productos, setProductos] = useState([]);
   const [theme, setTheme] = useState("dark");
+  const [errores, setErrores] = useState({});
+  const [varianteErrores, setVarianteErrores] = useState({});
 
   const darkMode = theme === "dark";
 
@@ -62,10 +63,9 @@ export default function MainForm() {
       precioSinCaja: "",
       descripcion: "",
       fabrica: "",
-      distribucion: "", // ✅ nuevo campo
-      caja: "",
       origen: "",
       colaboracion: false,
+      cantidad: null,
       variantes: []
     };
   }
@@ -75,7 +75,8 @@ export default function MainForm() {
       color: [],
       imagenes: [""],
       videos: [],
-      talles: []
+      talles: [],
+      distribucion: {}
     };
   }
 
@@ -85,6 +86,7 @@ export default function MainForm() {
       ...prev,
       [name]: typeof value === "string" ? value.trimStart() : value
     }));
+    setErrores((prev) => ({ ...prev, [name]: "" }));
   };
 
   const toggleTalle = (num) => {
@@ -92,7 +94,14 @@ export default function MainForm() {
       const talles = prev.talles.includes(num)
         ? prev.talles.filter((t) => t !== num)
         : [...prev.talles, num];
-      return { ...prev, talles };
+
+      const nuevaDistribucion = { ...prev.distribucion };
+      if (!talles.includes(num)) {
+        delete nuevaDistribucion[num];
+      }
+
+      setVarianteErrores((prev) => ({ ...prev, talles: "" }));
+      return { ...prev, talles, distribucion: nuevaDistribucion };
     });
   };
 
@@ -101,14 +110,9 @@ export default function MainForm() {
       const colores = prev.color.includes(color)
         ? prev.color.filter((c) => c !== color)
         : [...prev.color, color];
+      setVarianteErrores((prev) => ({ ...prev, color: "" }));
       return { ...prev, color: colores };
     });
-  };
-
-  const getFirstImageId = (url) => {
-    if (!url) return null;
-    const match = url.match(/\/d\/([^/]+)=/);
-    return match ? match[1] : null;
   };
 
   const agregarVariante = () => {
@@ -119,13 +123,23 @@ export default function MainForm() {
       (u) => u && u.trim() !== ""
     );
 
-    if (
-      nuevaVariante.color.length === 0 ||
-      (!tieneImagenValida && !tieneVideoValido) ||
-      nuevaVariante.talles.length === 0
-    ) {
+    const nuevosErrores = {};
+    if (nuevaVariante.color.length === 0) {
+      nuevosErrores.color = "Debes seleccionar al menos un color.";
+    }
+    if (!tieneImagenValida && !tieneVideoValido) {
+      nuevosErrores.imagenes = "Debes agregar al menos una URL de imagen o video válida.";
+    }
+    if (nuevaVariante.talles.length === 0) {
+      nuevosErrores.talles = "Debes seleccionar al menos un talle.";
+    }
+
+    if (Object.keys(nuevosErrores).length > 0) {
+      setVarianteErrores(nuevosErrores);
       return;
     }
+    setVarianteErrores({});
+
 
     const imagenesConvertidas = (nuevaVariante.imagenes || [])
       .map((u) => (u || "").trim())
@@ -136,13 +150,14 @@ export default function MainForm() {
       .map((v) => (v || "").trim())
       .filter(Boolean);
 
-    const idPorImagen = getFirstImageId(imagenesConvertidas[0]) || generarId(form, nuevaVariante);
+    const idPorImagen = getImageId(imagenesConvertidas[0]) || generarId(form, nuevaVariante);
 
     const varianteConId = {
       ...nuevaVariante,
       id: idPorImagen,
       imagenes: imagenesConvertidas,
-      videos: videosLimpios
+      videos: videosLimpios,
+      distribucion: nuevaVariante.distribucion
     };
 
     setForm((prev) => ({
@@ -176,9 +191,30 @@ export default function MainForm() {
     URL.revokeObjectURL(url);
   };
 
+  const validarFormulario = () => {
+    const nuevosErrores = {};
+    if (!form.fabrica.trim()) {
+      nuevosErrores.fabrica = "La fábrica es obligatoria.";
+    }
+    if (!form.nombre.trim()) {
+      nuevosErrores.nombre = "El modelo es obligatorio.";
+    }
+    if (!form.precioCaja) {
+      nuevosErrores.precioCaja = "El precio con caja es obligatorio.";
+    }
+    if (form.variantes.length === 0) {
+      nuevosErrores.variantes = "Debes agregar al menos una variante.";
+    }
+    setErrores(nuevosErrores);
+    return Object.keys(nuevosErrores).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.nombre.trim() || form.variantes.length === 0) return;
+
+    if (!validarFormulario()) {
+      return;
+    }
 
     try {
       const variantesConId = form.variantes.map((v) => {
@@ -198,17 +234,17 @@ export default function MainForm() {
 
       const nuevoProducto = {
         id: idPrincipal,
-        nombre: form.nombre.trim(),
+        fabrica: capitalizar(form.fabrica.trim()),
         marca: form.marca.trim(),
-        tipo: form.tipo.trim(),
-        suela: form.suela.trim(),
+        nombre: form.nombre.trim(),
         precioCaja: parseInt(form.precioCaja) || 0,
         precioSinCaja: parseInt(form.precioSinCaja) || 0,
-        descripcion: form.descripcion.trim(),
-        fabrica: capitalizar(form.fabrica.trim()),
-        distribucion: form.distribucion.trim(), // ✅ lo guardamos
-        caja: form.caja.trim(),
+        tipo: form.tipo.trim(),
+        cantidad: form.cantidad || null,
+        suela: form.suela.trim(),
+        origen: form.origen.trim(),
         colaboracion: form.colaboracion || false,
+        descripcion: form.descripcion.trim(),
         variantes: variantesConId
       };
 
@@ -218,8 +254,7 @@ export default function MainForm() {
       setProductos(productosActualizados);
       setForm({
         ...inicializarForm(),
-        fabrica: mantenerContacto ? form.fabrica : "",
-        distribucion: mantenerDistribucion ? form.distribucion : "" // ✅ mantener si está tildado
+        fabrica: mantenerContacto ? form.fabrica : ""
       });
       setNuevaVariante(inicializarVariante());
     } catch (error) {
@@ -254,8 +289,8 @@ export default function MainForm() {
           darkMode={darkMode}
           mantenerContacto={mantenerContacto}
           setMantenerContacto={setMantenerContacto}
-          mantenerDistribucion={mantenerDistribucion} // ✅ se pasa al form
-          setMantenerDistribucion={setMantenerDistribucion} // ✅ se pasa al form
+          errores={errores}
+          varianteErrores={varianteErrores}
         />
 
         <hr className="divider" />

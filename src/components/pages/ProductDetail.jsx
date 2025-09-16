@@ -33,19 +33,33 @@ const ProductDetail = () => {
       .catch((err) => console.error("Error cargando producto:", err));
   }, [id, variantId]);
 
-  if (!product || !variant) return <div>Producto no encontrado</div>;
+  if (!product) {
+    return (
+      <>
+        <Header />
+        <div className="product-detail-page">
+          <p>Cargando producto...</p>
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
       <Header />
-      {/* ✅ CAMBIO: Nuevo contenedor para centrar todo el contenido */}
-      <div className="product-detail-page-wrapper"> 
+      <div className="product-detail-page-wrapper">
         <div className="product-detail-page">
-          <ProductGallery variant={variant} />
-          <ProductInfo product={product} variant={variant} />
+          <div className="gallery-column">
+            <ProductGallery variant={variant} />
+          </div>
+
+          <div className="info-column">
+            <ProductInfo product={product} variant={variant} />
+          </div>
         </div>
 
-        <div className="accordions">
+        <div className="accordion-container">
           <div
             className={`accordion-item ${openSection === "desc" ? "open" : ""}`}
           >
@@ -62,7 +76,9 @@ const ProductDetail = () => {
                 <ChevronDown size={24} />
               </span>
             </div>
-            <div className="accordion-body">{product.descripcion}</div>
+            <div className="accordion-body">
+              {product.descripcion}
+            </div>
           </div>
 
           <div
@@ -83,11 +99,21 @@ const ProductDetail = () => {
             </div>
             <div className="accordion-body">
               Tipo: {product.tipo} <br />
-              Color: {variant?.color?.[0] || "No disponible"} <br />
-              Distribucion: {product.distribucion} <br />
+              Color: {variant?.color?.join(", ")} <br />
+              Suela: {product.suela} <br />
               Origen: {product.origen} <br />
               Fabrica: {product.fabrica} <br />
-              Suela: {product.suela}
+              {product.colaboracion && <>Colaboración: Sí <br /></>}
+              <br />
+              <strong>Distribución:</strong>
+              <div className="distribucion-list">
+                {variant?.distribucion &&
+                  Object.keys(variant.distribucion).map((talle) => (
+                    <div key={talle} className="distribucion-item">
+                      <strong>{talle}:</strong> {variant.distribucion[talle]}
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
         </div>

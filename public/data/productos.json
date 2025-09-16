@@ -1,4 +1,4 @@
-[ 
+[
   {
     "id": "zapatilla-adidas-samba-og-print",
     "nombre": "Samba OG Print",
@@ -9,53 +9,50 @@
     "precioSinCaja": 0,
     "descripcion": "Suela de TR engomada antideslizante\nCordones 100% poliéster línea premium\nForradas en napa (idénticas a las originales)\nTodas las costuras replican el modelo original\nCapellada en material tipo peluche imitando cuero animal\nPlantilla personalizada de la marca, de 5MM\nDos tags de la marca con QR CODE que lleva directo al sitio de Adidas\nLengüeta con transferencia térmica (igual que la original)\nSeda blanca ultra fina y papel envoltorio tipo buxa\nTalón trasero con relieve en alta frecuencia\nCaja de primera línea con acabado laqueado\nEtiqueta de identificación en la caja\nInterior completamente forrado con manta respirable para mayor confort\n\n🔴**INCLUYE:**🔴\n\nDos pares de cordones premium (uno de cada color)\nBolsita de la marca (bolsa TNT con visor)",
     "fabrica": "Bob",
-    "distribucion": "1x35 2x36 3x37 3x38 2x39 1x40",
     "cantidad": "12",
-    "caja": "",
     "origen": "Brasil",
     "colaboracion": false,
     "variantes": [
       {
-        "color": [
-          "Animal Print"
-        ],
+        "color": ["Animal Print"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1LoS0kTQKEI69sTpCDi0nkc9tfwdzehKB=w1000",
           "https://lh3.googleusercontent.com/d/1MRoYURGh54WQeYZUl3qfCtoORxTgJvko=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40"
-        ],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
+        },
+
         "id": "bob-dzehKB"
       },
       {
-        "color": [
-          "Animal Print"
-        ],
+        "color": ["Animal Print"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/15rXHXx1dmUoMo1TSPcqaty8MKRDHskHe=w1000",
           "https://lh3.googleusercontent.com/d/14kgj-XbAGL6X3uZLwmeEUcbe4jsgXgC0=w1000",
           "https://lh3.googleusercontent.com/d/1uxhxjZIQBnqRc31eQ2uk65KBA2E2By7f=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40"
-        ],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
+        },
+
         "id": "bob-DHskHe"
       },
       {
-        "color": [
-          "Animal Print"
-        ],
+        "color": ["Animal Print"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1-XnBon6AjFow2I4gZhEKKdzPSYy1CaEq=w1000",
           "https://lh3.googleusercontent.com/d/1LNOMa9M1Nq24IGGaOWdn1VEULNg_fBFC=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40"
-        ],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
+        },
         "id": "bob-y1CaEq"
       }
     ]
@@ -70,141 +67,132 @@
     "precioSinCaja": 0,
     "descripcion": "Suela de TR engomada antideslizante\nCordones 100% poliéster línea premium\nForradas en napa (idénticas a las originales)\nTodas las costuras replican el modelo original\nCapellada en cuero sintético tipo Logan y gamuza sintética\nPlantilla personalizada de la marca, de 5MM\nDos tags de la marca con QR CODE que redirige al sitio oficial de Adidas\nLengüeta con impresión transfer (idéntica a la original)\nSeda blanca ultra fina y papel envoltorio tipo buxa\nTalón trasero con relieve en alta frecuencia\nCaja de primera línea con acabado laqueado\nEtiqueta identificatoria en la caja\nInterior completamente forrado con manta respirable para mayor comodidad",
     "fabrica": "Bob",
-    "distribucion": "1x35 2x36 3x37 3x38 2x39 1x40 / 1x39 2x40 3x41 3x42 2x43 1x44",
-    "origen":"Brasil",
+    "cantidad": "12",
+    "origen": "Brasil",
     "caja": "",
     "colaboracion": false,
     "variantes": [
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1H2MkpEW8d0auJAPsa6i9s7Vh2h7x2Y7U=w1000",
           "https://lh3.googleusercontent.com/d/17CcDV321PxWEnMASlLuO205i44WB5q8i=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-7x2Y7U"
       },
       {
-        "color": [
-          "Beige"
-        ],
+        "color": ["Beige"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1DdQX5CWkk2LoPTtRk6OSjwe99nRvSjGP=w1000",
           "https://lh3.googleusercontent.com/d/1a4t4xIhZKraOTJHf9z3Y7jLBznzHJ2NT=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-RvSjGP"
       },
       {
-        "color": [
-          "Verde"
-        ],
+        "color": ["Verde"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1qCm0x8WEK0lY2JylQi2kqrbjb5SDhcXD=w1000",
           "https://lh3.googleusercontent.com/d/1InQKGqr1XfuYZEkN4l76scKx23EvgOnC=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-SDhcXD"
       },
       {
-        "color": [
-          "Blanco"
-        ],
+        "color": ["Blanco"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1sBYSI39lPiQseARZVALMMqajh-Rcu1pV=w1000",
           "https://lh3.googleusercontent.com/d/1NL4GsVkjtXJC1tiRCV4aEWCkX8GK7Md_=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-Rcu1pV"
       },
       {
-        "color": [
-          "Blanco"
-        ],
+        "color": ["Blanco"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1tqaaJ7GqUhkULTMldj37deN0wAD6bePL=w1000",
           "https://lh3.googleusercontent.com/d/1h0IhKGO-7qamon0RzZ91vx6MSqoQTbg2=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-D6bePL"
       },
       {
-        "color": [
-          "Marrón"
-        ],
+        "color": ["Marrón"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1qYJXa_KPmlzRs1bCNGrm6crIu_PyoqlY=w1000",
           "https://lh3.googleusercontent.com/d/1RR1N5CjJV7va_oCTQe-ztkSjyt1oY0aO=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-PyoqlY"
       },
       {
-        "color": [
-          "Marrón"
-        ],
+        "color": ["Marrón"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1XFTlI4jueTOSm360qQ-muw9ohElFdVqU=w1000",
           "https://lh3.googleusercontent.com/d/1xuNJLS9lWw4auo6u0ocV_gzRtqrWRIMn=1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-lFdVqU"
       },
       {
-        "color": [
-          "Rosa"
-        ],
+        "color": ["Rosa"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/13L0lB-5gl7wHnoXJtU7N9risspXw52jG=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40"
-        ],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
+        },
         "id": "bob-Xw52jG"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1z1JayO2r99whz0OkFYznAkDyQ851ZhMg=w1000",
           "https://lh3.googleusercontent.com/d/1jwUL1MhAasOvAqeouuPPOy5q2bQHedvX=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40"
-        ],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
+        },
         "id": "bob-51ZhMg"
       }
     ]
@@ -219,53 +207,50 @@
     "precioSinCaja": 0,
     "descripcion": "Suela pegada de excelente calidad\nCordones 100% poliéster línea premium\nForradas en cuerina napa flooter (idénticas a las originales)\nTodas las costuras replican el modelo original\nDetalle acolchado en la parte trasera de la lengüeta con forro tipo toalla\nCapellada en cuero sintético tipo camurción y lona\nPlantilla personalizada de la marca, de 5MM\nTags de la marca con diseño estilo skate\nLengüeta con etiqueta de tela (idéntica a la original)\nCaja de primera línea, igual a la original\nEtiqueta identificatoria en la caja\n\n🔴**INCLUYE:**🔴\n\nPlantilla de gel anti-impacto\nDos cordones premium (uno de cada color)",
     "fabrica": "Bob",
-    "distribucion": "1x35 2x36 3x37 3x38 2x39 1x40 / 1x39 2x40 3x41 3x42 2x43 1x44",
+    "cantidad": "12",
     "caja": "",
     "origen": "Brasil",
     "colaboracion": false,
     "variantes": [
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1Ys-A_BzPyLOIOdJk7lnpdEf42aGuXUAa=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-GuXUAa"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/11Oo_lb7LBtLMGTPwEU0flgvQSDKPZBhW=w1000",
           "https://lh3.googleusercontent.com/d/1QAaKM5UriGrrCfwKsXlk9Qb9BnZAdeGm=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-KPZBhW"
       },
       {
-        "color": [
-          "Azul"
-        ],
+        "color": ["Azul"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/12Fs9V_clnKEAQOH5hPBk1eRY6VnfjHv6=w1000",
           "https://lh3.googleusercontent.com/d/1D0dzH3UV61jUR59ECVD5hZLble7kPVbH=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-nfjHv6"
       }
     ]
@@ -280,100 +265,94 @@
     "precioSinCaja": 0,
     "descripcion": "Suela pegada de microexpandido de primera calidad\nCordones 100% poliéster línea premium\nEspuma en la lengüeta de 25MM\nForradas con forro tipo toalla (idénticas a las originales)\nTodas las costuras replican el modelo original\nCapellada en cuero sintético tipo camurción\nPlantilla personalizada de la marca, de 5MM\nTags de la marca con diseño estilo skate\nLengüeta con etiqueta de tela (igual a la original)\nDetalle lateral en alto relieve 3D\nCaja de primera línea, igual a la original\nEtiqueta identificatoria en la caja\nInterior completamente forrado en material felpudo\n🔴**INCLUYE:**🔴\nPlantilla de gel anti-impacto\nDos cordones gruesos premium (uno de cada color)\nBolsita de la marca",
     "fabrica": "Bob",
-    "distribucion": "1x35 2x36 3x37 3x38 2x39 1x40 / 1x39 2x40 3x41 3x42 2x43 1x44",
+    "cantidad": "12",
     "caja": "",
     "origen": "Brasil",
     "colaboracion": false,
     "variantes": [
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1OVgVlDaVZTGqM7BCGICstqMEt4ZI0rAt=w1000",
           "https://lh3.googleusercontent.com/d/1oPLi0cbbiNJzMk1KTnOnEYgSWMS3q39k=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-ZI0rAt"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1tTyU5lrLxxvdQHqmRL8D9ALCfZ2MN3Ig=w1000",
           "https://lh3.googleusercontent.com/d/1H1ac-N23fX6W-CzPibfGRIS4kzjpLT9U=w1000",
           "https://lh3.googleusercontent.com/d/1bfi_-0UZ5oimd9S1n1skJpo6t3xJcQDg=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-2MN3Ig"
       },
       {
-        "color": [
-          "Beige"
-        ],
+        "color": ["Beige"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1T58jKd_z_PQQZ7GKGiJfhPLH1nFOEe9q=w1000",
           "https://lh3.googleusercontent.com/d/1zOSbUSCaKxqtE-5bDQpQR_k4zGNk4AmS=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-FOEe9q"
       },
       {
-        "color": [
-          "Blanco"
-        ],
+        "color": ["Blanco"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1r_zTqvYtUWw3DOwgRFGJuM9AftciSaJV=w1000",
           "https://lh3.googleusercontent.com/d/1vfFbbtKH0xVdiPxwfW8AI6WZblHmWRaj=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-ciSaJV"
       },
       {
-        "color": [
-          "Marrón"
-        ],
+        "color": ["Marrón"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1DDoB09A8I-iiwkMTIr8Ng7rCIacJXhWB=w1000",
           "https://lh3.googleusercontent.com/d/15N7CxNRse1-QRRiU61UE5LLjez4dv2cu=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-4dv2cu"
       },
       {
-        "color": [
-          "Beige"
-        ],
+        "color": ["Beige"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1NKpd6pfw1F0zlSyGJ5RQzpuNgmAGOfFO=w1000",
           "https://lh3.googleusercontent.com/d/1H6wblVpJYzMCEE4J9PWiDAEV4c1pJj1q=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-AGOfFO"
       }
     ]
@@ -388,130 +367,120 @@
     "precioSinCaja": 0,
     "descripcion": "Cordones de primera línea\nForradas en napa\nTodas las costuras replican el modelo original\nCapellada firme en gamuza y lona\nSuela bicolor\nTag de la marca\nEtiqueta de la marca en goma\nPapel de seda personalizado con la marca",
     "fabrica": "Bob",
-    "distribucion": "1x35 2x36 3x37 3x38 2x39 1x40 / 1x39 2x40 3x41 3x42 2x43 1x44",
+    "cantidad": "12",
     "caja": "",
     "origen": "Brasil",
     "colaboracion": false,
     "variantes": [
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/12odBvdkAUwoRzHMOusSKXycnWA6CLLAf=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-6CLLAf"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1M8UhjqzLWRRSDgYjhMm10K9W9JocVyj6=w1000",
           "https://lh3.googleusercontent.com/d/10C_eQMihmxguDLa4sYJ_jm23iUDJ2et0=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-ocVyj6"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1IOlI1anALXguRRg4vVk-aKaSNNR4t77f=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-R4t77f"
       },
       {
-        "color": [
-          "Blanco"
-        ],
+        "color": ["Blanco"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/17e3rqXOO7TLTEUl1ifUskNScE8zbSS0p=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-zbSS0p"
       },
       {
-        "color": [
-          "Gris"
-        ],
+        "color": ["Gris"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/13VSsk-nGnqswTfR2eHFsNup9HP9XXhHr=w1000",
           "https://lh3.googleusercontent.com/d/1YUUaKhYrRgdLYkFm-79cW75HXMuEuek-=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-9XXhHr"
       },
       {
-        "color": [
-          "Negro"
-        ],
+        "color": ["Negro"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1UgAlEa37HpPjKA7odnjDIkajsmPgyRTS=w1000",
           "https://lh3.googleusercontent.com/d/1uqzclZqb1jJ1BL7WozmucRyKBB3k5z8H=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-PgyRTS"
       },
       {
-        "color": [
-          "Azul"
-        ],
+        "color": ["Azul"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/1rFwTD3x3GUQEj8Qm_HyN21jhGQNEz7JH=w1000",
           "https://lh3.googleusercontent.com/d/13WaBSpTU1IPQ3zio631O0CxqE1HB7tIw=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-NEz7JH"
       },
       {
-        "color": [
-          "Marrón"
-        ],
+        "color": ["Marrón"],
         "imagenes": [
           "https://lh3.googleusercontent.com/d/15ZGL1ua8oxyTRS4JmmaLrcVfCb8mCDVO=w1000",
           "https://lh3.googleusercontent.com/d/1bA3AG4Fdd_vGclqkTc12yEt2PlvZ-Rdl=w1000"
         ],
         "videos": [],
-        "talles": [
-          "35 - 40",
-          "39 - 44"
-        ],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
         "id": "bob-8mCDVO"
       }
     ]
   }
-
 ]
-
