@@ -9,7 +9,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 20px;
-  color: #333;
+  color: whitesmoke;
   text-align: left;
 }
 
@@ -38,12 +38,13 @@
   border: 1px solid #eee;
   border-radius: 12px;
   padding: 12px;
-  background: #fff;
+  background: #1a1a1a;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .related-card:hover {
@@ -79,7 +80,7 @@
 .related-name {
   font-size: 1rem;
   font-weight: 500;
-  color: #222;
+  color: whitesmoke;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -94,14 +95,14 @@
 .related-price {
   font-weight: bold;
   font-size: 1rem;
-  color: #111;
+  color: whitesmoke;
   margin-top: 4px;
   text-decoration: none; /* 👈 evita subrayado */
   display: inline-block; /* 👈 asegura que respete el estilo de texto */
 }
 
 .related-card .related-price {
-  color: #111 !important; /* 👈 fuerza color sobre el <Link> */
+  color: whitesmoke !important; /* 👈 fuerza color sobre el <Link> */
 }
 
 

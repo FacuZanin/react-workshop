@@ -2,6 +2,7 @@
   display: flex;
   gap: 20px;
   align-items: flex-start;
+  background: #1a1a1a;
 }
 
 .products-content {
@@ -59,6 +60,7 @@
   .filter-and-products-container {
     max-width: 1280px; /* Limita el ancho del contenedor principal */
     margin: 0 auto; /* Centra el contenedor en la pantalla */
+    background: #1a1a1a;
   }
 }
 
@@ -68,6 +70,7 @@
     /* Agrega un padding a los lados para crear los márgenes */
     max-width: 1280px;
     margin: 0 auto; /* Centra el contenedor en la pantalla */
+    background: #1a1a1a;
   }
 }
 

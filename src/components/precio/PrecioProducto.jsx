@@ -29,7 +29,7 @@ const PrecioProducto = ({ producto, cantidad = 1 }) => {
   return (
     <div>
       {precioTotal > 0 ? (
-        <p>
+        <p> 
           <strong>${precioTotal.toLocaleString("es-AR")}</strong>
         </p>
       ) : (

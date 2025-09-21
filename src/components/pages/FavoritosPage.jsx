@@ -80,22 +80,6 @@ const FavoritosPage = ({ products }) => {
                     fill={favoritos[cardKey] ? "red" : "none"}
                   />
                 </button>
-
-                {/* 🛒 Botón Carrito (derecha) */}
-                <button
-                  className={`cart-btn-card ${enCarrito ? "active" : ""}`}
-                  onClick={() => toggleCarrito(productoCarrito)}
-                  aria-label={
-                    enCarrito ? "Quitar del carrito" : "Agregar al carrito"
-                  }
-                >
-                  <ShoppingCart
-                    size={20}
-                    strokeWidth={2}
-                    fill={enCarrito ? "green" : "none"} // verde si está en carrito
-                    color={enCarrito ? "green" : "black"}
-                  />
-                </button>
               </div>
             );
           })}

@@ -1,16 +1,14 @@
-/* Section.css */
-
-/* ============================= */
-/* 📌 Estilos Generales y Layout */
-/* ============================= */
 .section {
   padding: 1.5rem;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
 }
 
 .section-title {
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
+  color: #fff;
 }
 
 /* ============================= */
@@ -27,7 +25,7 @@
 /* 📌 Card de producto */
 /* ============================= */
 .product-card {
-  background: #fff;
+  background: #2c2c2c;
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
@@ -40,7 +38,7 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   transform: translateY(-5px);
 }
 
@@ -74,11 +72,11 @@
 .no-image {
   width: 100%;
   height: 200px;
-  background-color: #e0e0e0;
+  background-color: #3a3a3a;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #777;
+  color: #999;
   font-size: 0.9rem;
 }
 
@@ -91,12 +89,10 @@
   gap: 0;
 }
 
-
-
 .product-title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #222;
+  color: #f5f5f5;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -108,13 +104,13 @@
 
 .product-type {
   font-size: 0.85rem;
-  color: #777;
+  color: #ccc;
 }
 
 .product-price {
   font-weight: bold;
   font-size: 1rem;
-  color: #111;
+  color: #fff;
   display: block;
   margin-top: auto;
 }
@@ -127,24 +123,25 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #444;
 }
 
 .size-btn {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: #3a3a3a;
+  border: 1px solid #555;
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
+  color: #f0f0f0;
   transition: all 0.2s ease;
 }
 
 .size-btn:hover {
   color: white;
   background-color: #00719b;
-  border-color: #999;
+  border-color: #00719b;
 }
 
 .size-btn.active {
@@ -159,8 +156,8 @@
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  background-color: #f7f7f7;
-  border-top: 1px solid #e0e0e0;
+  background-color: #252525;
+  border-top: 1px solid #444;
 }
 
 .cart-btn-desktop {
@@ -173,14 +170,14 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 0.5rem;
   justify-content: center;
   width: 100%;
   transition: background-color 0.3s ease;
 }
 
 .cart-btn-desktop.disabled {
-  background-color: #aaa;
+  background-color: #555;
   cursor: not-allowed;
 }
 
@@ -193,6 +190,15 @@
   cursor: default;
 }
 
+.cart-btn-desktop svg {
+  color: white; /* Color del icono del carrito en modo oscuro */
+}
+
+.cart-btn-desktop.active svg {
+  color: #fff;
+}
+
+
 /* ============================= */
 /* 📌 Botón de Favoritos */
 /* ============================= */
@@ -201,12 +207,12 @@
   top: 10px;
   right: 10px;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(44, 44, 44, 0.8);
   border: none;
   border-radius: 50%;
   padding: 6px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   transition: background 0.3s, transform 0.2s;
   display: flex;
   align-items: center;
@@ -214,12 +220,12 @@
 }
 
 .favorite-btn-card:hover {
-  background: #f8f8f8;
+  background: #3a3a3a;
   transform: scale(1.1);
 }
 
 .favorite-btn-card svg {
-  stroke: #555;
+  stroke: #bbb;
   width: 18px;
   height: 18px;
 }
@@ -227,6 +233,26 @@
 .favorite-btn-card.active svg {
   fill: red;
   stroke: red;
+}
+
+/* ============================= */
+/* 📌 Estilos para Scrollbar del filtro */
+/* ============================= */
+.filter-options::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.filter-options::-webkit-scrollbar-track {
+  background: transparent; /* Ahora es transparente */
+}
+
+.filter-options::-webkit-scrollbar-thumb {
+  background-color: #555; /* Color del "thumb" o "pulgar" */
+  border-radius: 4px;
+}
+
+.filter-options::-webkit-scrollbar-thumb:hover {
+  background-color: #777; /* Color al pasar el cursor */
 }
 
 
@@ -241,13 +267,13 @@
     .product-card {
     border-radius: 0;
     border: none;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444;
   }
-  .product-grid > *:nth-child(3n) {
+  .product-grid > *:nth-child(2n) {
     border-right: none;
   }
-  .product-grid > *:nth-last-child(-n+3) {
+  .product-grid > *:nth-last-child(-n+2) {
     border-bottom: none;
   }
   .product-sizes-container,
@@ -256,9 +282,6 @@
   }
   .favorite-btn-card {
     display: none;
-  }
-  .cart-btn-desktop-disabled .span{
-    color: red;
   }
 }
 
@@ -274,8 +297,8 @@
   .product-card {
     border-radius: 0;
     border: none;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444;
   }
   .product-grid > *:nth-child(3n) {
     border-right: none;
@@ -291,9 +314,6 @@
     display: none;
   }
 }
-
-
-
 
 @media (min-width: 1025px) {
   .product-grid {
@@ -317,4 +337,5 @@
   .product-card:hover .cart-action-container {
     display: flex; /* Se muestran al hacer hover */
   }
+
 }

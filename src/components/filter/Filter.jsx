@@ -173,7 +173,7 @@ function Filter({ onFilterChange }) {
             >
               {category.title}
               <span className={`arrow ${openIndex === index ? "rotate" : ""}`}>
-                <ChevronDown size={18} strokeWidth={3} color="#111" />
+                <ChevronDown size={18} strokeWidth={3} color="white" />
               </span>
             </div>
             <div className="accordion-body">

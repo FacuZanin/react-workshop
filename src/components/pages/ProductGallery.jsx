@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const ProductGallery = ({ variant }) => {
   const [mainImage, setMainImage] = useState("");
 
-  // ✅ Actualizamos la imagen principal cuando cambie la variante
   useEffect(() => {
     setMainImage(variant.imagenes?.[0] || "");
   }, [variant]);

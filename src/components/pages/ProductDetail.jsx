@@ -5,7 +5,7 @@ import Footer from "../footer/Footer";
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
 import VariantCarousel from "./VariantCarousel";
-import "./ProductDetail.css"; 
+import "./ProductDetail.css";
 import "./ProductInfo.css";
 import "./VariantCarousel.css";
 import { useFavoritos } from "../section/FavoritosContext";
@@ -40,7 +40,6 @@ const ProductDetail = () => {
         <div className="product-detail-page">
           <p>Cargando producto...</p>
         </div>
-        <Footer />
       </>
     );
   }
@@ -51,38 +50,41 @@ const ProductDetail = () => {
       <div className="product-detail-page-wrapper">
         <div className="product-detail-page">
           <div className="gallery-column">
-            <ProductGallery variant={variant} />
+            <ProductGallery variant={variant} product={product} />
           </div>
-
           <div className="info-column">
             <ProductInfo product={product} variant={variant} />
           </div>
         </div>
 
-        <div className="accordion-container">
+        <div className="accordions-product">
           <div
-            className={`accordion-item ${openSection === "desc" ? "open" : ""}`}
+            className={`accordion-item ${
+              openSection === "description" ? "open" : ""
+            }`}
           >
             <div
               className="accordion-header"
               onClick={() =>
-                setOpenSection(openSection === "desc" ? "" : "desc")
+                setOpenSection(openSection === "description" ? "" : "description")
               }
             >
               DESCRIPCIÓN
               <span
-                className={`arrow ${openSection === "desc" ? "rotate" : ""}`}
+                className={`arrow ${
+                  openSection === "description" ? "rotate" : ""
+                }`}
               >
-                <ChevronDown size={24} />
+                <ChevronDown size={24} color="#f0f0f0" />
               </span>
             </div>
-            <div className="accordion-body">
-              {product.descripcion}
-            </div>
+            <div className="accordion-body">{product.descripcion}</div>
           </div>
 
           <div
-            className={`accordion-item ${openSection === "specs" ? "open" : ""}`}
+            className={`accordion-item ${
+              openSection === "specs" ? "open" : ""
+            }`}
           >
             <div
               className="accordion-header"
@@ -94,7 +96,7 @@ const ProductDetail = () => {
               <span
                 className={`arrow ${openSection === "specs" ? "rotate" : ""}`}
               >
-                <ChevronDown size={24} />
+                <ChevronDown size={24} color="whitesmoke" />
               </span>
             </div>
             <div className="accordion-body">

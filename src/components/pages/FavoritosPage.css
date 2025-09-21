@@ -22,7 +22,7 @@
 }
 
 .favorito-card {
-  background: #fff;
+  background: transparent;
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
@@ -50,7 +50,7 @@
   width: 100%;
   height: 200px;
   object-fit: contain;
-  background: #f9f9f9;
+  background: transparent;
 }
 
 .favorito-info {
@@ -63,29 +63,28 @@
   position: relative;
 }
 
-/* 🔹 Estilos base compartidos entre los dos botones */
-.favorite-btn-card,
-.cart-btn-card {
+
+.favorite-btn-card {
   position: absolute;
   bottom: 10px;
   width: 30px;
   height: 30px;
-  background: #fff;
+  background: transparent;
   border: none;
   border-radius: 90%;
-  display: flex;            /* ✅ centra el ícono */
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   transition: transform 0.2s ease, background 0.2s ease;
-  padding: 0; /* ✅ evita ovalado */
+  padding: 0;
 }
 
 
 
 .favorite-btn-card svg {
-  stroke: #555;
+  stroke: whitesmoke;
 }
 
 .favorite-btn-card.active svg {
@@ -93,24 +92,7 @@
   stroke: red;
 }
 
-/* 🛒 Botón de carrito a la derecha */
-.cart-btn-card {
-  right: 10px;
-}
 
-.cart-btn-card svg {
-  stroke: green;
-}
-
-.cart-btn-card.active svg {
-  fill: green;  
-  stroke: green;
-}
-
-.cart-btn-card:hover {
-  background: #e9f7ec;
-  transform: scale(1.1);
-}
 
 .no-favs {
   font-size: 1.2rem;
