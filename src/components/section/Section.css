@@ -116,90 +116,6 @@
 }
 
 /* ============================= */
-/* 📌 Botones de Talles y Carrito */
-/* ============================= */
-.product-sizes-container {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-top: 1px solid #444;
-}
-
-.size-btn {
-  background-color: #3a3a3a;
-  border: 1px solid #555;
-  border-radius: 4px;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  color: #f0f0f0;
-  transition: all 0.2s ease;
-}
-
-.size-btn:hover {
-  color: white;
-  background-color: #00719b;
-  border-color: #00719b;
-}
-
-.size-btn.active {
-  background-color: #00719b;
-  color: white;
-  border-color: #00719b;
-  transform: scale(1.05);
-}
-
-.cart-action-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: #252525;
-  border-top: 1px solid #444;
-}
-
-.cart-btn-desktop {
-  background: #006591;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
-
-.cart-btn-desktop.disabled {
-  background-color: #555;
-  cursor: not-allowed;
-}
-
-.cart-btn-desktop.enabled:hover {
-  background-color: #28a745;
-}
-
-.cart-btn-desktop.active {
-  background-color: #28a745;
-  cursor: default;
-}
-
-.cart-btn-desktop svg {
-  color: white; /* Color del icono del carrito en modo oscuro */
-}
-
-.cart-btn-desktop.active svg {
-  color: #fff;
-}
-
-
-/* ============================= */
 /* 📌 Botón de Favoritos */
 /* ============================= */
 .favorite-btn-card {
@@ -276,10 +192,6 @@
   .product-grid > *:nth-last-child(-n+2) {
     border-bottom: none;
   }
-  .product-sizes-container,
-  .cart-action-container {
-    display: flex;
-  }
   .favorite-btn-card {
     display: none;
   }
@@ -306,10 +218,6 @@
   .product-grid > *:nth-last-child(-n+3) {
     border-bottom: none;
   }
-  .product-sizes-container,
-  .cart-action-container {
-    display: flex;
-  }
   .favorite-btn-card {
     display: none;
   }
@@ -329,13 +237,4 @@
   .favorite-btn-card {
     display: flex;
   }
-  .product-sizes-container,
-  .cart-action-container {
-    display: none; /* Se ocultan por defecto */
-  }
-  .product-card:hover .product-sizes-container,
-  .product-card:hover .cart-action-container {
-    display: flex; /* Se muestran al hacer hover */
-  }
-
 }

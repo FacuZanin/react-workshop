@@ -37,21 +37,24 @@ const FavoritosPage = ({ products }) => {
             const color = variante.color?.[0] || "default";
 
             // 🔹 Objeto del carrito para este producto
-            const productoCarrito = {
-              key: cardKey,
-              id: producto.id,
-              nombre: producto.nombre,
-              precio: producto.precio?.conCaja || 0,
+            // ✅ Modificación para usar un objeto más completo para el carrito
+            const productoCompleto = {
+              ...producto,
+              ...variante,
+              id: variante.id,
+              key: variante.id,
               imagen: imagenUrl,
+              precioCaja: producto.precioCaja ?? 0,
+              precioSinCaja: producto.precioSinCaja ?? 0,
             };
 
             // 🔹 Verificar si ya está en el carrito
-            const enCarrito = carrito.some((item) => item.key === cardKey);
+            const enCarrito = carrito.some((item) => item.id === variante.id); // ✅ Cambio a item.id
 
             return (
               <div key={cardKey} className="favorito-card">
                 <Link
-                  to={`/producto/${producto.id}/${encodeURIComponent(color)}`}
+                  to={`/producto/${producto.id}/${variante.id}`} // ✅ Cambio a usar variante.id
                 >
                   <img src={imagenUrl} alt="..." className="favorito-img" />
                   <div className="favorito-info">
@@ -62,24 +65,41 @@ const FavoritosPage = ({ products }) => {
                   </div>
                 </Link>
 
-                {/* ❤️ Botón Favorito (izquierda) */}
-                <button
-                  className={`favorite-btn-card ${
-                    favoritos[cardKey] ? "active" : ""
-                  }`}
-                  onClick={() => toggleFavorito(cardKey)}
-                  aria-label={
-                    favoritos[cardKey]
-                      ? "Quitar de favoritos"
-                      : "Agregar a favoritos"
-                  }
-                >
-                  <Heart
-                    size={20}
-                    strokeWidth={2}
-                    fill={favoritos[cardKey] ? "red" : "none"}
-                  />
-                </button>
+                <div className="card-actions"> {/* ✅ Nuevo contenedor para los botones */}
+                  {/* ❤️ Botón Favorito (izquierda) */}
+                  <button
+                    className={`favorite-btn-card ${
+                      favoritos[cardKey] ? "active" : ""
+                    }`}
+                    onClick={() => toggleFavorito(cardKey)}
+                    aria-label={
+                      favoritos[cardKey]
+                        ? "Quitar de favoritos"
+                        : "Agregar a favoritos"
+                    }
+                  >
+                    <Heart
+                      size={20}
+                      strokeWidth={2}
+                      fill={favoritos[cardKey] ? "red" : "none"}
+                    />
+                  </button>
+                  {/* ✅ Botón de Carrito (derecha) */}
+                  <button
+                    className={`cart-btn-card ${enCarrito ? "active" : ""}`}
+                    onClick={() => toggleCarrito(productoCompleto)}
+                    aria-label={
+                      enCarrito ? "Quitar del carrito" : "Agregar al carrito"
+                    }
+                  >
+                    <ShoppingCart
+                      size={20}
+                      strokeWidth={2}
+                      fill={enCarrito ? "green" : "none"}
+                      color={enCarrito ? "green" : "black"}
+                    />
+                  </button>
+                </div>
               </div>
             );
           })}
