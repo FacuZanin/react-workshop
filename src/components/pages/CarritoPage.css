@@ -1,9 +1,10 @@
+/* CarritoPage.css */
 .carrito-page {
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
- max-width: 1200px; 
+  max-width: 1200px; 
   margin: 0 auto;
 }
 .carrito-page .carrito-total {
@@ -28,42 +29,47 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .carrito-item {
   display: flex;
-  align-items: stretch; 
+  align-items: center; 
   gap: 1rem;
   background: #2c2c2c;
   border: 1px solid #eee;
   border-radius: 8px;
   padding: 0.5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  height: 220px;
+  height: auto;
 }
 
 .carrito-img {
   flex-shrink: 0;
-  height: 100%;        
-  width: 200px;           
-  object-fit: cover;     
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
   border-radius: 6px;
   background: #f9f9f9;
 }
 
+/* ✅ REGLAS CORREGIDAS: Le asignamos menos espacio */
 .carrito-info {
-  flex: 1;
-  padding: 1rem;
+  flex: 1.5; 
+  padding: 0 1rem;
 }
-/* ✅ NUEVAS REGLAS para el contenedor de especificaciones */
+/* ✅ REGLAS CORREGIDAS: Aumentamos el espacio para las especificaciones */
 .carrito-specs-container {
-  flex: 1; /* Permite que este contenedor también ocupe espacio */
+  flex: 1;
   display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .carrito-especificaciones {
+  flex: 2;
   text-align: left;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 .carrito-especificaciones p {
@@ -85,6 +91,23 @@
 .precio {
   font-weight: bold;
   color: #2e7d32;
+}
+
+.carrito-cantidad-cantidad {
+  flex: 0.5;
+  text-align: center;
+}
+.carrito-cantidad-cantidad p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.carrito-precio {
+  flex: 0.5;
+  text-align: center;
+}
+.carrito-precio p {
+  margin: 0;
 }
 
 .eliminar-btn {
@@ -123,13 +146,12 @@
 
 /* Media Queries para Tablet */
 @media (max-width: 768px) {
-  /* La imagen se mantiene a la izquierda, pero más pequeña */
   .carrito-img {
     width: 100px;
     height: 100px;
   }
   .carrito-especificaciones p {
-    color: rgb(59, 54, 54);
+    color: whitesmoke;
     font-size: small;
   }
 }
@@ -143,7 +165,6 @@
     height: 150px;
   }
 
-  /* La imagen ocupa todo el ancho */
   .carrito-img {
     width: 100px;
     height: 100px;
@@ -158,8 +179,37 @@
     font-size: small;
   }
 
-  /* El contenedor no se muestra */
   .carrito-specs-container {
       display: none;
   }
+}
+
+.carrito-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.carrito-header .header-articulo {
+  flex: 1.5; 
+}
+
+.carrito-header .header-descripcion {
+  flex: 1.4; 
+}
+
+.carrito-header .header-cantidad,
+.carrito-header .header-precio {
+  flex: 0.35;
+  text-align: center;
+}
+
+.placeholder-btn {
+  width: 36px;
+  height: 36px;
 }

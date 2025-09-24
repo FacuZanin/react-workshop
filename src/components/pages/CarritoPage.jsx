@@ -1,4 +1,3 @@
-// CarritoPage.jsx
 import { useEffect, useState } from "react";
 import { useCarrito } from "../pages/CarritoContext";
 import { Trash2 } from "lucide-react";
@@ -21,12 +20,21 @@ const CarritoPage = () => {
     <div className="carrito-page">
       <h2>Tu Carrito</h2>
       <div className="carrito-lista">
+        <div className="carrito-header">
+          <p className="header-articulo">Artículo</p>
+          <p className="header-descripcion">Descripción</p>
+          <p className="header-cantidad">Cantidad</p>
+          <p className="header-precio">Precio</p>
+          <div className="placeholder-btn"></div>
+        </div>
+      </div>
+      <div className="carrito-lista">
         {carrito.map((producto) => {
           const {
             nombre,
             marca,
             color,
-            imagenes, // ✅ CORREGIDO: ahora desestructuramos el arreglo de imágenes
+            imagenes,
             talleSeleccionado,
             distribucionSeleccionada,
             origen,
@@ -34,24 +42,24 @@ const CarritoPage = () => {
             suela,
             distribucion,
             precioCaja,
-            cantidad
+            cantidad,
           } = producto;
 
           return (
             <div key={producto.normalizedId} className="carrito-item">
               <img
-                src={imagenes[0]} // ✅ CORREGIDO: usamos la primera imagen del arreglo
+                src={imagenes[0]}
                 alt={`${nombre} ${color}`}
                 className="carrito-img"
               />
               <div className="carrito-specs-container">
-                <div className="carrito-details">
-                  <div className="carrito-info">
-                    <h3><strong>
-                      {marca} {nombre}
-                    </strong> </h3>
-                    <p>{color}</p>
-                  </div>
+                <div className="carrito-info">
+                  <h3>
+                    <strong>
+                      {marca} {nombre} {cantidad}
+                    </strong>{" "}
+                  </h3>
+                  <p>{color}</p>
                 </div>
 
                 <div className="carrito-especificaciones">
@@ -64,11 +72,13 @@ const CarritoPage = () => {
                     distribucion && (
                       <>
                         <p>Distribución:</p>
-                        {Object.entries(distribucion).map(([talle, detalle]) => (
-                          <p key={talle} className="distribucion-item">
-                            <strong>{talle}:</strong> {detalle}
-                          </p>
-                        ))}
+                        {Object.entries(distribucion).map(
+                          ([talle, detalle]) => (
+                            <p key={talle} className="distribucion-item">
+                              <strong>{talle}:</strong> {detalle}
+                            </p>
+                          )
+                        )}
                       </>
                     )
                   )}
@@ -77,11 +87,14 @@ const CarritoPage = () => {
                   {suela && <p>Suela: {suela}</p>}
                 </div>
 
-                <div className="carrito-cantidad-precio">
-                  <p>Cantidad: {cantidad}</p>
-                  {/* ✅ ELIMINADO: Se quita esta línea */}
+                <div className="carrito-cantidad-cantidad">
+                  <p>{cantidad}</p>
                 </div>
-              </div>
+
+                <div className="carrito-precio">
+                  <p>${precioCaja}</p>
+                </div>
+              </div>  
 
               <button
                 className="eliminar-btn"
