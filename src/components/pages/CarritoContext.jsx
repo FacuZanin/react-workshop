@@ -1,35 +1,56 @@
 // CarritoContext.jsx
 import { createContext, useState, useEffect, useContext } from "react";
 import { useCotizacion } from "../precio/CotizacionContext";
+import { useLocalStorage } from "../hooks/useLocalStorage"; 
 
 const CarritoContext = createContext();
 
-// ... la función normalizeItem se mantiene igual
+const normalizeItem = (item) => {
+  if (item.talleSeleccionado) {
+    return {
+      ...item,
+      normalizedId: `${item.id}-${item.talleSeleccionado}`
+    };
+  }
+  return { ...item, normalizedId: item.id };
+};
 
 export const CarritoProvider = ({ children }) => {
   const { cotizacion } = useCotizacion();
-  const [carrito, setCarrito] = useState(() => {
-    try {
-      const saved = localStorage.getItem("carrito");
-      const parsed = saved ? JSON.parse(saved) : [];
-      // ✅ VERIFICACIÓN CLAVE: Asegurarse de que `parsed` sea un array, si no, usar []
-      if (!Array.isArray(parsed)) {
-        console.error("Valor de carrito en localStorage no es un array. Se inicializará como vacío.");
-        return [];
-      }
-      return parsed;
-    } catch (error) {
-      console.error("Error al cargar el carrito desde localStorage:", error);
-      return [];
-    }
-  });
+  const [carrito, setCarrito] = useLocalStorage("carrito", []);
+  // ✅ Nuevo estado para la notificación Toast
+  const [toast, setToast] = useState({ visible: false, message: '' });
 
   const getPrecioCaja = (producto) => {
-    // ... la función se mantiene igual
+    return producto.precioCaja || producto.precio || 0;
   };
 
   const toggleCarrito = (producto) => {
-    // ... la función se mantiene igual
+    setCarrito((prevCarrito) => {
+      const productoNormalizado = normalizeItem(producto);
+      const existeEnCarrito = prevCarrito.find(
+        (item) => item.normalizedId === productoNormalizado.normalizedId
+      );
+
+      if (existeEnCarrito) {
+        // Lógica de eliminación: si el producto ya existe, se elimina
+        return prevCarrito.filter(
+          (item) => item.normalizedId !== productoNormalizado.normalizedId
+        );
+      } else {
+        // ✅ LÓGICA DE NOTIFICACIÓN: Se activa el toast al agregar
+        const message = `${productoNormalizado.marca} ${productoNormalizado.nombre}\nTalle: ${productoNormalizado.talleSeleccionado || 'N/A'}\nAgregado al carrito`;
+        setToast({ visible: true, message: message });
+        
+        // Si el producto no existe, se agrega con cantidad 1
+        return [...prevCarrito, { ...productoNormalizado, cantidad: 1 }];
+      }
+    });
+  };
+  
+  // ✅ Nueva función para ocultar el toast
+  const hideToast = () => {
+    setToast({ visible: false, message: '' });
   };
 
   const total = carrito.reduce((acc, producto) => {
@@ -41,13 +62,9 @@ export const CarritoProvider = ({ children }) => {
     return acc + precioPesos * producto.cantidad;
   }, 0);
 
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }, [carrito]);
-
   return (
     <CarritoContext.Provider
-      value={{ carrito, total, toggleCarrito }}
+      value={{ carrito, total, toggleCarrito, toast, hideToast }}
     >
       {children}
     </CarritoContext.Provider>

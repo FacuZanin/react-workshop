@@ -1,3 +1,4 @@
+// ProductDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../header/Header";
@@ -10,24 +11,51 @@ import "./ProductInfo.css";
 import "./VariantCarousel.css";
 import { useFavoritos } from "../section/FavoritosContext";
 import { ChevronDown } from "lucide-react";
+import { useCarrito } from "./CarritoContext"; 
+import ToastNotification from "../common/ToastNotification"; 
 
 const ProductDetail = () => {
   const { id, variantId } = useParams();
   const [product, setProduct] = useState(null);
   const [variant, setVariant] = useState(null);
   const [openSection, setOpenSection] = useState("");
+  const { toast, hideToast } = useCarrito(); // ✅ Obtiene el estado del toast
 
   useEffect(() => {
     fetch("/data/productos.json")
       .then((res) => res.json())
       .then((data) => {
-        const found = data.find((p) => String(p.id) === String(id));
-        if (found) {
-          setProduct(found);
-          const selectedVariant = found.variantes.find(
-            (v) => String(v.id) === String(variantId)
-          );
-          setVariant(selectedVariant || found.variantes[0]);
+        const foundProduct = data.find((p) => String(p.id) === String(id));
+        if (foundProduct) {
+          setProduct(foundProduct);
+          let selectedVariant = null;
+
+          if (foundProduct.variantes && foundProduct.variantes.length > 0) {
+            const foundVariant = foundProduct.variantes.find(
+              (v) => String(v.id) === String(variantId)
+            );
+            selectedVariant = foundVariant || foundProduct.variantes[0];
+          }
+
+          if (selectedVariant && selectedVariant.distribucion) {
+            const tallesArray = Object.keys(selectedVariant.distribucion).map(
+              (talle) => ({
+                talle: talle,
+                distribucion: selectedVariant.distribucion[talle],
+              })
+            );
+            setVariant({ ...selectedVariant, talles: tallesArray });
+          } else if (foundProduct.distribucion) {
+            const tallesArray = Object.keys(foundProduct.distribucion).map(
+              (talle) => ({
+                talle: talle,
+                distribucion: foundProduct.distribucion[talle],
+              })
+            );
+            setVariant({ ...foundProduct, talles: tallesArray });
+          } else {
+            setVariant({});
+          }
         }
       })
       .catch((err) => console.error("Error cargando producto:", err));
@@ -40,6 +68,7 @@ const ProductDetail = () => {
         <div className="product-detail-page">
           <p>Cargando producto...</p>
         </div>
+        <Footer />
       </>
     );
   }
@@ -50,37 +79,13 @@ const ProductDetail = () => {
       <div className="product-detail-page-wrapper">
         <div className="product-detail-page">
           <div className="gallery-column">
-            <ProductGallery variant={variant} product={product} />
+            <ProductGallery product={product} variant={variant} />
           </div>
           <div className="info-column">
             <ProductInfo product={product} variant={variant} />
           </div>
         </div>
-
-        <div className="accordions-product">
-          <div
-            className={`accordion-item ${
-              openSection === "description" ? "open" : ""
-            }`}
-          >
-            <div
-              className="accordion-header"
-              onClick={() =>
-                setOpenSection(openSection === "description" ? "" : "description")
-              }
-            >
-              DESCRIPCIÓN
-              <span
-                className={`arrow ${
-                  openSection === "description" ? "rotate" : ""
-                }`}
-              >
-                <ChevronDown size={24} color="#f0f0f0" />
-              </span>
-            </div>
-            <div className="accordion-body">{product.descripcion}</div>
-          </div>
-
+        <div className="accordion-container">
           <div
             className={`accordion-item ${
               openSection === "specs" ? "open" : ""
@@ -123,6 +128,8 @@ const ProductDetail = () => {
         <VariantCarousel product={product} />
       </div>
       <Footer />
+      {/* ✅ RENDERIZA el toast solo si es visible */}
+      {toast.visible && <ToastNotification message={toast.message} onDismiss={hideToast} />}
     </>
   );
 };

@@ -14,32 +14,34 @@ import FormCarga from './components/pages/FormCarga.jsx';
 import MinimalLayout from './layout/MinimalLayout.jsx';
 import { CotizacionProvider } from './components/precio/CotizacionContext';
 import { FavoritosProvider } from './components/section/FavoritosContext';
-
+import { CarritoProvider } from './components/pages/CarritoContext'; // Importamos el provider
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* 👇 Providers globales */}
     <CotizacionProvider>
       <FavoritosProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* App maneja home y secciones normales */}
-            <Route path="/*" element={<App />} />
+        <CarritoProvider>  {/* 👈 Lo envolvemos aquí para que sea global */}
+          <BrowserRouter>
+            <Routes>
+              {/* App maneja home y secciones normales */}
+              <Route path="/*" element={<App />} />
 
-            {/* Product detail */}
-            <Route path="/producto/:id/:variantId" element={<ProductDetail />} />
+              {/* Product detail */}
+              <Route path="/producto/:id/:variantId" element={<ProductDetail />} />
 
-            {/* Formulario de carga con layout minimal */}
-            <Route
-              path="/cargar"
-              element={
-                <MinimalLayout>
-                  <FormCarga />
-                </MinimalLayout>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+              {/* Formulario de carga con layout minimal */}
+              <Route
+                path="/cargar"
+                element={
+                  <MinimalLayout>
+                    <FormCarga />
+                  </MinimalLayout>
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        </CarritoProvider>
       </FavoritosProvider>
     </CotizacionProvider>
   </React.StrictMode>

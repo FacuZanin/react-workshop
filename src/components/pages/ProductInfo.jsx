@@ -1,18 +1,37 @@
+// ProductInfo.jsx
 import { useState } from "react";
 import { Heart } from "lucide-react";
 import "./ProductInfo.css";
 import PrecioProducto from "../precio/PrecioProducto";
 import { useFavoritos } from "../section/FavoritosContext";
+import { useCarrito } from "../pages/CarritoContext";
 
 const ProductInfo = ({ product, variant }) => {
-  const [selectedTalle, setSelectedTalle] = useState("");
+  const [selectedTalle, setSelectedTalle] = useState(null); // ✅ Mejor validación
 
   const { favoritos, toggleFavorito } = useFavoritos();
+  const { toggleCarrito } = useCarrito();
   const cardKey = variant?.id || `${product.id}-default`;
 
   const isFavorito = favoritos[cardKey];
-
   const availableTalles = variant?.talles || [];
+
+  const selectedTalleInfo = availableTalles.find(talleObj => talleObj.talle === selectedTalle);
+  
+  const handleAddToCart = () => {
+    if (!selectedTalle) {
+      return;
+    }
+
+    const productToAdd = {
+      ...product,
+      ...variant,
+      talleSeleccionado: selectedTalle,
+      distribucionSeleccionada: selectedTalleInfo?.distribucion,
+    };
+    
+    toggleCarrito(productToAdd);
+  };
 
   return (
     <div className="info-column-info">
@@ -28,20 +47,27 @@ const ProductInfo = ({ product, variant }) => {
       <div className="talles-section">
         <h5>Distribución de talles</h5>
         <div className="talle-buttons">
-          {availableTalles.map((t, idx) => (
+          {availableTalles.map((talleObj, idx) => (
             <button
               key={idx}
-              className={`talle-btn ${selectedTalle === t ? "active" : ""}`}
-              onClick={() => setSelectedTalle(t)}
+              className={`talle-btn ${selectedTalle === talleObj.talle ? "active" : ""}`}
+              onClick={() => setSelectedTalle(talleObj.talle)}
             >
-              {t}
+              {talleObj.talle}
             </button>
           ))}
         </div>
       </div>
 
       <div className="cart-fav-section">
-        <button className="add-to-cart">AGREGAR AL CARRITO</button>
+        <button 
+          className="add-to-cart"
+          onClick={handleAddToCart}
+          disabled={!selectedTalle}
+          style={{ opacity: selectedTalle ? 1 : 0.6 }}
+        >
+          AGREGAR AL CARRITO
+        </button>
         <button
           className={`favorite-btn-info ${isFavorito ? "active" : ""}`}
           onClick={() => toggleFavorito(cardKey)}
