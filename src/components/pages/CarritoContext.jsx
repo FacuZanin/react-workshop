@@ -24,6 +24,26 @@ export const CarritoProvider = ({ children }) => {
     return producto.precioCaja || producto.precio || 0;
   };
 
+  // ✅ Nueva función para calcular el precio total del ítem con cotización
+  const calculateItemPrice = (producto, currentCotizacion) => {
+    const precioBase = getPrecioCaja(producto) * Number(producto.cantidad);
+    const precioPesos = currentCotizacion
+      ? Math.round(precioBase * currentCotizacion)
+      : precioBase;
+    return precioPesos * producto.cantidadEnCarrito;
+  };
+  
+  // ✅ Recalcula los precios de todos los items en el carrito cuando la cotización cambia.
+  useEffect(() => {
+    setCarrito((prevCarrito) => {
+      // Usamos el estado más reciente de la cotización para el cálculo
+      return prevCarrito.map(item => ({
+        ...item,
+        precioTotalItem: calculateItemPrice(item, cotizacion)
+      }));
+    });
+  }, [cotizacion]);
+
   const toggleCarrito = (producto) => {
     setCarrito((prevCarrito) => {
       const productoNormalizado = normalizeItem(producto);
@@ -31,24 +51,34 @@ export const CarritoProvider = ({ children }) => {
         (item) => item.normalizedId === productoNormalizado.normalizedId
       );
 
+      let updatedCarrito;
+      let toastMessage;
+
       if (existeEnCarrito) {
         // Lógica de incremento
-        return prevCarrito.map(item =>
+        updatedCarrito = prevCarrito.map(item =>
           item.normalizedId === productoNormalizado.normalizedId
             ? { ...item, cantidadEnCarrito: item.cantidadEnCarrito + 1 }
             : item
         );
+        toastMessage = `${productoNormalizado.marca} ${productoNormalizado.nombre}\nTalle: ${productoNormalizado.talleSeleccionado}\nCantidad en carrito: ${existeEnCarrito.cantidadEnCarrito + 1}`;
       } else {
         // Lógica de adición
-        const message = `${productoNormalizado.marca} ${productoNormalizado.nombre}\nTalle: ${productoNormalizado.talleSeleccionado || 'N/A'}\nAgregado al carrito`;
-        setToast({ visible: true, message: message });
-        
-        return [...prevCarrito, { ...productoNormalizado, cantidadEnCarrito: 1 }];
+        updatedCarrito = [...prevCarrito, { ...productoNormalizado, cantidadEnCarrito: 1 }];
+        toastMessage = `${productoNormalizado.marca} ${productoNormalizado.nombre}\nTalle: ${productoNormalizado.talleSeleccionado || 'N/A'}\nAgregado al carrito`;
       }
+      
+      // ✅ Se actualizan los precios de todos los productos en el carrito después del cambio de cantidad
+      const finalCarrito = updatedCarrito.map(item => ({
+        ...item,
+        precioTotalItem: calculateItemPrice(item, cotizacion)
+      }));
+
+      setToast({ visible: true, message: toastMessage });
+      return finalCarrito;
     });
   };
 
-  // ✅ NUEVA FUNCIÓN para disminuir la cantidad o eliminar el producto
   const decreaseQuantity = (producto) => {
     setCarrito((prevCarrito) => {
       const productoNormalizado = normalizeItem(producto);
@@ -60,34 +90,35 @@ export const CarritoProvider = ({ children }) => {
         return prevCarrito;
       }
       
-      // Si la cantidad es 1, se elimina el producto por completo
+      let updatedCarrito;
+
       if (productoEnCarrito.cantidadEnCarrito === 1) {
-        return prevCarrito.filter(
+        updatedCarrito = prevCarrito.filter(
           (item) => item.normalizedId !== productoEnCarrito.normalizedId
         );
       } else {
-        // Si la cantidad es mayor a 1, se disminuye en 1
-        return prevCarrito.map((item) =>
+        updatedCarrito = prevCarrito.map((item) =>
           item.normalizedId === productoEnCarrito.normalizedId
             ? { ...item, cantidadEnCarrito: item.cantidadEnCarrito - 1 }
             : item
         );
       }
+      
+      // ✅ Se actualizan los precios de todos los productos después del cambio de cantidad
+      return updatedCarrito.map(item => ({
+        ...item,
+        precioTotalItem: calculateItemPrice(item, cotizacion)
+      }));
     });
   };
   
   const hideToast = () => {
     setToast({ visible: false, message: '' });
   };
-
+  
+  // ✅ El cálculo del total ahora suma los "precioTotalItem"
   const total = carrito.reduce((acc, producto) => {
-    const precioCaja = getPrecioCaja(producto);
-    if (!precioCaja) return acc;
-    const precioPesos = cotizacion
-      ? Math.round(precioCaja * cotizacion)
-      : precioCaja;
-    // Ahora usa cantidadEnCarrito
-    return acc + precioPesos * producto.cantidadEnCarrito;
+    return acc + (producto.precioTotalItem || 0);
   }, 0);
 
   return (

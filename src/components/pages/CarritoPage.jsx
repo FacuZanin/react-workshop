@@ -5,7 +5,6 @@ import "./CarritoPage.css";
 import PrecioProducto from "../precio/PrecioProducto";
 
 const CarritoPage = () => {
-  // ✅ Nota el cambio aquí: usamos decreaseQuantity en lugar de toggleCarrito
   const { carrito, decreaseQuantity, total } = useCarrito();
 
   if (carrito.length === 0) {
@@ -42,11 +41,11 @@ const CarritoPage = () => {
             fabrica,
             suela,
             distribucion,
-            precioCaja,
+            precioTotalItem, // ✅ Se usa la propiedad que viene del contexto
             cantidad,
             cantidadEnCarrito,
           } = producto;
-
+          
           return (
             <div key={producto.normalizedId} className="carrito-item">
               <img
@@ -57,9 +56,8 @@ const CarritoPage = () => {
               <div className="carrito-specs-container">
                 <div className="carrito-info">
                   <h3>
-                    {/* ✅ Se muestra la cantidad del carrito */}
                     <strong>
-                      {marca} {nombre} x {producto.cantidad}
+                      {marca} {nombre} x {cantidad}
                     </strong>{" "}
                   </h3>
                   <p>{color}</p>
@@ -95,10 +93,10 @@ const CarritoPage = () => {
                 </div>
 
                 <div className="carrito-precio">
-                  <p>${precioCaja}</p>
+                  {/* ✅ Se muestra la nueva propiedad ya calculada */}
+                  <p>${precioTotalItem.toLocaleString()}</p>
                 </div>
               </div>  
-              {/* ✅ AHORA LLAMAMOS A decreaseQuantity */}
               <button
                 className="eliminar-btn"
                 onClick={() => decreaseQuantity(producto)}
