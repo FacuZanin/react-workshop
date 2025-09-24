@@ -5,7 +5,8 @@ import "./CarritoPage.css";
 import PrecioProducto from "../precio/PrecioProducto";
 
 const CarritoPage = () => {
-  const { carrito, toggleCarrito, total } = useCarrito();
+  // ✅ Nota el cambio aquí: usamos decreaseQuantity en lugar de toggleCarrito
+  const { carrito, decreaseQuantity, total } = useCarrito();
 
   if (carrito.length === 0) {
     return (
@@ -43,6 +44,7 @@ const CarritoPage = () => {
             distribucion,
             precioCaja,
             cantidad,
+            cantidadEnCarrito,
           } = producto;
 
           return (
@@ -55,8 +57,9 @@ const CarritoPage = () => {
               <div className="carrito-specs-container">
                 <div className="carrito-info">
                   <h3>
+                    {/* ✅ Se muestra la cantidad del carrito */}
                     <strong>
-                      {marca} {nombre} {cantidad}
+                      {marca} {nombre} x {producto.cantidad}
                     </strong>{" "}
                   </h3>
                   <p>{color}</p>
@@ -88,18 +91,18 @@ const CarritoPage = () => {
                 </div>
 
                 <div className="carrito-cantidad-cantidad">
-                  <p>{cantidad}</p>
+                  <p>{cantidadEnCarrito}</p>
                 </div>
 
                 <div className="carrito-precio">
                   <p>${precioCaja}</p>
                 </div>
               </div>  
-
+              {/* ✅ AHORA LLAMAMOS A decreaseQuantity */}
               <button
                 className="eliminar-btn"
-                onClick={() => toggleCarrito(producto)}
-                aria-label="Eliminar del carrito"
+                onClick={() => decreaseQuantity(producto)}
+                aria-label="Disminuir cantidad o eliminar del carrito"
               >
                 <Trash2 size={20} />
               </button>

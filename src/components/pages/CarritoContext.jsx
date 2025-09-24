@@ -18,7 +18,6 @@ const normalizeItem = (item) => {
 export const CarritoProvider = ({ children }) => {
   const { cotizacion } = useCotizacion();
   const [carrito, setCarrito] = useLocalStorage("carrito", []);
-  // ✅ Nuevo estado para la notificación Toast
   const [toast, setToast] = useState({ visible: false, message: '' });
 
   const getPrecioCaja = (producto) => {
@@ -33,22 +32,50 @@ export const CarritoProvider = ({ children }) => {
       );
 
       if (existeEnCarrito) {
-        // Lógica de eliminación: si el producto ya existe, se elimina
-        return prevCarrito.filter(
-          (item) => item.normalizedId !== productoNormalizado.normalizedId
+        // Lógica de incremento
+        return prevCarrito.map(item =>
+          item.normalizedId === productoNormalizado.normalizedId
+            ? { ...item, cantidadEnCarrito: item.cantidadEnCarrito + 1 }
+            : item
         );
       } else {
-        // ✅ LÓGICA DE NOTIFICACIÓN: Se activa el toast al agregar
+        // Lógica de adición
         const message = `${productoNormalizado.marca} ${productoNormalizado.nombre}\nTalle: ${productoNormalizado.talleSeleccionado || 'N/A'}\nAgregado al carrito`;
         setToast({ visible: true, message: message });
         
-        // Si el producto no existe, se agrega con cantidad 1
-        return [...prevCarrito, { ...productoNormalizado, cantidad: 1 }];
+        return [...prevCarrito, { ...productoNormalizado, cantidadEnCarrito: 1 }];
+      }
+    });
+  };
+
+  // ✅ NUEVA FUNCIÓN para disminuir la cantidad o eliminar el producto
+  const decreaseQuantity = (producto) => {
+    setCarrito((prevCarrito) => {
+      const productoNormalizado = normalizeItem(producto);
+      const productoEnCarrito = prevCarrito.find(
+        (item) => item.normalizedId === productoNormalizado.normalizedId
+      );
+      
+      if (!productoEnCarrito) {
+        return prevCarrito;
+      }
+      
+      // Si la cantidad es 1, se elimina el producto por completo
+      if (productoEnCarrito.cantidadEnCarrito === 1) {
+        return prevCarrito.filter(
+          (item) => item.normalizedId !== productoEnCarrito.normalizedId
+        );
+      } else {
+        // Si la cantidad es mayor a 1, se disminuye en 1
+        return prevCarrito.map((item) =>
+          item.normalizedId === productoEnCarrito.normalizedId
+            ? { ...item, cantidadEnCarrito: item.cantidadEnCarrito - 1 }
+            : item
+        );
       }
     });
   };
   
-  // ✅ Nueva función para ocultar el toast
   const hideToast = () => {
     setToast({ visible: false, message: '' });
   };
@@ -59,12 +86,13 @@ export const CarritoProvider = ({ children }) => {
     const precioPesos = cotizacion
       ? Math.round(precioCaja * cotizacion)
       : precioCaja;
-    return acc + precioPesos * producto.cantidad;
+    // Ahora usa cantidadEnCarrito
+    return acc + precioPesos * producto.cantidadEnCarrito;
   }, 0);
 
   return (
     <CarritoContext.Provider
-      value={{ carrito, total, toggleCarrito, toast, hideToast }}
+      value={{ carrito, total, toggleCarrito, decreaseQuantity, toast, hideToast }}
     >
       {children}
     </CarritoContext.Provider>
