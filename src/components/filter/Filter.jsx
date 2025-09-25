@@ -67,7 +67,7 @@ const filterCategories = [
   {
     title: "Fábrica",
     key: "fabrica",
-    options: ["Bob", "Bobitos", "Nacional", "Lali", "Ceci"],
+    options: ["Bob", "Milton", "Nacional", "Lali", "Zilmar"],
   },
   {
     title: "Origen",

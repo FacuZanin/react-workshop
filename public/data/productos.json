@@ -1,4 +1,5 @@
 [
+  { "Fabrica": "Bob" },
   {
     "id": "zapatilla-adidas-samba-og-print",
     "nombre": "Samba OG Print",
@@ -146,7 +147,7 @@
       {
         "color": ["Marrón"],
         "imagenes": [
-          "https://lh3.googleusercontent.com/d/1qYJXa_KPmlzRs1bCNGrm6crIu_PyoqlY=w1000",
+          "https://lh3.googleusercontent.com/d/1osbGM_8Lb7Qd5gwn7Loa0kWxhXPKI2-1=w1000",
           "https://lh3.googleusercontent.com/d/1RR1N5CjJV7va_oCTQe-ztkSjyt1oY0aO=w1000"
         ],
         "videos": [],
@@ -155,7 +156,7 @@
           "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
           "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
         },
-        "id": "bob-PyoqlY"
+        "id": "bob-hXPKI2"
       },
       {
         "color": ["Marrón"],
@@ -195,6 +196,19 @@
           "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 "
         },
         "id": "bob-51ZhMg"
+      },
+      {
+        "color": ["Marrón"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1xkLrUdVK8etWggwGqYKy-NpBE5yTRqb2=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40 ",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "bob-yTRqb2"
       }
     ]
   },
@@ -483,5 +497,1419 @@
         "id": "bob-8mCDVO"
       }
     ]
-  }
+  },
+  {
+    "id": "botita-vans-sk8-hi",
+    "fabrica": "Milton",
+    "marca": "Vans",
+    "nombre": "SK8 HI",
+    "precioCaja": 63,
+    "precioSinCaja": 0,
+    "tipo": "Botita",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Línea Premium\nContenido de la caja 📦\nSuela de caucho natural.\nExterior de lona y ante natural.\nPlantilla de EVA.",
+    "variantes": [
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/18B875xQeEE4YUCmS_FkqqmLeZgW1bLVB=w1000",
+          "https://lh3.googleusercontent.com/d/14KyzYg_7R1eVg9XtTFbfQBvajR3ltu_Z=w1000",
+          "https://lh3.googleusercontent.com/d/1i_Ylplu9N-5R64eiyjWw1ysAXiU65I8n=w1000",
+          "https://lh3.googleusercontent.com/d/1-YrFF2th3g-_T5MR1XH19hTijzGpZwvd=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-W1bLVB"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-vans-caldrone",
+    "fabrica": "Milton",
+    "marca": "Vans",
+    "nombre": "Caldrone",
+    "precioCaja": 69,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "PLANTILLA ACOLCHADA\nESPUMA DE ALTA DENSIDAD\nLATERAL ACOLCHADO\nLIGERO Y CÓMODO",
+    "variantes": [
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/131savkVwx7v2CzmrtQk1BwQwYU34SBmB=w1000",
+          "https://lh3.googleusercontent.com/d/1LuYcY876RNH09pb-kQmdDUhbj7pNIW_8=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-34SBmB"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1AJ-TKkP6ThELvlUm7JlLhB0kle7sACnj=w1000",
+          "https://lh3.googleusercontent.com/d/1swtTXpoyjxP74TQVYY0xP7W6BZirUqFp=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-7sACnj"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/18_bULMciMVmJSsFnf_a1g2WBGiaRGLn4=w1000",
+          "https://lh3.googleusercontent.com/d/1gV6x26bV1tDk6ieRjoYSqu7tOcrKdYBn=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-aRGLn4"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1EI-Ye8tpD2IGHpQiMRe9S5b2k-bufGhf=w1000",
+          "https://lh3.googleusercontent.com/d/1Bg3bw_NvjBbQuKV4VdVFjR_mJLZQ8rSm=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-bufGhf"
+      }
+    ]
+  },
+  { "Fabrica": "Milton" },
+  {
+    "id": "zapatilla-adidas-gazelle-adv",
+    "fabrica": "Milton",
+    "marca": "Adidas",
+    "nombre": "Gazelle ADV",
+    "precioCaja": 84,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "➡️ Estructura y materiales:\n▪️ Parte superior de ante 100 % piel auténtica\n▪️ Suela de goma vulcanizada con detalle de ribete\n▪️ Plantilla de EVA con sello T.R.\n▪️ Forro de PU\n\n➡️ Detalles y acabados:\n▪️ Aplicación de la palabra \"GAZELLE\" en plastisol\n▪️ Parte trasera serigrafiada (logotipo)\n▪️ Lengüeta de PU con aplicación de alta frecuencia y serigrafía\n▪️ Cordones de alta gama\n\n🏆 Garantía de calidad\n🏆 Producto de alta gama",
+    "variantes": [
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1bx-umEoCRVdTMc4Z7oA0gUOf0OxAqZ4G=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-xAqZ4G"
+      },
+      {
+        "color": ["Amarillo"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1NeSQPuF7DQJCiEnMabePmXX8TNa_Z9L9=w1000",
+          "https://lh3.googleusercontent.com/d/1bx-umEoCRVdTMc4Z7oA0gUOf0OxAqZ4G=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-a_Z9L9"
+      },
+      {
+        "color": ["Naranja"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1NAnekGzHgJxDJlYxiQIg8cr8TLDyrOpg=w1000",
+          "https://lh3.googleusercontent.com/d/1bx-umEoCRVdTMc4Z7oA0gUOf0OxAqZ4G=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-DyrOpg"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-vans-sk8-low",
+    "fabrica": "Milton",
+    "marca": "Vans",
+    "nombre": "SK8 Low",
+    "precioCaja": 77,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Línea Premium\n✅La parte superior de ante, cuero y lona crea un look clásico, hecho para durar.\n✅La construcción vulcanizada une la suela con la parte superior para una sensación flexible y cómoda.\n✅Suela de caucho natural para un mejor agarre.\n✅Etiqueta de tela en la lengüeta.\n✅Plantilla de EVA con contrafuerte de talón TR de goma.\n✅Fabricación: VULCANIZADO, con doble acabado.\n✅Cordones de poliéster trenzado de 14 mm.\n✅Superligero y cómodo. ❤️",
+    "variantes": [
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1DZfR6E26uxIjFdn_hXnXd1frCilHV7Kg=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-lHV7Kg"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1VQchD4hwLk6z-MnKy3hVcwxNcnbBx5sn=w1000",
+          "https://lh3.googleusercontent.com/d/1DZfR6E26uxIjFdn_hXnXd1frCilHV7Kg=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-bBx5sn"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-sb-malor",
+    "fabrica": "Milton",
+    "marca": "Nike",
+    "nombre": "SB Malor",
+    "precioCaja": 71,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "▫️La parte superior de ante, cuero y lona crea un look clásico y duradero.\n▫️La construcción vulcanizada fusiona la suela con la parte superior para una sensación flexible y cómoda.\n▫️Suela de caucho natural para un mejor agarre\n▫️Detalles del logotipo en relieve\n▫️Etiqueta de lengüeta SB de acero\n▫️Plantilla de EVA con contrafuerte de talón TR de goma",
+    "variantes": [
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1l-y4x7w8z81DPpZBKriNDl8uyqvI0J1y=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-vI0J1y"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1nHUE75Md-9ENPS198zvg0RmIuo1pqXha=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-1pqXha"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1IuAvNYXEG1TJGDhtDDP0Wx3nDCkupTed=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-kupTed"
+      },
+      {
+        "color": ["Verde"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1NN8KDiDvy9Q3DmJq9hQ8SgpddKfSl4Vs=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-fSl4Vs"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-blazer-77-low",
+    "fabrica": "Milton",
+    "marca": "Nike",
+    "nombre": "Blazer 77 Low",
+    "precioCaja": 54,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "✅ Suela de caucho natural en blanco.\n✅ Parte superior sintética premium y duradera con un acabado con volantes.\n✅ Espuma de 20 mm en la parte trasera.\n✅ Parte superior acolchada de caña baja.\n✅ Lengüeta con espuma visible en ambos lados.\n✅ Piel de ante 100 % natural, fina y con un acabado impecable.\n✅ Plantilla de EVA de 5 mm forrada con jacaré. ¡Muy suave!\n✅ Herrajes transpirables. Mayor comodidad para el pie.\n✅ Se entrega en una caja de alta gama envuelta en seda blanca como la nieve.\n✅ Fabricación: VULCANIZADA, con doble acabado.\n✅ Cordones de poliéster trenzado de 14 mm.\n✅ Súper ligeras y cómodas.",
+    "variantes": [
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1Z6HlHOcZ6u_FQ9TS6lrfF2cd_VLdvTYw=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-LdvTYw"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/11rrNIgM3N-vBFqC7prqS0ukAkYPTKEb6=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "milton-PTKEb6"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1IH9pi7VVB_nrdgWV9Qc4PRAhGPTquNgq=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-TquNgq"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1RP4Smd57FDrt3aWbiFsMOXeDQ2Ky8bnv=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-Ky8bnv"
+      },
+      {
+        "color": ["Verde"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1679rrD3N0EKwJ7HV_FJzLqIgoBA_Qt6j=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-A_Qt6j"
+      },
+      {
+        "color": ["Rojo"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1hPc8yf0C0buKSmCFgLZBCMZvxr_DehHm=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "milton-_DehHm"
+      }
+    ]
+  },
+  { "Fabrica": "Zilmar" },
+  {
+    "id": "zapatilla-new-balance-9060",
+    "fabrica": "Zilmar",
+    "marca": "New Balance",
+    "nombre": "9060",
+    "precioCaja": 70,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Microexpandido",
+    "origen": "Argentina",
+    "colaboracion": false,
+    "descripcion": "New Balance 9060\nProducto de alta gama\nParte superior sintética Logan\nCordones de algodón\nForro a ras de suelo + espuma gruesa\nSuela micro con suela\nSuperligera y suave\nBolsa de tela no tejida\nCaja de alta gama con seda y etiqueta",
+    "variantes": [
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1_9CVvVx2oeFzBmNMqAVoLqgS80HgEpqt=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-HgEpqt"
+      },
+      {
+        "color": ["Rosa"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1f9NVOw6AqTTRvBWjs2T2fpRDL8CM9O8Y=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-CM9O8Y"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1x5-QQjPvkDfGuTnaWfVUDsl3SSDhGpiE=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-DhGpiE"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/121Cw-Xyve-XWX2ROi2saniWEsxi-6XsR=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-i-6XsR"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1K0zjsZDnV4RElV1VHZeuSETeLKfwEVwP=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-fwEVwP"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1RM79wqUpXnmlUWHiyFa-y71SgYPj9qOF=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-Pj9qOF"
+      },
+      {
+        "color": ["Rosa"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1l64iUe56elQhO2R7Zs_hILqQmRgC55LA=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-gc55LA"
+      },
+      {
+        "color": ["Marrón"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1vf7xOqBrtoI2tx-a0Y2TcAmhWe0k_nGv=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-e0k_nGv"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-air-zoom-pegasus-39",
+    "fabrica": "Zilmar",
+    "marca": "Nike",
+    "nombre": "Air Zoom Pegasus 39",
+    "precioCaja": 54,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Microexpandido",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "✔️ MICRO SUELA\n✔️ SUELA BITÓN\n✔️ CORDÓN DE ALGODÓN CON DOBLES HILOS\n✔️ PLANTILLA DE EVA DE 4 MM",
+    "variantes": [
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1bsi-Eitd0gE-bIPlvfB6Dsjpg1zQl3-H=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-zQl3-H"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/14l1JyKr6Zw1EGa7fXg9L84pSjjXOZW-1=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-XOZW-1"
+      },
+      {
+        "color": ["Gris"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1P1tKnwAcb_nyW_wE9VskDHAvjoSbEkAF=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-SbEkAF"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/12Bu5vRCqYXdZlTdXLx19uOXRo-lPCY9x=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-lPCY9x"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1sJNnrXQaK7B2Qebg3yDXm227WIEM3xsJ=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-EM3xsJ"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/16uPPqjebYuqnu5SP-tSjiKDjIc6J_MZ4=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-6J_MZ4"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1nERvguPMuzC2L0NpzSHeSdhjkqZTTtxI=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-ZTTtxI"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1LKoi08lp2VHkc9XKJ7-FV9w7ctIxZtWC=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-IxZtWC"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1R51Sj0zkfS6umVyjjzc-5Ij1TYbrfnCV=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-brfnCV"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/16MQfmXJJakDpH9ku-uvjZk-EKI9cQTLm=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-9cQTLm"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-puma-180",
+    "fabrica": "Zilmar",
+    "marca": "Puma",
+    "nombre": "180",
+    "precioCaja": 88,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Ante premium\nEspuma gruesa\nForro de pelo\nColgante de metal\nCordones de algodón\nSuela TR de goma\nCaja de primera calidad con seda, etiqueta y bolsa de tela no tejida",
+    "variantes": [
+      {
+        "color": ["Marrón"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1mqL7gtAkQ115xWgvLd1hZJ0YlsSKJeg1=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44", "35 - 40"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44",
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-SKJeg1"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1a3vDPDcd_1vHcoMGrCllq09VOzjG4JHu=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-jG4JHu"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1uNJToetrHMABTW29Qllw37g5qnweSL84=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44",
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-weSL84"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/19cizRMcO13yJnRn4bW4O1yWQvo90lDYl=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-90lDYl"
+      },
+      {
+        "color": ["Marrón"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1snSvDsQwk7GdnIws_tBas4sKID31CCWK=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44",
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-31CCWK"
+      },
+      {
+        "color": ["Beige"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1ILg-PVxst2ntH5P_QdLy8ynVE4JrfOb5=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44", "35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-JrfOb5"
+      },
+      {
+        "color": ["Celeste"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1MCpobIrwFdD9ZPVWnGXOYbVV1laEWKSg=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-aEWKSg"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-puma-181",
+    "fabrica": "Zilmar",
+    "marca": "Puma",
+    "nombre": "181",
+    "precioCaja": 82,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Forro de felpa\nSuela TR de goma\nCaja de primera calidad + seda y TNT",
+    "variantes": [
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1eZeHk_LAkFaAf2Hj22uq4cc1GkRdTLOD=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-RdTLOD"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1bA6K3XxNOMclwxyP5cVlAYgDJxiNLHLb=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-iNLHLb"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1lDiewBf88mNf4yOyWBBvlAPD_Q4431TC=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-4431TC"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1akn2Kqg6AYt_HnlcXMsrPmwSuN8KIKlm=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-8KIKlm"
+      },
+      {
+        "color": ["Gris"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1fdxbcrykotQAIHMMnZxGN1k3bXUqKTbp=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-UqKTbp"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-converse-chuck-taylor-all-star",
+    "fabrica": "Zilmar",
+    "marca": "Converse",
+    "nombre": "Chuck Taylor All Star",
+    "precioCaja": 30,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Vulcanizado",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Parte superior de lona de primera calidad\nCordones de algodón\nSuela de goma vulcanizado",
+    "variantes": [
+      {
+        "color": ["Rojo"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/19IVo2c-VNhXlyaVj8VHmjoYOqZs1Nb-L=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44", "45 +"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44",
+          "45 +": "4x44 4x45 4x46"
+        },
+        "id": "zilmar-s1Nb-L"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1hWpCa4kl5nOpEKmOnAS0JX_RbVD1nlEx=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "45 +", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44",
+          "45 +": "4x44 4x45 4x46"
+        },
+        "id": "zilmar-D1nlEx"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-air-jordan-low",
+    "fabrica": "Zilmar",
+    "marca": "Nike",
+    "nombre": "Air Jordan Low",
+    "precioCaja": 46,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Llavero Jordan de metal\nSuela de goma TR bicolor cosida\nCordones de algodón",
+    "variantes": [
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1r3lASh5c-XtHXbcPmF2kATv6KfJOJa78=w1000",
+          "https://lh3.googleusercontent.com/d/1oVNGD2j7q9AgfMT_GtsPb6jFxRIAzSS_=w1000",
+          "https://lh3.googleusercontent.com/d/1UHDsW0c-9hV-oBj1HJDVYy9SQe5PUig_=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-JOJa78"
+      },
+      {
+        "color": ["Celeste"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1Jx0D7VJd9sUy45aI3dK9s6xFIz2YI4sE=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-2YI4sE"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1hNh7ie-flah60888f2MQTIsdrou_BwgR=w1000",
+          "https://lh3.googleusercontent.com/d/1NngIezFkxyMMO_GYMUzIhOSduSOys62I=w1000",
+          "https://lh3.googleusercontent.com/d/1Kft4lpgEWVJ5XS5pW5XeU-Fyo1saEEn1=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-u_BwgR"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-sb-dunk-low",
+    "fabrica": "Zilmar",
+    "marca": "Nike",
+    "nombre": "SB Dunk Low",
+    "precioCaja": 46,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Primera linea\nCordones de algodón\nDetalles bordados\nSuela de goma TR bicolor, totalmente cosida",
+    "variantes": [
+      {
+        "color": ["Rosa"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1XW2TU0j-G8QKKsPBXO_OiJRyCkP0kLiV=w1000",
+          "https://lh3.googleusercontent.com/d/1dpAMN7Tqbt1oZJg_vUz2hXwjNmmaUEZ3=w1000",
+          "https://lh3.googleusercontent.com/d/1NEearBlEnWGjPnFOojEUTMmowu5JauxF=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-P0kLiV"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1mnlQo0-3U1B4ugTnXEV3eC597htOh1_4=w1000",
+          "https://lh3.googleusercontent.com/d/1JRfPbjuSNtozZ3JRmt6Pu2X42aVMiPwB=w1000",
+          "https://lh3.googleusercontent.com/d/1z0NiDkgOoMRuvPmNUiaMojNroK4sv3Ej=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-tOh1_4"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1PmYMjofoc2hoW605WmW2Ik96aOrpEEIo=w1000",
+          "https://lh3.googleusercontent.com/d/1avoJlEhJJzIEiI-wQpR68Z0btIFeSQIc=w1000",
+          "https://lh3.googleusercontent.com/d/1OzmsTAmVDT7srZf1OuIoohtyZdn7zuZ6=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-rpEEIo"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1AwT63VxjBKqKKHcn0qhIvBOltio_h-y2=w1000",
+          "https://lh3.googleusercontent.com/d/1zlHNKd1FWAtYQbI8voqRLyS34cPqsdHC=w1000",
+          "https://lh3.googleusercontent.com/d/1r1KHhsm_HPUU_NlUHlG6VGlU-jSQwqT0=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-o_h-y2"
+      },
+      {
+        "color": ["Varios"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1H5x9iF7VhYc2pZZVsvirpeRWlWtUlYU6=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-tUlYU6"
+      },
+      {
+        "color": ["Varios"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1GWhnPRwXyXZTDwYU45pU9QhH9AT3gOrN=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-T3gOrN"
+      },
+      {
+        "color": ["Blanco"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1UfaLLHZcmt7hdEuesaH8eOhiL5uxqw_g=w1000",
+          "https://lh3.googleusercontent.com/d/1BfYjPVwhV9OfiI2FY2yW1ZXszalU4Qmh=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-uxqw_g"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1o08m0PLhwQrIALqucYqvniaPsGmCbV2C=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-mCbV2C"
+      },
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1ybkbkQIWPHiIrjF4AtacKKgsWTHhgiUB=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-HhgiUB"
+      },
+      {
+        "color": ["Verde"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1_3fhAj5a0pOqWIdVYgNBCaiBlW3b14aP=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-3b14aP"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1CBbBeVaZCko1ppXamCFMYnweupvnK5lY=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-vnK5lY"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1r9nsl-7QPveWdNxqu4w-YTSokYcVnOdp=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40\n\n"
+        },
+        "id": "zilmar-cVnOdp"
+      },
+      {
+        "color": ["Celeste"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1ysPWXW07sBnMVhHSceULxLbtGJ1D7o92=w1000",
+          "https://lh3.googleusercontent.com/d/1vAn4IbfwHgMjLss8wcHiAxoMehUEAlZ6=w1000",
+          "https://lh3.googleusercontent.com/d/18JsZw89v1RRUd987nkq2yqL4tYjRTDlA=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40", "39 - 44"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-1D7o92"
+      },
+      {
+        "color": ["Marrón"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1GGLgCsdDw6deiVvMUZC-nnHIuvPoYqbz=w1000"
+        ],
+        "videos": [],
+        "talles": ["39 - 44"],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-PoYqbz"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-nike-air-jordan-low",
+    "fabrica": "Zilmar",
+    "marca": "Nike",
+    "nombre": "Air Jordan Low",
+    "precioCaja": 46,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Llavero Jordan de metal\nSuela de goma TR bicolor cosida\nCordones de algodón",
+    "variantes": [
+      {
+        "color": ["Negro"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1r3lASh5c-XtHXbcPmF2kATv6KfJOJa78=w1000",
+          "https://lh3.googleusercontent.com/d/1oVNGD2j7q9AgfMT_GtsPb6jFxRIAzSS_=w1000",
+          "https://lh3.googleusercontent.com/d/1UHDsW0c-9hV-oBj1HJDVYy9SQe5PUig_=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-JOJa78"
+      },
+      {
+        "color": ["Celeste"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1Jx0D7VJd9sUy45aI3dK9s6xFIz2YI4sE=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-2YI4sE"
+      },
+      {
+        "color": ["Azul"],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1hNh7ie-flah60888f2MQTIsdrou_BwgR=w1000",
+          "https://lh3.googleusercontent.com/d/1NngIezFkxyMMO_GYMUzIhOSduSOys62I=w1000",
+          "https://lh3.googleusercontent.com/d/1Kft4lpgEWVJ5XS5pW5XeU-Fyo1saEEn1=w1000"
+        ],
+        "videos": [],
+        "talles": ["35 - 40"],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-u_BwgR"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-converse-all-star",
+    "fabrica": "Zilmar",
+    "marca": "Converse",
+    "nombre": "All Star",
+    "precioCaja": 27,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Suela pegada\nPapel seda\nCaja y etiqueta",
+    "variantes": [
+      {
+        "color": [
+          "Blanco"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1SxgZivZ41y0pf75ygOAFnCxWR_RFQ5S8=w1000",
+          "https://lh3.googleusercontent.com/d/1Jszvk6RtcN_BIeaSM3fCD7xQL241VCxh=w1000",
+          "https://lh3.googleusercontent.com/d/1qEMa8jIg4kX_8NwGHftrvv6CeLJosapp=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
+        },
+        "id": "zilmar-RFQ5S8"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-adidas-sl-72",
+    "fabrica": "Zilmar",
+    "marca": "Adidas",
+    "nombre": "SL 72",
+    "precioCaja": 53,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Microexpandido",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Parte superior de gamuza\nForro de pelo\nCordones de algodón\nMicrosuela bicolor\nCaja de primera calidad + seda y etiqueta",
+    "variantes": [
+      {
+        "color": [
+          "Negro"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1YcYTPvLppAKXNMPsOCBEzc1LzTe7laoO=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "39 - 44"
+        ],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-e7laoO"
+      },
+      {
+        "color": [
+          "Beige"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1CP-bib5sJSQLbCEchgrL875gh_o5Odol=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "39 - 44"
+        ],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-o5Odol"
+      },
+      {
+        "color": [
+          "Marrón"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1-sq4ldmj3Blh3yL4GmGdbIJI9JTI4pVN=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "39 - 44"
+        ],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-TI4pVN"
+      },
+      {
+        "color": [
+          "Beige"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/18eUJJVWb6Sr198lfq1YaAj6UmSJC7hoK=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "39 - 44"
+        ],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-JC7hoK"
+      },
+      {
+        "color": [
+          "Gris"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1JuAmCU-9uM8FCpb0lRSaljBmYoy9fIpd=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "39 - 44"
+        ],
+        "distribucion": {
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-y9fIpd"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-adidas-campus",
+    "fabrica": "Zilmar",
+    "marca": "Adidas",
+    "nombre": "Campus",
+    "precioCaja": 40,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Caja de alta gama \nPapel seda + etiqueta\nBolsa de tela no tejida\nSuela bicolor cosida\nCordones gruesos de algodón\nForro mullido",
+    "variantes": [
+      {
+        "color": [
+          "Negro"
+        ],
+        "imagenes": [
+          "https://lh3.googleusercontent.com/d/1htj6t0wTZbK8bn_0fT1sHY8P5wlJK8D_=w1000"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-lJK8D_"
+      }
+    ]
+  },
+  {
+    "id": "zapatilla-vans-hylena",
+    "fabrica": "Zilmar",
+    "marca": "Vans",
+    "nombre": "Hylena",
+    "precioCaja": 70,
+    "precioSinCaja": 0,
+    "tipo": "Zapatilla",
+    "cantidad": 12,
+    "suela": "Caucho TR",
+    "origen": "Brasil",
+    "colaboracion": false,
+    "descripcion": "Cordones de algodón\nEspuma gruesa\nForro al felpudo\nSuela bicolor\nEn caja con seda y etiqueta",
+    "variantes": [
+      {
+        "color": [
+          "Marrón"
+        ],
+        "imagenes": [
+          "https://i.ibb.co/ymL6Ypyc/Whats-App-Image-2025-09-25-at-13-27-21.jpg"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-5MTgQ-"
+      },
+      {
+        "color": [
+          "Celeste"
+        ],
+        "imagenes": [
+          "https://i.ibb.co/Zz23sW4M/Whats-App-Image-2025-09-25-at-13-27-23.jpg"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-sneuRd"
+      },
+      {
+        "color": [
+          "Negro"
+        ],
+        "imagenes": [
+          "https://i.ibb.co/MkzRQK15/Whats-App-Image-2025-09-25-at-13-27-24.jpg"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-ptbEne"
+      },
+      {
+        "color": [
+          "Negro"
+        ],
+        "imagenes": [
+          "https://i.ibb.co/xqNKbNdB/Whats-App-Image-2025-09-25-at-13-27-25.jpg"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-BhqDrR"
+      },
+      {
+        "color": [
+          "Blanco"
+        ],
+        "imagenes": [
+          "https://i.ibb.co/F4JtVzX9/Whats-App-Image-2025-09-25-at-13-27-27.jpg"
+        ],
+        "videos": [],
+        "talles": [
+          "35 - 40",
+          "39 - 44"
+        ],
+        "distribucion": {
+          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40",
+          "39 - 44": "1x39 2x40 3x41 3x42 2x43 1x44"
+        },
+        "id": "zilmar-n9dImC"
+      }
+    ]
+  },
+  { "Fabrica": "Nueva"}
 ]

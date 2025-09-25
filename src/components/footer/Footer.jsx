@@ -8,7 +8,7 @@ function Footer() {
           {/* Información */}
           <div className="footer-section">
             <h2 className="footer-title">Carpincho Shoes</h2>
-            <p className="footer-description">Tienda mayorista de calzado e indumentaria importada</p>
+            <p className="footer-description">Tienda mayorista de indumentaria y calzado nacional e importada</p>
           </div>
 
           {/* Contacto */}
@@ -25,8 +25,8 @@ function Footer() {
           <div className="footer-section">
             <h2 className="footer-title">Redes Sociales</h2>
             <ul className="footer-links">
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">TikTok</a></li>
+              <li><a href="https://www.instagram.com/carpincho.shoes/">Instagram</a></li>
+              <li><a href="https://www.tiktok.com/@carpincho.shoes">TikTok</a></li>
               <li><a href="#">Facebook</a></li>
             </ul>
           </div>
@@ -35,9 +35,7 @@ function Footer() {
         {/* Derechos reservados */}
         <div className="footer-bottom">
           <p className="footer-text">
-            &copy; {new Date().getFullYear()} Carpincho Shoes. Todos los derechos reservados. 
-            Las fotos contenidas en este sitio, el logotipo y las marcas son propiedad de sus respectivos titulares.
-            Está prohibida la reproducción total o parcial sin autorización.
+            &copy;{" 2021 -"} {new Date().getFullYear()}
           </p>
         </div>
       </div>

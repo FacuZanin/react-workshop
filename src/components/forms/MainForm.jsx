@@ -18,7 +18,7 @@ const convertirLinkDrive = (url) => {
     }
     const id = idMatch ? idMatch[1] : null;
     if (!id) return url;
-    return `https://lh3.googleusercontent.com/d/$${id}=w1000`;
+    return `https://lh3.googleusercontent.com/d/${id}=w1000`;
   } catch {
     return url;
   }
