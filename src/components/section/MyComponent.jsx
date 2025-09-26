@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Section from "./Section";
 import Loader from "../common/Loader";
 import Filter from "../filter/Filter";
-import "./mycomponent.css";
-import { Funnel, X } from "lucide-react";
-import { useLocalStorage } from "../hooks/useLocalStorage"; // ✅ Importa el hook
+import "./MyComponent.css";
+import { Funnel, X, LayoutGrid, List, ArrowUpDown } from "lucide-react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import Pagination from "./Pagination";
 
 const MyComponent = () => {
   const [data, setData] = useState([]);
@@ -12,9 +13,12 @@ const MyComponent = () => {
   const [error, setError] = useState(null);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const productsContainerRef = useRef(null);
-  
-  // ✅ Usa useLocalStorage para persistir los filtros en MyComponent
   const [filters, setFilters] = useLocalStorage("filters", {});
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(24);
+  const [viewType, setViewType] = useState("grid");
+  const [sortBy, setSortBy] = useState("posicion");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     fetch("/data/productos.json")
@@ -23,7 +27,23 @@ const MyComponent = () => {
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        const validProducts = json.filter(producto => producto.variantes);
+
+        const processedData = validProducts.flatMap((producto) =>
+          producto.variantes.length > 0
+            ? producto.variantes.map((variante) => ({
+                ...variante,
+                productoId: producto.id,
+                productoNombre: producto.nombre,
+                productoMarca: producto.marca,
+                productoTipo: producto.tipo,
+                precioCaja: producto.precioCaja,
+                fabrica: producto.fabrica,
+                origen: producto.origen,
+              }))
+            : []
+        );
+        setData(processedData);
         setLoading(false);
       })
       .catch((err) => {
@@ -35,69 +55,177 @@ const MyComponent = () => {
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);
+    setCurrentPage(1);
   };
 
-  const filteredProducts = data.flatMap((producto) => {
-    const variantesFiltradas = (producto.variantes || []).filter((v) => {
-      return Object.entries(filters).every(([key, values]) => {
-        if (!values.length) return true;
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-        switch (key) {
-          case "color":
-            return v.color?.some((c) => values.includes(c));
-          case "talles":
-            return v.talles?.some((t) => values.includes(t.trim()));
-          case "caja":
-            if (values.includes("Con caja")) return producto.precioCaja > 0;
-            if (values.includes("Sin caja")) return producto.precioSinCaja > 0;
-            return false;
-          case "colaboracion":
-            if (values.includes("Colaboración")) return producto.colaboracion === true;
-            return false;
-          case "fabrica":
-            return values.includes(producto.fabrica);
-          case "origen":
-            return values.includes(producto.origen);
-          case "suela":
-            return values.includes(producto.suela);
-          default:
-            return values.includes(producto[key]);
-        }
-      });
+  const handleProductsPerPageChange = (event) => {
+    setProductsPerPage(Number(event.target.value));
+    setCurrentPage(1);
+  };
+
+  const sortProducts = (products) => {
+    const sorted = [...products].sort((a, b) => {
+      let aValue, bValue;
+      if (sortBy === "nombre") {
+        aValue = a.productoNombre.toLowerCase();
+        bValue = b.productoNombre.toLowerCase();
+      } else if (sortBy === "precio") {
+        aValue = a.productoPrecios.find((p) => p.tipo === "mayorista").precio;
+        bValue = b.productoPrecios.find((p) => p.tipo === "mayorista").precio;
+      } else {
+        aValue = a.posicion || Infinity;
+        bValue = b.posicion || Infinity;
+      }
+
+      if (sortOrder === "asc") {
+        if (aValue < bValue) return -1;
+        if (aValue > bValue) return 1;
+      } else {
+        if (aValue > bValue) return -1;
+        if (aValue < bValue) return 1;
+      }
+      return 0;
     });
+    return sorted;
+  };
 
-    if (variantesFiltradas.length > 0) {
-      return { ...producto, variantes: variantesFiltradas };
-    }
-    return [];
+  const filteredProducts = data.filter((variante) => {
+    const filterByTalle = filters.talle
+      ? variante.talles?.includes(filters.talle)
+      : true;
+    const filterByColor = filters.color
+      ? variante.color?.includes(filters.color)
+      : true;
+    const filterByTipo = filters.tipo
+      ? variante.productoTipo?.includes(filters.tipo)
+      : true;
+    const filterByFabrica = filters.fabrica
+      ? variante.fabrica?.includes(filters.fabrica)
+      : true;
+    const filterBySuela = filters.suela
+      ? variante.suela?.includes(filters.suela)
+      : true;
+    const filterByMaterial = filters.material
+      ? variante.material?.includes(filters.material)
+      : true;
+    const filterByMarca = filters.marca
+      ? variante.productoMarca?.includes(filters.marca)
+      : true;
+
+    return (
+      filterByTalle &&
+      filterByColor &&
+      filterByTipo &&
+      filterByFabrica &&
+      filterBySuela &&
+      filterByMaterial &&
+      filterByMarca
+    );
   });
 
-  useEffect(() => {
-    if (productsContainerRef.current) {
-      productsContainerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [filteredProducts]);
+  const sortedProducts = sortProducts(filteredProducts);
 
-  if (loading) return <Loader />;
-  if (error) return <div>Error: {error}</div>;
+  const totalProductsCount = sortedProducts.length;
+  const totalPages = Math.ceil(totalProductsCount / productsPerPage);
+  const startIndex = (currentPage - 1) * productsPerPage + 1;
+  const endIndex = Math.min(startIndex + productsPerPage - 1, totalProductsCount);
+
+  const paginatedProducts = sortedProducts.slice(startIndex - 1, endIndex);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="main-container">
       <div className="desktop-filter">
         <Filter onFilterChange={handleFilterChange} />
       </div>
-
-      <div className="products-content" ref={productsContainerRef}>
-        <div className="mobile-filter-btn-container">
-          <button
-            className="mobile-filter-btn"
-            onClick={() => setShowMobileFilter(true)}
-          >
-            <Funnel size={18} fill="#00719B" color="#00719B" />
-            <span>REFINÁ TU BÚSQUEDA</span>
-          </button>
+      <div className="products-content">
+        <div className="top-section-info">
+          {/* ✅ CORRECCIÓN: Usamos las nuevas variables para mostrar el mensaje dinámico */}
+          <p>{`Artículos ${startIndex}-${endIndex} de ${totalProductsCount}`}</p>
+          <div className="products-controls">
+            <div className="products-sort-controls">
+              <label htmlFor="sort-by-select" className="sort-label">
+                ORDENAR POR
+              </label>
+              <select
+                id="sort-by-select"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                <option value="posicion">Posición</option>
+                <option value="nombre">Nombre</option>
+                <option value="precio">Precio</option>
+              </select>
+              <button
+                className="sort-order-btn"
+                onClick={() =>
+                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                }
+              >
+                <ArrowUpDown size={20} />
+              </button>
+            </div>
+            <div className="products-view-controls">
+              <button
+                className={`view-btn ${viewType === "grid" ? "active" : ""}`}
+                onClick={() => setViewType("grid")}
+              >
+                <LayoutGrid size={24} />
+              </button>
+              <button
+                className={`view-btn ${viewType === "list" ? "active" : ""}`}
+                onClick={() => setViewType("list")}
+              >
+              <List size={24} />
+              </button>
+            </div>
+            <div className="mobile-filter-btn-container">
+              <button
+                className="mobile-filter-btn"
+                onClick={() => setShowMobileFilter(true)}
+              >
+                <Funnel size={20} /> Filtros
+              </button>
+            </div>
+          </div>
         </div>
-        <Section products={filteredProducts} />
+
+        <Section products={paginatedProducts} viewType={viewType} />
+
+        {totalPages > 1 && (
+          <div className="bottom-controls-container">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+            <div className="products-per-page-control">
+              <label htmlFor="products-per-page-select">MOSTRAR</label>
+              <select
+                id="products-per-page-select"
+                value={productsPerPage}
+                onChange={handleProductsPerPageChange}
+              >
+                <option value={12}>12</option>
+                <option value={24}>24</option>
+                <option value={36}>36</option>
+              </select>
+              <label htmlFor="products-per-page-select">POR PÁGINA</label>
+            </div>
+          </div>
+        )}
       </div>
 
       <div

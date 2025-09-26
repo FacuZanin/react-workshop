@@ -238,3 +238,57 @@
     display: flex;
   }
 }
+
+/* ... (código anterior) ... */
+
+/* ✅ NUEVOS ESTILOS PARA LA VISTA DE LISTA */
+/* ======================================= */
+
+/* El grid se convierte en una columna para la vista de lista */
+.product-grid.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-card.list-card {
+  display: flex;
+  flex-direction: row;
+  height: auto; /* La altura se ajusta al contenido */
+  border: 1px solid #444;
+}
+
+.product-card.list-card .product-image-container {
+  width: 150px; /* Tamaño fijo para la imagen en vista de lista */
+  min-width: 150px; /* Evita que se encoja */
+  height: 150px;
+  overflow: hidden;
+}
+
+.product-card.list-card .product-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex: 1; /* Ocupa el espacio restante */
+}
+
+/* Ocultar el botón de favorito en la vista de lista */
+.product-card.list-card .favorite-btn-card {
+  display: none;
+}
+
+/* Oculta los estilos de grid de la vista de lista */
+@media (min-width: 481px) {
+  .product-grid.list-view {
+    grid-template-columns: none;
+    gap: 1rem;
+  }
+}
+
+/* Ajustes de responsive para vista de lista en móviles */
+@media (max-width: 480px) {
+  .product-card.list-card {
+    flex-direction: row; /* Mantén el diseño en fila en móviles para la lista */
+    padding: 0;
+  }
+}

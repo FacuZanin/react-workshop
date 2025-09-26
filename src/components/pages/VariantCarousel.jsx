@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // ✅ Importa los iconos de las flechas
 import "./VariantCarousel.css";
 import PrecioGrid from "../precio/PrecioGrid";
 
@@ -7,6 +8,10 @@ const VariantCarousel = ({ product }) => {
   const carouselRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+
+  if (!product || !product.variantes || product.variantes.length <= 1) {
+    return null;
+  }
 
   const scrollCarousel = (direction) => {
     const container = carouselRef.current;
@@ -31,8 +36,6 @@ const VariantCarousel = ({ product }) => {
     );
   };
 
-  if (product.variantes.length <= 1) return null;
-
   return (
     <div className="related-products">
       <h2>
@@ -44,19 +47,8 @@ const VariantCarousel = ({ product }) => {
             className="carousel-arrow left"
             onClick={() => scrollCarousel(-1)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#111"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
+            {/* ✅ Usa el componente ChevronLeft */}
+            <ChevronLeft size={24} color="#111" />
           </button>
         )}
 
@@ -64,7 +56,7 @@ const VariantCarousel = ({ product }) => {
           {product.variantes.map((v) => (
             <Link
               key={v.id}
-              to={`/producto/${product.id}/${encodeURIComponent(v.id)}`} // ✅ usa variantId
+              to={`/producto/${product.id}/${encodeURIComponent(v.id)}`}
               className="related-card"
             >
               <div className="related-img-wrapper">
@@ -89,19 +81,8 @@ const VariantCarousel = ({ product }) => {
             className="carousel-arrow right"
             onClick={() => scrollCarousel(1)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#111"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
+            {/* ✅ Usa el componente ChevronRight */}
+            <ChevronRight size={24} color="#111" />
           </button>
         )}
       </div>
