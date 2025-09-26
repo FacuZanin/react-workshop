@@ -13,6 +13,8 @@ const MyComponent = () => {
   const [error, setError] = useState(null);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const productsContainerRef = useRef(null);
+
+  // filtros persistidos en localStorage (comparten key con Filter.jsx)
   const [filters, setFilters] = useLocalStorage("filters", {});
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(24);
@@ -27,22 +29,29 @@ const MyComponent = () => {
         return response.json();
       })
       .then((json) => {
-        const validProducts = json.filter(producto => producto.variantes);
+        // filtramos objetos sin variantes (en tu JSON hay entradas tipo { "Fabrica": "Bob" })
+        const validProducts = (json || []).filter((p) => Array.isArray(p.variantes));
 
+        // procesamos: generamos una lista plana de variantes con las propiedades necesarias
         const processedData = validProducts.flatMap((producto) =>
-          producto.variantes.length > 0
-            ? producto.variantes.map((variante) => ({
-                ...variante,
-                productoId: producto.id,
-                productoNombre: producto.nombre,
-                productoMarca: producto.marca,
-                productoTipo: producto.tipo,
-                precioCaja: producto.precioCaja,
-                fabrica: producto.fabrica,
-                origen: producto.origen,
-              }))
-            : []
+          (producto.variantes || []).map((variante) => ({
+            ...variante,
+            productoId: producto.id || "",
+            productoNombre: producto.nombre || "",
+            productoMarca: producto.marca || "",
+            productoTipo: producto.tipo || "",
+            precioCaja: producto.precioCaja ?? 0,
+            fabrica: producto.fabrica ?? producto.Fabrica ?? "",
+            suela: producto.suela ?? producto.suela ?? "",
+            origen: producto.origen ?? "",
+            precioSinCaja: producto.precioSinCaja ?? "",
+            colaboracion: !!producto.colaboracion,
+            // garantizamos arrays
+            talles: variante.talles || [],
+            color: variante.color || [],
+          }))
         );
+
         setData(processedData);
         setLoading(false);
       })
@@ -68,54 +77,60 @@ const MyComponent = () => {
     setCurrentPage(1);
   };
 
-  const sortProducts = (products) => {
-    const sorted = [...products].sort((a, b) => {
-      let aValue, bValue;
-      if (sortBy === "nombre") {
-        aValue = a.productoNombre.toLowerCase();
-        bValue = b.productoNombre.toLowerCase();
-      } else if (sortBy === "precio") {
-        aValue = a.productoPrecios.find((p) => p.tipo === "mayorista").precio;
-        bValue = b.productoPrecios.find((p) => p.tipo === "mayorista").precio;
-      } else {
-        aValue = a.posicion || Infinity;
-        bValue = b.posicion || Infinity;
-      }
+  // helper: compara campo de variante (string o array) con valores seleccionados (array)
+  const matches = (variantField, selectedValues) => {
+    if (!selectedValues || selectedValues.length === 0) return true;
+    if (variantField === undefined || variantField === null) return false;
 
-      if (sortOrder === "asc") {
-        if (aValue < bValue) return -1;
-        if (aValue > bValue) return 1;
-      } else {
-        if (aValue > bValue) return -1;
-        if (aValue < bValue) return 1;
-      }
-      return 0;
-    });
-    return sorted;
+    if (Array.isArray(variantField)) {
+      return variantField.some((v) => selectedValues.includes(v));
+    }
+    // string / number
+    return selectedValues.includes(String(variantField));
   };
 
+  // filtro especial para "otros" (Con caja / Sin caja / Colaboración)
+  const matchOtros = (variante, selectedOtros) => {
+    if (!selectedOtros || selectedOtros.length === 0) return true;
+    return selectedOtros.some((opt) => {
+      if (opt === "Con caja") return !!String(variante.precioCaja).trim();
+      if (opt === "Sin caja") return !String(variante.precioSinCaja).trim();
+      if (opt === "Colaboración") return !!variante.colaboracion;
+      return false;
+    });
+  };
+
+  // ordenamiento
+  const sortProducts = (products) => {
+    return [...products].sort((a, b) => {
+      if (sortBy === "nombre") {
+        const nombreA = (a.productoNombre || "").toLowerCase();
+        const nombreB = (b.productoNombre || "").toLowerCase();
+        return sortOrder === "asc" ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
+      }
+      if (sortBy === "precio") {
+        const aVal = Number(a.precioCaja || 0);
+        const bVal = Number(b.precioCaja || 0);
+        return sortOrder === "asc" ? aVal - bVal : bVal - aVal;
+      }
+      // fallback por posicion si existiera, sino mantener orden original
+      const aPos = Number(a.posicion ?? Infinity);
+      const bPos = Number(b.posicion ?? Infinity);
+      return sortOrder === "asc" ? aPos - bPos : bPos - aPos;
+    });
+  };
+
+  // filtrado — usamos matches para manejar arrays/strings
   const filteredProducts = data.filter((variante) => {
-    const filterByTalle = filters.talle
-      ? variante.talles?.includes(filters.talle)
-      : true;
-    const filterByColor = filters.color
-      ? variante.color?.includes(filters.color)
-      : true;
-    const filterByTipo = filters.tipo
-      ? variante.productoTipo?.includes(filters.tipo)
-      : true;
-    const filterByFabrica = filters.fabrica
-      ? variante.fabrica?.includes(filters.fabrica)
-      : true;
-    const filterBySuela = filters.suela
-      ? variante.suela?.includes(filters.suela)
-      : true;
-    const filterByMaterial = filters.material
-      ? variante.material?.includes(filters.material)
-      : true;
-    const filterByMarca = filters.marca
-      ? variante.productoMarca?.includes(filters.marca)
-      : true;
+    const filterByTalle = matches(variante.talles, filters.talle);
+    const filterByColor = matches(variante.color, filters.color);
+    const filterByTipo = matches(variante.productoTipo, filters.tipo);
+    const filterByFabrica = matches(variante.fabrica, filters.fabrica);
+    const filterBySuela = matches(variante.suela, filters.suela);
+    const filterByMaterial = matches(variante.material, filters.material);
+    const filterByMarca = matches(variante.productoMarca || variante.productoMarca, filters.marca);
+    const filterByOrigen = matches(variante.origen, filters.origen);
+    const filterByOtros = matchOtros(variante, filters.otros);
 
     return (
       filterByTalle &&
@@ -124,7 +139,9 @@ const MyComponent = () => {
       filterByFabrica &&
       filterBySuela &&
       filterByMaterial &&
-      filterByMarca
+      filterByMarca &&
+      filterByOrigen &&
+      filterByOtros
     );
   });
 
@@ -134,26 +151,21 @@ const MyComponent = () => {
   const totalPages = Math.ceil(totalProductsCount / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage + 1;
   const endIndex = Math.min(startIndex + productsPerPage - 1, totalProductsCount);
-
   const paginatedProducts = sortedProducts.slice(startIndex - 1, endIndex);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (loading) return <Loader />;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="main-container">
       <div className="desktop-filter">
         <Filter onFilterChange={handleFilterChange} />
       </div>
+
       <div className="products-content">
         <div className="top-section-info">
-          {/* ✅ CORRECCIÓN: Usamos las nuevas variables para mostrar el mensaje dinámico */}
           <p>{`Artículos ${startIndex}-${endIndex} de ${totalProductsCount}`}</p>
+
           <div className="products-controls">
             <div className="products-sort-controls">
               <label htmlFor="sort-by-select" className="sort-label">
@@ -170,32 +182,23 @@ const MyComponent = () => {
               </select>
               <button
                 className="sort-order-btn"
-                onClick={() =>
-                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-                }
+                onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
               >
                 <ArrowUpDown size={20} />
               </button>
             </div>
+
             <div className="products-view-controls">
-              <button
-                className={`view-btn ${viewType === "grid" ? "active" : ""}`}
-                onClick={() => setViewType("grid")}
-              >
+              <button className={`view-btn ${viewType === "grid" ? "active" : ""}`} onClick={() => setViewType("grid")}>
                 <LayoutGrid size={24} />
               </button>
-              <button
-                className={`view-btn ${viewType === "list" ? "active" : ""}`}
-                onClick={() => setViewType("list")}
-              >
-              <List size={24} />
+              <button className={`view-btn ${viewType === "list" ? "active" : ""}`} onClick={() => setViewType("list")}>
+                <List size={24} />
               </button>
             </div>
+
             <div className="mobile-filter-btn-container">
-              <button
-                className="mobile-filter-btn"
-                onClick={() => setShowMobileFilter(true)}
-              >
+              <button className="mobile-filter-btn" onClick={() => setShowMobileFilter(true)}>
                 <Funnel size={20} /> Filtros
               </button>
             </div>
@@ -206,18 +209,11 @@ const MyComponent = () => {
 
         {totalPages > 1 && (
           <div className="bottom-controls-container">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+
             <div className="products-per-page-control">
               <label htmlFor="products-per-page-select">MOSTRAR</label>
-              <select
-                id="products-per-page-select"
-                value={productsPerPage}
-                onChange={handleProductsPerPageChange}
-              >
+              <select id="products-per-page-select" value={productsPerPage} onChange={handleProductsPerPageChange}>
                 <option value={12}>12</option>
                 <option value={24}>24</option>
                 <option value={36}>36</option>
@@ -228,21 +224,12 @@ const MyComponent = () => {
         )}
       </div>
 
-      <div
-        className={`mobile-filter-overlay ${showMobileFilter ? "open" : ""}`}
-        onClick={() => setShowMobileFilter(false)}
-      >
-        <button
-          className="mobile-filter-close-btn"
-          onClick={() => setShowMobileFilter(false)}
-        >
+      <div className={`mobile-filter-overlay ${showMobileFilter ? "open" : ""}`} onClick={() => setShowMobileFilter(false)}>
+        <button className="mobile-filter-close-btn" onClick={() => setShowMobileFilter(false)}>
           <X size={24} />
         </button>
 
-        <div
-          className="mobile-filter-panel"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="mobile-filter-panel" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-filter-header">
             <h3>Filtros</h3>
           </div>

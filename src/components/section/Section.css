@@ -1,5 +1,4 @@
 .section {
-  padding: 1.5rem;
   background-color: #1a1a1a;
   color: #f0f0f0;
 }
@@ -232,7 +231,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
+    /* align-items: center; */
   }
   .favorite-btn-card {
     display: flex;
