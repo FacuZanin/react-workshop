@@ -11,50 +11,50 @@ import "./ProductInfo.css";
 import "./VariantCarousel.css";
 import { useFavoritos } from "../section/FavoritosContext";
 import { ChevronDown } from "lucide-react";
-import { useCarrito } from "./CarritoContext"; 
-import ToastNotification from "../common/ToastNotification"; 
+import { useCarrito } from "./CarritoContext";
+import ToastNotification from "../common/ToastNotification";
 
 const ProductDetail = () => {
   const { id, variantId } = useParams();
   const [product, setProduct] = useState(null);
   const [variant, setVariant] = useState(null);
+  // 💡 Mantenemos el estado de la sección abierta (puede ser "specs" o "description")
   const [openSection, setOpenSection] = useState("");
-  const { toast, hideToast } = useCarrito(); // ✅ Obtiene el estado del toast
+  const { toast, hideToast } = useCarrito();
+
+  // Función genérica para alternar el estado del acordeón
+  const toggleAccordion = (sectionName) => {
+    setOpenSection(openSection === sectionName ? "" : sectionName);
+  };
 
   useEffect(() => {
     fetch("/data/productos.json")
       .then((res) => res.json())
       .then((data) => {
-        const foundProduct = data.find((p) => String(p.id) === String(id));
+        // 🔹 primero buscamos el producto que contenga el variantId
+        const foundProduct = data.find((p) =>
+          p.variantes?.some((v) => String(v.id) === String(variantId))
+        );
+
         if (foundProduct) {
           setProduct(foundProduct);
-          let selectedVariant = null;
 
-          if (foundProduct.variantes && foundProduct.variantes.length > 0) {
-            const foundVariant = foundProduct.variantes.find(
-              (v) => String(v.id) === String(variantId)
-            );
-            selectedVariant = foundVariant || foundProduct.variantes[0];
-          }
+          const foundVariant = foundProduct.variantes.find(
+            (v) => String(v.id) === String(variantId)
+          );
 
-          if (selectedVariant && selectedVariant.distribucion) {
+          let selectedVariant = foundVariant || foundProduct.variantes[0];
+
+          if (selectedVariant?.distribucion) {
             const tallesArray = Object.keys(selectedVariant.distribucion).map(
               (talle) => ({
-                talle: talle,
+                talle,
                 distribucion: selectedVariant.distribucion[talle],
               })
             );
             setVariant({ ...selectedVariant, talles: tallesArray });
-          } else if (foundProduct.distribucion) {
-            const tallesArray = Object.keys(foundProduct.distribucion).map(
-              (talle) => ({
-                talle: talle,
-                distribucion: foundProduct.distribucion[talle],
-              })
-            );
-            setVariant({ ...foundProduct, talles: tallesArray });
           } else {
-            setVariant({});
+            setVariant(selectedVariant || {});
           }
         }
       })
@@ -86,6 +86,37 @@ const ProductDetail = () => {
           </div>
         </div>
         <div className="accordion-container">
+          
+          {/* 🟢 NUEVO: ACORDEÓN DE DESCRIPCIÓN */}
+          {product.descripcion && (
+            <div
+              className={`accordion-item ${
+                openSection === "description" ? "open" : ""
+              }`}
+            >
+              <div
+                className="accordion-header"
+                onClick={() => toggleAccordion("description")}
+              >
+                DESCRIPCIÓN
+                <span
+                  className={`arrow ${
+                    openSection === "description" ? "rotate" : ""
+                  }`}
+                >
+                  <ChevronDown size={24} color="whitesmoke" />
+                </span>
+              </div>
+              {/* 💡 Usamos style={{ whiteSpace: 'pre-line' }} para respetar los saltos de línea (\n) del JSON */}
+              <div className="accordion-body">
+                <div style={{ whiteSpace: 'pre-line' }}>
+                  {product.descripcion}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 🔹 ACORDEÓN DE ESPECIFICACIONES (Mantenido) */}
           <div
             className={`accordion-item ${
               openSection === "specs" ? "open" : ""
@@ -93,9 +124,7 @@ const ProductDetail = () => {
           >
             <div
               className="accordion-header"
-              onClick={() =>
-                setOpenSection(openSection === "specs" ? "" : "specs")
-              }
+              onClick={() => toggleAccordion("specs")}
             >
               ESPECIFICACIONES
               <span
@@ -110,7 +139,11 @@ const ProductDetail = () => {
               Suela: {product.suela} <br />
               Origen: {product.origen} <br />
               Fabrica: {product.fabrica} <br />
-              {product.colaboracion && <>Colaboración: Sí <br /></>}
+              {product.colaboracion && (
+                <>
+                  Colaboración: Sí <br />
+                </>
+              )}
               <br />
               <strong>Distribución:</strong>
               <div className="distribucion-list">
@@ -129,7 +162,9 @@ const ProductDetail = () => {
       </div>
       <Footer />
       {/* ✅ RENDERIZA el toast solo si es visible */}
-      {toast.visible && <ToastNotification message={toast.message} onDismiss={hideToast} />}
+      {toast.visible && (
+        <ToastNotification message={toast.message} onDismiss={hideToast} />
+      )}
     </>
   );
 };

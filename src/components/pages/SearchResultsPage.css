@@ -1,0 +1,101 @@
+/* src/pages/SearchResultsPage.css */
+
+/* ============================= */
+/* 📌 Layout principal (Centrado) */
+/* ============================= */
+
+.main-container {
+  /* La clave para centrar y limitar el ancho */
+  max-width: 1280px; 
+  margin: 0 auto;
+  padding: 20px;
+  background: #1a1a1a;
+  color: #f0f0f0;
+}
+
+.products-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==================================== */
+/* 🟢 Controles Superiores (top-section-info) */
+/* ==================================== */
+.top-section-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 1rem;
+}
+
+.results-count {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.products-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.products-view-controls .view-btn {
+  background: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 4px;
+}
+
+.products-view-controls .view-btn.active {
+  background: #00719B;
+  border-color: #00719B;
+}
+
+.products-sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.products-sort-controls select {
+    padding: 8px;
+    background: #2c2c2c;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+/* ======================================= */
+/* 🟢 Controles Inferiores y Paginación */
+/* ======================================= */
+.bottom-controls-container {
+  display: flex;
+  justify-content: space-between; /* Alinear paginación a la izquierda y control de página a la derecha */
+  align-items: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid #333;
+}
+
+.products-per-page-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.products-per-page-control select {
+    padding: 5px;
+    background: #2c2c2c;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+}

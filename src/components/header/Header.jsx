@@ -23,20 +23,28 @@ const Header = () => {
   useEffect(() => {
     fetch("/data/productos.json")
       .then((res) => res.json())
-      .then((data) => setAllProducts(data))
+      .then((data) => {
+        // Validación: solo guardamos productos con las propiedades necesarias
+        const validProducts = (data || []).filter(
+          (p) => p.nombre && p.marca && p.tipo
+        );
+        setAllProducts(validProducts);
+      })
       .catch((err) => console.error("Error al cargar productos:", err));
   }, []);
 
   useEffect(() => {
     if (searchQuery.length > 0) {
-      const filtered = allProducts.filter(
-        (product) =>
-          product.nombre
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          product.marca.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.tipo.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const filtered = allProducts.filter((product) => {
+        const query = searchQuery.toLowerCase();
+        
+        // Uso de encadenamiento opcional para evitar el error 'toLowerCase' en undefined
+        const nombreMatch = product.nombre?.includes(query);
+        const marcaMatch = product.marca?.includes(query);
+        const tipoMatch = product.tipo?.includes(query);
+        
+        return nombreMatch || marcaMatch || tipoMatch;
+      });
       setSearchResults(filtered);
     } else {
       setSearchResults([]);
@@ -63,8 +71,8 @@ const Header = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.length > 0) {
-      navigate(`/search?q=${searchQuery}`);
-      toggleSearchBox();
+      navigate(`/buscar?query=${encodeURIComponent(searchQuery)}`);
+      setIsSearchBoxOpen(false);
     }
   };
 

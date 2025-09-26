@@ -499,7 +499,7 @@
     ]
   },
   {
-    "id": "botita-vans-sk8-hi",
+    "id": "botita-vans-sk8-hi-premium",
     "fabrica": "Milton",
     "marca": "Vans",
     "nombre": "SK8 HI",
@@ -1598,62 +1598,6 @@
           "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
         },
         "id": "zilmar-T3gOrN"
-      }
-    ]
-  },
-  {
-    "id": "zapatilla-nike-air-jordan-low",
-    "fabrica": "Zilmar",
-    "marca": "Nike",
-    "nombre": "Air Jordan Low",
-    "precioCaja": 46,
-    "precioSinCaja": 0,
-    "tipo": "Zapatilla",
-    "cantidad": 12,
-    "suela": "Caucho TR",
-    "origen": "Brasil",
-    "colaboracion": false,
-    "descripcion": "Llavero Jordan de metal\nSuela de goma TR bicolor cosida\nCordones de algodón",
-    "variantes": [
-      {
-        "color": ["Negro"],
-        "imagenes": [
-          "https://lh3.googleusercontent.com/d/1r3lASh5c-XtHXbcPmF2kATv6KfJOJa78=w1000",
-          "https://lh3.googleusercontent.com/d/1oVNGD2j7q9AgfMT_GtsPb6jFxRIAzSS_=w1000",
-          "https://lh3.googleusercontent.com/d/1UHDsW0c-9hV-oBj1HJDVYy9SQe5PUig_=w1000"
-        ],
-        "videos": [],
-        "talles": ["35 - 40"],
-        "distribucion": {
-          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
-        },
-        "id": "zilmar-JOJa78"
-      },
-      {
-        "color": ["Celeste"],
-        "imagenes": [
-          "https://lh3.googleusercontent.com/d/1Jx0D7VJd9sUy45aI3dK9s6xFIz2YI4sE=w1000"
-        ],
-        "videos": [],
-        "talles": ["35 - 40"],
-        "distribucion": {
-          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
-        },
-        "id": "zilmar-2YI4sE"
-      },
-      {
-        "color": ["Azul"],
-        "imagenes": [
-          "https://lh3.googleusercontent.com/d/1hNh7ie-flah60888f2MQTIsdrou_BwgR=w1000",
-          "https://lh3.googleusercontent.com/d/1NngIezFkxyMMO_GYMUzIhOSduSOys62I=w1000",
-          "https://lh3.googleusercontent.com/d/1Kft4lpgEWVJ5XS5pW5XeU-Fyo1saEEn1=w1000"
-        ],
-        "videos": [],
-        "talles": ["35 - 40"],
-        "distribucion": {
-          "35 - 40": "1x35 2x36 3x37 3x38 2x39 1x40"
-        },
-        "id": "zilmar-u_BwgR"
       }
     ]
   },

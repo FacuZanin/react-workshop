@@ -39,7 +39,7 @@ function App() {
             element={<CarritoPage />}
           />
           
-          <Route path="/search" element={<SearchResultsPage />} />
+          <Route path="/buscar" element={<SearchResultsPage />} />
         </Routes>
       </main>
 

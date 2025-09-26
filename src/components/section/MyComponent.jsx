@@ -30,7 +30,9 @@ const MyComponent = () => {
       })
       .then((json) => {
         // filtramos objetos sin variantes (en tu JSON hay entradas tipo { "Fabrica": "Bob" })
-        const validProducts = (json || []).filter((p) => Array.isArray(p.variantes));
+        const validProducts = (json || []).filter((p) =>
+          Array.isArray(p.variantes)
+        );
 
         // procesamos: generamos una lista plana de variantes con las propiedades necesarias
         const processedData = validProducts.flatMap((producto) =>
@@ -101,19 +103,32 @@ const MyComponent = () => {
   };
 
   // ordenamiento
+  // 🔹 función de ordenamiento robusta
   const sortProducts = (products) => {
     return [...products].sort((a, b) => {
       if (sortBy === "nombre") {
-        const nombreA = (a.productoNombre || "").toLowerCase();
-        const nombreB = (b.productoNombre || "").toLowerCase();
-        return sortOrder === "asc" ? nombreA.localeCompare(nombreB) : nombreB.localeCompare(nombreA);
+        const nombreA = (
+          a.productoMarca +
+          " " +
+          a.productoNombre
+        ).toLowerCase();
+        const nombreB = (
+          b.productoMarca +
+          " " +
+          b.productoNombre
+        ).toLowerCase();
+        return sortOrder === "asc"
+          ? nombreA.localeCompare(nombreB, "es", { sensitivity: "base" })
+          : nombreB.localeCompare(nombreA, "es", { sensitivity: "base" });
       }
+
       if (sortBy === "precio") {
         const aVal = Number(a.precioCaja || 0);
         const bVal = Number(b.precioCaja || 0);
         return sortOrder === "asc" ? aVal - bVal : bVal - aVal;
       }
-      // fallback por posicion si existiera, sino mantener orden original
+
+      // default: posicion (número o Infinity)
       const aPos = Number(a.posicion ?? Infinity);
       const bPos = Number(b.posicion ?? Infinity);
       return sortOrder === "asc" ? aPos - bPos : bPos - aPos;
@@ -128,7 +143,10 @@ const MyComponent = () => {
     const filterByFabrica = matches(variante.fabrica, filters.fabrica);
     const filterBySuela = matches(variante.suela, filters.suela);
     const filterByMaterial = matches(variante.material, filters.material);
-    const filterByMarca = matches(variante.productoMarca || variante.productoMarca, filters.marca);
+    const filterByMarca = matches(
+      variante.productoMarca || variante.productoMarca,
+      filters.marca
+    );
     const filterByOrigen = matches(variante.origen, filters.origen);
     const filterByOtros = matchOtros(variante, filters.otros);
 
@@ -150,7 +168,10 @@ const MyComponent = () => {
   const totalProductsCount = sortedProducts.length;
   const totalPages = Math.ceil(totalProductsCount / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage + 1;
-  const endIndex = Math.min(startIndex + productsPerPage - 1, totalProductsCount);
+  const endIndex = Math.min(
+    startIndex + productsPerPage - 1,
+    totalProductsCount
+  );
   const paginatedProducts = sortedProducts.slice(startIndex - 1, endIndex);
 
   if (loading) return <Loader />;
@@ -174,31 +195,46 @@ const MyComponent = () => {
               <select
                 id="sort-by-select"
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  setSortOrder("asc"); // 🔹 cada vez que cambias de criterio, arranca en asc
+                }}
               >
                 <option value="posicion">Posición</option>
                 <option value="nombre">Nombre</option>
                 <option value="precio">Precio</option>
               </select>
+
               <button
                 className="sort-order-btn"
-                onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                onClick={() =>
+                  setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+                }
               >
                 <ArrowUpDown size={20} />
               </button>
             </div>
 
             <div className="products-view-controls">
-              <button className={`view-btn ${viewType === "grid" ? "active" : ""}`} onClick={() => setViewType("grid")}>
+              <button
+                className={`view-btn ${viewType === "grid" ? "active" : ""}`}
+                onClick={() => setViewType("grid")}
+              >
                 <LayoutGrid size={24} />
               </button>
-              <button className={`view-btn ${viewType === "list" ? "active" : ""}`} onClick={() => setViewType("list")}>
+              <button
+                className={`view-btn ${viewType === "list" ? "active" : ""}`}
+                onClick={() => setViewType("list")}
+              >
                 <List size={24} />
               </button>
             </div>
 
             <div className="mobile-filter-btn-container">
-              <button className="mobile-filter-btn" onClick={() => setShowMobileFilter(true)}>
+              <button
+                className="mobile-filter-btn"
+                onClick={() => setShowMobileFilter(true)}
+              >
                 <Funnel size={20} /> Filtros
               </button>
             </div>
@@ -209,11 +245,19 @@ const MyComponent = () => {
 
         {totalPages > 1 && (
           <div className="bottom-controls-container">
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
 
             <div className="products-per-page-control">
               <label htmlFor="products-per-page-select">MOSTRAR</label>
-              <select id="products-per-page-select" value={productsPerPage} onChange={handleProductsPerPageChange}>
+              <select
+                id="products-per-page-select"
+                value={productsPerPage}
+                onChange={handleProductsPerPageChange}
+              >
                 <option value={12}>12</option>
                 <option value={24}>24</option>
                 <option value={36}>36</option>
@@ -224,12 +268,21 @@ const MyComponent = () => {
         )}
       </div>
 
-      <div className={`mobile-filter-overlay ${showMobileFilter ? "open" : ""}`} onClick={() => setShowMobileFilter(false)}>
-        <button className="mobile-filter-close-btn" onClick={() => setShowMobileFilter(false)}>
+      <div
+        className={`mobile-filter-overlay ${showMobileFilter ? "open" : ""}`}
+        onClick={() => setShowMobileFilter(false)}
+      >
+        <button
+          className="mobile-filter-close-btn"
+          onClick={() => setShowMobileFilter(false)}
+        >
           <X size={24} />
         </button>
 
-        <div className="mobile-filter-panel" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="mobile-filter-panel"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="mobile-filter-header">
             <h3>Filtros</h3>
           </div>
