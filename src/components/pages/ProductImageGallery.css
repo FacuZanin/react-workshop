@@ -1,0 +1,98 @@
+.image-gallery-wrapper {
+    /* Es clave que este sea el primer elemento de la sección de producto 
+       y que ProductInfo sea el segundo para que el overlay de zoom 
+       aparezca justo al lado del info-column. */
+    flex: 1; /* Ocupa el espacio destinado a la imagen */
+    position: relative; 
+    z-index: 10; /* Asegura que la galería y el zoom estén por encima de otros elementos */
+}
+
+/* Contenedor de la imagen individual */
+.image-container {
+    position: relative;
+    width: 100%;
+    /* Ajusta el alto/aspecto según sea necesario */
+    padding-top: 100%; /* Ejemplo de aspecto 1:1. Puedes usar un height fijo si lo prefieres. */
+    overflow: hidden;
+    cursor: crosshair; /* Indicador visual de la función de zoom */
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Para que la imagen se vea completa sin cortar */
+    transition: opacity 0.3s ease;
+}
+.main-image-container-gallery {
+  position: relative;
+  width: 100%;
+  height: 500px; /* ya tienes esto en ProductDetail.css; mantener consistente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible; /* permitimos overlay fuera del contenedor */
+}
+
+/* Flechas de navegación */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-arrow.left {
+    left: 10px;
+}
+
+.nav-arrow.right {
+    right: 10px;
+}
+
+.nav-arrow:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+.main-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.zoom-lens {
+  position: absolute;
+  border: 2px solid #006591;
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 15;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+
+/* 🚀 ESTILO CLAVE PARA EL ZOOM (OVERLAY) 🚀 */
+.zoom-view-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 20;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+  background-color: #1a1a1a;
+  overflow: hidden;
+}

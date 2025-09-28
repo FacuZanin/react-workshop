@@ -5,6 +5,7 @@
   padding: 4px;
   background: #1a1a1a;
   align-items: flex-start;
+  min-height: 520px;
 }
 
 /* ✅ NUEVO: Contenedor para centrar toda la página */
@@ -22,6 +23,7 @@
   flex-direction: row;
   gap: 0;
   justify-content: flex-end;
+  height: 520px; 
 }
 
 .main-image-container-gallery {
@@ -78,6 +80,7 @@
   gap: 12px;
   justify-content: flex-start;
   align-items: flex-start;
+  height: 520px; 
 }
 
 /* Talles */

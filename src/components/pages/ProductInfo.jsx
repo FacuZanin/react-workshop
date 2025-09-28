@@ -7,6 +7,7 @@ import PrecioProducto from "../precio/PrecioProducto";
 import { useFavoritos } from "../section/FavoritosContext";
 import { useCarrito } from "../pages/CarritoContext";
 
+
 // 🟢 MODIFICACIÓN CLAVE: Ahora busca archivos .png Y .webp en la carpeta images
 const brandLogos = import.meta.glob([
     '/src/assets/images/*.png', 
@@ -88,6 +89,17 @@ const ProductInfo = ({ product, variant }) => {
     }
   };
 
+    // 🟢 Lógica para los tooltips/titles
+  const addToCartTitle = selectedTalle 
+    ? "Agregar producto al carrito" 
+    : "Selecciona un talle primero";
+  
+  const favoriteTitle = isFavorito 
+    ? "Quitar de favoritos" 
+    : "Agregar a favoritos";
+
+  const shareTitle = "Compartir producto";
+
   return (
     <div className="info-column-info">
       
@@ -136,6 +148,7 @@ const ProductInfo = ({ product, variant }) => {
           onClick={handleAddToCart}
           disabled={!selectedTalle}
           style={{ opacity: selectedTalle ? 1 : 0.6 }}
+          title={addToCartTitle} 
         >
           AGREGAR AL CARRITO
         </button>
@@ -145,6 +158,7 @@ const ProductInfo = ({ product, variant }) => {
               className={`favorite-btn-info ${isFavorito ? "active" : ""}`}
               onClick={() => toggleFavorito(cardKey)}
               aria-label={isFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
+              title={favoriteTitle}
             >
               <Heart size={20} fill={isFavorito ? "red" : "none"} stroke="whitesmoke" />
             </button>
@@ -153,6 +167,7 @@ const ProductInfo = ({ product, variant }) => {
               className="share-btn-info"
               onClick={handleShare}
               aria-label="Compartir producto"
+               title={shareTitle}
             >
               <Send size={20} stroke="whitesmoke" />
             </button>
