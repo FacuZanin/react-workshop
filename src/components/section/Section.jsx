@@ -1,8 +1,11 @@
+// src/components/section/Section.jsx
+
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import "./Section.css";
 import PrecioGrid from "../precio/PrecioGrid";
 import { useFavoritos } from "./FavoritosContext";
+import ProductImage from "./ProductImage"; // 👈 Importamos el nuevo componente
 
 const Section = ({ title, products, viewType }) => {
   const { favoritos, toggleFavorito } = useFavoritos();
@@ -15,7 +18,8 @@ const Section = ({ title, products, viewType }) => {
           className={`product-grid ${viewType === "list" ? "list-view" : ""}`}
         >
           {products.map((variante) => {
-            const imagenUrl = variante.imagenes?.[0] || "";
+            // ✅ Acepta URL vacías o nulas
+            const imagenUrl = variante.imagenes?.[0] || ""; 
             const color = variante.color?.[0] || "default";
             const cardKey = variante.id;
             const isFavorito = favoritos[cardKey];
@@ -41,17 +45,17 @@ const Section = ({ title, products, viewType }) => {
                   />
                 </button>
                 <Link
-                  // Construimos el enlace con los IDs del producto y la variante
                   to={`/producto/${variante.productoId}/${variante.id}`}
                   className="product-link"
                 >
-                  <div className="product-image-container">
-                    <img
-                      src={imagenUrl}
-                      alt={`${variante.productoNombre} ${color}`}
-                      className="product-image"
-                    />
-                  </div>
+                  {/* 🚨 Reemplazamos el contenedor de imagen con ProductImage */}
+                  <ProductImage
+                    src={imagenUrl}
+                    alt={`${variante.productoMarca} ${variante.productoNombre}`}
+                    className="product-image"
+                  />
+                  {/* -------------------------------------------------------- */}
+                  
                   <div className="product-info">
                     <h3 className="product-title">
                       {variante.productoMarca} {variante.productoNombre}

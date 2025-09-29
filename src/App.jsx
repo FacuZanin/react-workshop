@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
 import MyCarousel from "./components/carousel/MyCarousel";
 import Footer from "./components/footer/Footer";
-import MyComponent from "./components/section/MyComponent";
+import MyComponent from "./components/section/ProductList";
 import FavoritosPage from "./components/pages/FavoritosPage";
 import CarritoPage from "./components/pages/CarritoPage";
 import SearchResultsPage from "./components/pages/SearchResultsPage";
