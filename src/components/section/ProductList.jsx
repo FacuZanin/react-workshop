@@ -15,13 +15,13 @@ const ProductList = () => {
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const productsContainerRef = useRef(null);
 
-  // Estados persistidos y de control
+  // 🚨 CAMBIO CLAVE: Usamos useLocalStorage para persistir el estado de los controles
   const [filters, setFilters] = useLocalStorage("filters", {});
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(24);
-  const [viewType, setViewType] = useState("grid");
-  const [sortBy, setSortBy] = useState("posicion");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [productsPerPage, setProductsPerPage] = useLocalStorage("productsPerPage", 24);
+  const [viewType, setViewType] = useLocalStorage("viewType", "grid");
+  const [sortBy, setSortBy] = useLocalStorage("sortBy", "posicion");
+  const [sortOrder, setSortOrder] = useLocalStorage("sortOrder", "asc");
 
   // useEffect para cargar los datos (Se mantiene igual)
   useEffect(() => {

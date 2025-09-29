@@ -30,7 +30,6 @@ const ProductListControls = ({
             value={sortBy}
             onChange={(e) => {
               setSortBy(e.target.value);
-              // Cuando se cambia el criterio, reiniciamos el orden a ascendente
               setSortOrder("asc"); 
             }}
           >
