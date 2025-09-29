@@ -1,4 +1,5 @@
-// src/components/section/ProductListControls.jsx
+// src/components/section/ProductListControls.jsx - CORREGIDO
+
 import React from "react";
 import { Funnel, LayoutGrid, List, ArrowUpDown } from "lucide-react";
 
@@ -7,9 +8,9 @@ const ProductListControls = ({
   endIndex,
   totalProductsCount,
   sortBy,
-  setSortBy,
+  setSortBy, // 💡 Ahora es handleSortByChange
   sortOrder,
-  setSortOrder,
+  setSortOrder, // 💡 Ahora es handleSortOrderChange
   viewType,
   setViewType,
   setShowMobileFilter,
@@ -29,8 +30,8 @@ const ProductListControls = ({
             id="sort-by-select"
             value={sortBy}
             onChange={(e) => {
+              // ✅ Solo llama al handler (handleSortByChange)
               setSortBy(e.target.value);
-              setSortOrder("asc"); 
             }}
           >
             <option value="posicion">Posición</option>
@@ -41,7 +42,8 @@ const ProductListControls = ({
           <button
             className="sort-order-btn"
             onClick={() =>
-              setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"))
+              // ✅ Solo llama al handler (handleSortOrderChange)
+              setSortOrder()
             }
           >
             <ArrowUpDown size={20} />

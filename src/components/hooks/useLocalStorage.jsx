@@ -1,52 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 /**
- * Hook personalizado para persistir el estado con localStorage.
- * * @param {string} key - La clave en localStorage.
- * @param {any} defaultValue - El valor inicial a usar si no hay nada guardado.
- * @returns {[any, (value: any) => void]} - El valor y la función para establecerlo.
+ * Hook personalizado para persistir estado en localStorage.
+ * @param {string} key - La clave en localStorage.
+ * @param {any} initialValue - Valor inicial si no hay nada guardado.
+ * @returns {[any, function]} - Valor y función para actualizarlo.
  */
-export const useLocalStorage = (key, defaultValue) => {
-  // 1. Inicialización (Lectura del valor)
+export function useLocalStorage(key, initialValue) {
+  // Inicialización: leemos localStorage una sola vez
   const [value, setValue] = useState(() => {
-    // 💡 La inicialización se hace solo una vez para evitar re-ejecuciones innecesarias.
-    if (typeof window === 'undefined') {
-      return defaultValue;
-    }
+    if (typeof window === "undefined") return initialValue;
 
     try {
-      const saved = window.localStorage.getItem(key);
-      
-      // Intentamos parsear el JSON
-      if (saved !== null) {
-        return JSON.parse(saved);
-      }
+      const item = window.localStorage.getItem(key);
+      return item !== null ? JSON.parse(item) : initialValue;
     } catch (error) {
-      // 🚨 Manejo de error si JSON.parse falla (datos corruptos)
-      console.error(`Error al leer localStorage key “${key}”: `, error);
+      console.warn(`Error leyendo localStorage key "${key}":`, error);
+      return initialValue;
     }
-
-    return defaultValue;
   });
 
-  // 2. Persistencia (Escritura del valor)
+  // Guardar cada vez que cambia
   useEffect(() => {
-    // 💡 Ejecución solo en el navegador
-    if (typeof window === 'undefined') {
-      return;
-    }
-    
-    // Si el valor es una función, la ejecutamos para obtener el valor final (propio de React)
-    const valueToStore = value instanceof Function ? value(value) : value;
+    if (typeof window === "undefined") return;
 
     try {
-      // 🚨 Manejo de error si localStorage falla (ej. cuota excedida)
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      window.localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
-      console.error(`Error al escribir en localStorage key “${key}”: `, error);
-      // Opcional: Podrías revertir el estado o mostrar una notificación al usuario.
+      console.warn(`Error escribiendo localStorage key "${key}":`, error);
     }
   }, [key, value]);
 
   return [value, setValue];
-};
+}

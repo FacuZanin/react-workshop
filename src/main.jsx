@@ -15,7 +15,6 @@ import MinimalLayout from './layout/MinimalLayout.jsx';
 import { CotizacionProvider } from './components/precio/CotizacionContext';
 import { FavoritosProvider } from './components/section/FavoritosContext';
 import { CarritoProvider } from './components/pages/CarritoContext'; // Importamos el provider
-import ScrollToTop from './components/common/scrollToTop.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -24,7 +23,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <FavoritosProvider>
         <CarritoProvider>  {/* 👈 Lo envolvemos aquí para que sea global */}
           <BrowserRouter>
-          <ScrollToTop />
             <Routes>
               {/* App maneja home y secciones normales */}
               <Route path="/*" element={<App />} />
