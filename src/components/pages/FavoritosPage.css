@@ -92,7 +92,10 @@
   stroke: red;
 }
 
-
+.favorite-btn-card:not(.active):hover svg {
+  fill: rgba(255, 0, 0, 0.5);
+  stroke: red;
+}
 
 .no-favs {
   font-size: 1.2rem;

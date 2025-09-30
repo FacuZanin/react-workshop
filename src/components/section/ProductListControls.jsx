@@ -79,5 +79,4 @@ const ProductListControls = ({
     </div>
   );
 };
-
 export default ProductListControls;

@@ -30,6 +30,8 @@
 .info-column-info .talles-section {
   color: whitesmoke;
   margin-top: 1rem;
+  font-family: 'Barlow Semi Condensed', 'Barlow Semi Condensed Fallback', 'Barlow Semi Condensed Fallback Linux', sans-serif;
+  text-transform: uppercase;
 }
 
 .info-column-info .talle-buttons {
@@ -113,48 +115,63 @@
   stroke: red;
 }
 
-/* 🟢 NUEVOS ESTILOS PARA LOS ELEMENTOS AÑADIDOS */
-
-/* Estilo para el SKU (ID de la variante) */
-.info-column-info .sku-id {
-  font-size: 0.95rem;
-  color: #aaa; /* Color ligeramente más claro que el texto principal */
-  margin-top: -0.5rem; /* Ajusta el espacio después del título */
-  margin-bottom: 1rem;
+.info-column-info .favorite-btn-info:not(.active):hover svg {
+  fill: rgba(255, 0, 0, 0.2);
+  stroke: red; 
 }
 
-/* Estilo para el enlace de la guía de talles */
+.info-column-info .share-btn-info:hover {
+  background: #f8f8f8;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.info-column-info .share-btn-info svg {
+  stroke: #555;
+  transition: all 0.25s ease;
+}
+
+.info-column-info .share-btn-info:hover svg {
+  stroke: white;
+}
+
+.info-column-info .sku-id {
+  font-size: 0.95rem;
+  color: #aaa; 
+  margin-top: -0.5rem; 
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+
 .info-column-info .size-guide-link {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 10px;
   margin-bottom: 20px;
-  color: #00719B; /* Un color de enlace distintivo */
+  color: #00719B;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 500;
   transition: color 0.2s;
-  width: fit-content; /* Para que el hover solo afecte el texto */
+  width: fit-content;
 }
 
 .info-column-info .size-guide-link:hover {
   color: #0096cc;
 }
 
-/* Contenedor de botones de icono (Fav + Share) */
 .info-column-info .icon-buttons-container {
     display: flex;
-    gap: 12px; /* Espacio entre los botones de icono */
+    gap: 12px; 
 }
 
-/* Estilo base para los botones de icono (Favoritos y Compartir) */
 .info-column-info .favorite-btn-info,
 .info-column-info .share-btn-info {
-  /* Usamos los mismos estilos base para que se vean iguales */
   background: transparent;
   border: 1px solid #444;
-  color: whitesmoke;
+  color: #444;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -177,8 +194,8 @@
 }
 
 .info-column-info .brand-logo {
-    width: 55px; /* Ancho solicitado */
-    height: 55px; /* Alto solicitado */
+    width: 55px;
+    height: 55px;
     object-fit: contain; 
 }
 

@@ -5,7 +5,7 @@ import { ImageOff } from 'lucide-react'; // Icono de Lucide para "sin imagen"
 // 💡 Si tu imagen de reemplazo es un archivo (ej: /public/placeholder.jpg),
 // puedes usar esa ruta aquí. Para este ejemplo, usaremos el ícono y el CSS.
 
-const PLACEHOLDER_TEXT = 'Sin Imagen';
+const PLACEHOLDER_TEXT = 'Error al cargar imagen';
 // Ruta de tu imagen de reemplazo, si existe. Si no, usamos el ícono.
 // const PLACEHOLDER_IMAGE_URL = '/placeholder.jpg'; 
 

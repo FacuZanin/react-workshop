@@ -6,6 +6,7 @@
   background: #1a1a1a;
   align-items: flex-start;
   min-height: 520px;
+  padding-bottom: 2rem;
 }
 
 /* ✅ NUEVO: Contenedor para centrar toda la página */

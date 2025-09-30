@@ -1,10 +1,9 @@
-// ProductGallery.jsx (REEMPLAZAR)
 import { useState, useRef, useEffect, useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./ProductImageGallery.css";
 
-const ZOOM_FACTOR = 2.5; // Factor de amplificación.
-const DEFAULT_ZOOM_VIEW_SIZE = 360; // Tamaño del overlay (px)
+const ZOOM_FACTOR = 2.5;
+const DEFAULT_ZOOM_VIEW_SIZE = 360; 
 
 const ProductGallery = ({ product, variant }) => {
   const images = variant?.imagenes || (product?.imagenes || []);
@@ -12,10 +11,8 @@ const ProductGallery = ({ product, variant }) => {
   const [mainImage, setMainImage] = useState(images[0] || "");
   const [isZooming, setIsZooming] = useState(false);
 
-  // Posición del "lente" en el contenedor (px)
   const [lensSize, setLensSize] = useState({ width: 0, height: 0 });
 
-  // Posición del overlay background (px negativos) — lo aplicamos en px para evitar desalineos
   const [zoomBgPos, setZoomBgPos] = useState({ x: 0, y: 0 });
   const [zoomViewSize, setZoomViewSize] = useState({
     width: DEFAULT_ZOOM_VIEW_SIZE,
@@ -34,29 +31,20 @@ const ProductGallery = ({ product, variant }) => {
     }
   }, [variant, images]);
 
-  // Recalcula tamaños en load y en resize del viewport
   const calculateSizes = () => {
     if (!mainImageRef.current || !imageContainerRef.current) return;
     const imgRect = mainImageRef.current.getBoundingClientRect();
-    // Tamaño del "lente" en pantalla: proporcional al zoom factor
     setLensSize({
       width: imgRect.width / ZOOM_FACTOR,
       height: imgRect.height / ZOOM_FACTOR,
     });
-
-    // Si deseas que el overlay tenga un tamaño relativo al contenedor,
-    // podrías cambiar la lógica aquí. Mantengo un tamaño fijo por UX.
-    // setZoomViewSize({ width: imgRect.width * 0.9, height: imgRect.height * 0.9 });
   };
 
   useEffect(() => {
-    // recalcular cuando cambie la imagen
     calculateSizes();
-    // recalcular en resize
     const onResize = () => calculateSizes();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-    // eslint-disable-next-line
   }, [mainImage]);
 
   const hasMultipleImages = useMemo(() => images.length > 1, [images]);
@@ -153,7 +141,6 @@ const ProductGallery = ({ product, variant }) => {
     setIsZooming(false);
   };
 
-  // Style del overlay con background en PIXELES (esto corrige el bug de "solo esquina superior izquierda")
   const zoomStyle = {
     backgroundImage: `url(${mainImage})`,
     backgroundSize: `${mainImageRef.current ? mainImageRef.current.getBoundingClientRect().width * ZOOM_FACTOR : 0}px ${mainImageRef.current ? mainImageRef.current.getBoundingClientRect().height * ZOOM_FACTOR : 0}px`,

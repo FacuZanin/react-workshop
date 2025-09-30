@@ -60,6 +60,14 @@
   align-items: center;
   background-color: transparent;
   overflow: hidden;
+  padding: 10px;
+}
+
+.product-image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain; 
+    display: block;
 }
 
 .product-image {

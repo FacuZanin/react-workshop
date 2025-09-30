@@ -123,7 +123,7 @@ const ProductInfo = ({ product, variant }) => {
       </div>
 
       <div className="talles-section">
-        <h5>Rango de talles</h5>
+        <h6>Rango de talles</h6>
         <div className="talle-buttons">
           {availableTalles.map((talleObj, idx) => (
             <button
@@ -160,7 +160,7 @@ const ProductInfo = ({ product, variant }) => {
               aria-label={isFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
               title={favoriteTitle}
             >
-              <Heart size={20} fill={isFavorito ? "red" : "none"} stroke="whitesmoke" />
+              <Heart size={20} fill={isFavorito ? "red" : "none"} />
             </button>
             
             <button
