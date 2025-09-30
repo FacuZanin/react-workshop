@@ -1,10 +1,3 @@
-/* src/components/section/ProductListItem.css */
-
-/* ======================================= */
-/* ESTILOS DE LAYOUT (list-card-layout) */
-/* ======================================= */
-
-/* 1. Contenedor Principal (5 Columnas) */
 .product-card.list-card-layout {
     display: flex;
     flex-direction: row;
@@ -142,7 +135,7 @@
 }
 
 .list-talle-btn:hover {
-     background: #006591;
+    background: #006591;
     border-color: 006591;
 }
 
@@ -279,4 +272,36 @@
 .list-card-specs-info .spec-item {
     margin: 0; /* ¡Esto elimina el espacio por defecto de los párrafos! */
     padding: 0;
+}
+
+/* ProductListItem.css */
+
+/* 1. Nuevo contenedor para logo + texto de marca */
+.product-marca-row {
+    /* Aplicamos Flexbox AQUÍ, para afectar solo a sus hijos (logo y texto) */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el logo con el texto */
+    gap: 8px; /* Espacio horizontal entre el logo y el texto de la marca */
+    margin-bottom: 3px; /* Pequeña separación vertical entre la marca y el nombre del producto */
+}
+
+/* 2. Estilo del logo (mantenido) */
+.product-marca-logo {
+    height: 18px; 
+    width: auto;
+    flex-shrink: 0; /* Asegura que el logo no se comprima */
+    display: block; 
+}
+
+/* 3. Estilo del texto de la marca (nuevo, puedes usar el estilo que ya tenías) */
+.product-marca-text {
+    font-weight: 700;
+    /* color: #fff; <- Si estás en un fondo oscuro, ajusta el color */
+}
+
+/* 4. Estilo del nombre del producto (Mantenido o ajustado) */
+.list-card-details-col .product-nombre {
+    font-weight: 500;
+    /* display: block; es útil si está en un <span> y quieres que ocupe toda la línea */
+    /* color: #fff; */ 
 }
