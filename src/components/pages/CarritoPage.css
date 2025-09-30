@@ -204,6 +204,38 @@
   background: #1b5e20;
 }
 
+
+/* 1. Estilo para el Link de la IMAGEN */
+/* Usamos el selector de atributo a[href] para máxima especificidad en el Link */
+.carrito-item .carrito-img-link,
+.carrito-item .carrito-img-link:link,
+.carrito-item .carrito-img-link:visited {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del contenedor (generalmente whitesmoke en tu app) */
+}
+
+/* 2. Estilo para el Link del NOMBRE/MARCA */
+/* Apuntamos al contenedor del Link y sus estados (link, visited, hover) */
+.carrito-item .carrito-title-link,
+.carrito-item .carrito-title-link:link,
+.carrito-item .carrito-title-link:visited {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del contenedor */
+    width: 280px;
+}
+
+/* Opcional: Para mantener el color del texto blanco/whitesmoke que ya tienes en marca/nombre */
+.carrito-item .carrito-title-link .carrito-marca,
+.carrito-item .carrito-title-link .carrito-nombre {
+    color: whitesmoke !important; /* Forzamos el color */
+}
+
+/* Opcional: Pequeño efecto al pasar el mouse (hover) para indicar que es clickeable */
+.carrito-item .carrito-title-link:hover .carrito-nombre,
+.carrito-item .carrito-title-link:hover .carrito-marca {
+    color: #ccc !important; /* Color un poco más claro al pasar el mouse */
+}
+
 /* Media Queries para Tablet */
 @media (max-width: 768px) {
   .carrito-img {

@@ -89,6 +89,35 @@ const ProductInfo = ({ product, variant }) => {
     }
   };
 
+  const TalleButton = ({
+  talleObj,
+  distributionMap,
+  selectedTalle,
+  setSelectedTalle,
+}) => {
+  const talleRange = talleObj.talle;
+  
+  // Lógica para el title
+  // Usamos 'distributionMap' para buscar la distribución
+  const distributionString = distributionMap ? distributionMap[talleRange] : null;
+  
+  const titleText = distributionString
+    ? `Distribución: ${distributionString}`
+    : `Rango de talle: ${talleRange} (Distribución no especificada)`;
+
+  return (
+    <button
+      // Usamos talleRange como key si es único
+      key={talleRange} 
+      className={`talle-btn ${selectedTalle === talleRange ? "active" : ""}`}
+      onClick={() => setSelectedTalle(talleRange)}
+      title={titleText} // ✅ Título con la distribución
+    >
+      {talleRange}
+    </button>
+  );
+};
+
     // 🟢 Lógica para los tooltips/titles
   const addToCartTitle = selectedTalle 
     ? "Agregar producto al carrito" 
@@ -122,18 +151,19 @@ const ProductInfo = ({ product, variant }) => {
         <PrecioProducto producto={product} />
       </div>
 
-      <div className="talles-section">
-        <h6>Rango de talles</h6>
+       <div className="talles-section">
+        <p>Talles Disponibles:</p>
         <div className="talle-buttons">
-          {availableTalles.map((talleObj, idx) => (
-            <button
-              key={idx}
-              className={`talle-btn ${selectedTalle === talleObj.talle ? "active" : ""}`}
-              onClick={() => setSelectedTalle(talleObj.talle)}
-            >
-              {talleObj.talle}
-              <title>{product.distribucion}</title>
-            </button>
+          {/* ✅ CORRECCIÓN CLAVE: Usamos la variable availableTalles (que es variant?.talles) */}
+          {availableTalles.map((talleObj, index) => (
+            <TalleButton
+              key={index}
+              talleObj={talleObj}
+              // ✅ CORRECCIÓN CLAVE: Pasamos la distribución desde 'variant'
+              distributionMap={variant?.distribucion} 
+              selectedTalle={selectedTalle}
+              setSelectedTalle={setSelectedTalle}
+            />
           ))}
         </div>
       </div>

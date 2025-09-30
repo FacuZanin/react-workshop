@@ -3,6 +3,7 @@ import { useCarrito } from "../pages/CarritoContext";
 import { Trash2 } from "lucide-react";
 import "./CarritoPage.css";
 import PrecioProducto from "../precio/PrecioProducto";
+import { Link } from "react-router-dom";
 
 const CarritoPage = () => {
   const { carrito, decreaseQuantity, total, clearCarrito } = useCarrito();
@@ -41,28 +42,39 @@ const CarritoPage = () => {
             fabrica,
             suela,
             distribucion,
-            precioTotalItem, // ✅ Se usa la propiedad que viene del contexto
+            precioTotalItem,
             cantidad,
             cantidadEnCarrito,
+            productoId,
+            tipo
           } = producto;
-
+          // Construir el enlace al producto
+          const productLink = `/producto/${producto.idBase || producto.id}/${
+            producto.id
+          }`;
           return (
             <div key={producto.normalizedId} className="carrito-item">
-              <img
-                src={imagenes[0]}
-                alt={`${nombre} ${color}`}
-                className="carrito-img"
-              />
+              <Link to={productLink} className="carrito-img-link">
+                <img
+                  src={imagenes[0]}
+                  alt={`${nombre} ${color}`}
+                  className="carrito-img"
+                />
+              </Link>
               <div className="carrito-specs-container">
-                <div className="carrito-info">
-                  <h3>
-                    <strong>
-                      {marca} {nombre} x {cantidad}
-                    </strong>{" "}
-                  </h3>
-                  <p>{color}</p>
-                </div>
+                <Link to={productLink} className="carrito-title-link">
+                  <div className="carrito-info">
+                    <h3>
+                      <strong>
+                        {marca} {nombre}
+                      </strong>{" "} <br />
 
+                    </h3>
+                    <p>Cantidad: {cantidad}</p>
+                    <p>Color: {color}</p>
+                    <p>Tipo: {tipo}</p>
+                  </div>
+                </Link>
                 <div className="carrito-especificaciones">
                   {talleSeleccionado && distribucionSeleccionada ? (
                     <>
