@@ -1,0 +1,282 @@
+/* src/components/section/ProductListItem.css */
+
+/* ======================================= */
+/* ESTILOS DE LAYOUT (list-card-layout) */
+/* ======================================= */
+
+/* 1. Contenedor Principal (5 Columnas) */
+.product-card.list-card-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch; /* CRÍTICO: Asegura que todas las columnas ocupen la misma altura */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 5px;
+    width: 100%; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
+    gap: 15px; 
+    background: #2c2c2c; /* Fondo oscuro de la tarjeta */
+}
+.product-card.list-card-layout:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------------------------------------------------------------- */
+/* ✅ COLUMNA 1: IMAGEN */
+/* ---------------------------------------------------------------- */
+.list-card-image-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 120px; 
+    flex-shrink: 0;
+}
+.list-card-image-col .product-image-container { 
+    width: 100%; 
+    height: 120px; /* Tamaño fijo para la imagen en lista */
+    margin-bottom: 0; 
+}
+/* Aseguramos que la imagen ocupe el espacio */
+.list-card-image-col .product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Para que la imagen se ajuste sin cortarse */
+}
+
+/* ---------------------------------------------------------------- */
+/* ✅ COLUMNA 2: DETALLES PRINCIPALES (NOMBRE, MARCA, PRECIO) */
+/* ---------------------------------------------------------------- */
+.list-card-col-2-details { 
+    flex-grow: 1.5; 
+    min-width: 150px; 
+    align-self: flex-start; 
+}
+.list-card-col-2-details .product-title { font-size: 1.25rem; margin-bottom: 5px; display: block; }
+.list-card-col-2-details .product-marca { font-weight: 700; color: #fff; margin-right: 5px; }
+.list-card-col-2-details .product-nombre { font-weight: 500; color: #fff; }
+.list-card-col-2-details .product-type { font-size: 0.85rem; color: #aaa; margin-bottom: 10px; }
+.list-product-price-large { margin: 5px 0 0 0; }
+.list-product-price-large .price-box-title { font-size: 1rem; color: #ccc; }
+.list-product-price-large .price-box-price { font-size: 1.5rem; color: #ffeb3b; font-weight: 700; }
+
+
+/* ---------------------------------------------------------------- */
+/* ✅ COLUMNA 3: DESCRIPCIÓN CORTA */
+/* ---------------------------------------------------------------- */
+.list-card-description-col {
+    flex-grow: 2; /* Más espacio para la descripción */
+    min-width: 250px;
+    align-self: flex-start;
+    color: #eee;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    border-left: 1px solid #444; /* Separador visual */
+    padding-left: 15px;
+}
+.list-card-description-col .description-text {
+    /* Aquí puedes limitar la altura si la descripción es muy larga */
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limitar a 4 líneas */
+    -webkit-box-orient: vertical;
+}
+
+
+/* ---------------------------------------------------------------- */
+/* ✅ COLUMNA 4: TALLES Y BOTÓN DE CARRITO (Soluciona el problema de visibilidad) */
+/* ---------------------------------------------------------------- */
+.list-card-talles-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye talles arriba y botón abajo */
+    width: 200px; /* Ancho fijo para talles y botón */
+    flex-shrink: 0;
+    border-left: 1px solid #444; /* Separador visual */
+    padding-left: 15px;
+}
+
+/* Estilos de la sección de talles */
+.talles-section-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.talles-title-list {
+    display: flex;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+/* Contenedor de los botones de talles */
+.list-talle-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los talles pasen a la siguiente línea */
+    gap: 5px; 
+    margin-bottom: 15px;
+    justify-content:center;
+}
+
+/* Botón de talle individual */
+.list-talle-btn {
+    padding: 5px 10px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    background: #3a3a3a;
+    color: #eee;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.list-talle-btn.active {
+    background: #006591; /* Color activo */
+    color: #fff;
+    border-color: #603FB7;
+    /*font-weight: 700;*/
+    transform: scale(1.05);
+}
+
+.list-talle-btn:hover {
+     background: #006591;
+    border-color: 006591;
+}
+
+.no-talles-available {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Botón AGREGAR AL CARRITO */
+.list-add-to-cart {
+    opacity: 0.8;
+    background: #006591; /* Un color primario para el botón */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 3px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+    width: 100%; /* Ocupa todo el ancho de la columna 4 */
+    margin-top: 10px; 
+}
+
+
+
+.list-add-to-cart:disabled {
+    background: #006591;
+    cursor: not-allowed;
+    /* La opacidad se maneja en el JSX, pero es bueno tener un respaldo visual */
+}
+
+
+/* ---------------------------------------------------------------- */
+/* ✅ COLUMNA 5: ACCIONES (FAVORITO Y COMPARTIR) (Clases Únicas Corregidas) */
+/* ---------------------------------------------------------------- */
+.list-card-actions-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar verticalmente */
+    width: 40px; 
+    flex-shrink: 0;
+    align-self: center; /* Centra el botón verticalmente en la card */
+}
+.icon-buttons-container-list {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+/* ✅ ESTILOS DE BOTONES DE ACCIÓN (Clase: .list-favorite-btn / .list-share-btn) */
+.list-favorite-btn,
+.list-share-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #444;
+    background: #333;
+    color: #555;
+}
+
+.list-favorite-btn:hover,
+.list-share-btn:hover {
+    background: #444;
+}
+
+.list-favorite-btn.active {
+    color: red; 
+}
+
+.list-favorite-btn:not(.active):hover svg {
+  fill: rgba(255, 0, 0, 0.2);
+  stroke: red; 
+}
+
+.list-share-btn:not(.active):hover svg {
+  fill: black;
+  stroke: white; 
+}
+
+/* COLUMNA 2: Detalles Principales */
+.list-card-col-2-details {
+    flex-grow: 1.5;
+    min-width: 150px;
+    align-self: flex-start;
+}
+/* ... (Otros estilos de Columna 2) ... */
+
+/* Estilo que queremos replicar */
+.list-card-col-2-details .product-type-list {
+    font-size: 1rem; /* Replicar */
+    color: #aaa; /* Replicar */
+    margin-bottom: 10px; /* Replicar */
+}
+
+
+/* COLUMNA 3: Specs y Distribución */
+.list-card-col-3-specs {
+    width: 250px; /* Puedes ajustar este valor si 200px es muy poco o mucho */
+    flex-shrink: 0; /* Asegura que no se haga más pequeña que 200px */
+    align-self: flex-start; /* Ya estaba bien, mantiene la alineación arriba */
+    text-align: left; /* Asegura que el contenido esté a la izquierda */
+    padding-right: 15px; /* Espacio extra a la derecha para separarse de la columna 4 */
+}
+
+
+.list-card-specs-info {
+    margin-bottom: 10px; /* Igual a product-type-list */
+    font-size: 1rem; /* Igual a product-type-list */
+    color: #aaa; /* Igual a product-type-list */
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.list-card-specs-info .spec-item strong {
+    font-weight: 600;
+    margin-right: 5px;
+    color: #fff; 
+    margin: 0.2rem 0;
+}
+
+/* Distribución de Talles (Mantenemos el formato de caja) */
+.list-card-distribution-info {
+    font-size: 0.85rem;
+    color: #fff;
+    padding: 0;
+}
+.list-card-specs-info .spec-item {
+    margin: 0; /* ¡Esto elimina el espacio por defecto de los párrafos! */
+    padding: 0;
+}

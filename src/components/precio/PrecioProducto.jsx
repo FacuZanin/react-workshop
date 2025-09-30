@@ -31,7 +31,7 @@ const PrecioProducto = ({ producto, cantidad = 1 }) => {
       {precioTotal > 0 ? (
         <h4>
         <p> 
-          <strong>${precioTotal.toLocaleString("es-AR")}</strong>
+          $ {precioTotal.toLocaleString("es-AR")}{" "}valor por unidad
         </p></h4>
       ) : (
         <p>Consultar precio</p>

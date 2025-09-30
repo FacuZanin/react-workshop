@@ -122,10 +122,69 @@
   transform: scale(1.1);
 }
 
+/* CarritoPage.css */
+
 .carrito-total {
   padding-top: 1rem;
   border-top: 2px solid #eee;
-  text-align: right;
+  /* 🚨 CAMBIO CLAVE: Usa flexbox para alinear los elementos */
+  display: flex; 
+  align-items: center; /* Centra verticalmente */
+  justify-content: space-between; /* Distribuye espacio */
+  
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  margin-top: 1rem;
+}
+
+/* Ajustamos el h3 para que no tenga margen automático */
+.carrito-total h3 {
+  margin: 0;
+  /* El total ahora estará a la derecha */
+}
+
+/* Agrupamos los botones de acción si es necesario, pero manteniendo 
+   el botón Limpiar Carrito separado en el centro es más simple */
+
+/* Si quieres que el Total y el Finalizar Compra estén juntos a la derecha: */
+.carrito-total .checkout-btn {
+    /* Mantenemos tus estilos de checkout-btn */
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 1rem; /* Espacio entre el total y el botón */
+    transition: background 0.3s ease;
+}
+
+
+/* Estilo para el botón Limpiar Carrito */
+.clear-carrito-btn {
+  /* Estilo visual */
+  background: #d32f2f; /* Rojo de peligro */
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: background 0.3s ease;
+  
+  /* Posicionamiento: Mantenido en el centro por el 'justify-content: space-between' */
+}
+
+.clear-carrito-btn:hover {
+  background: #b71c1c;
+  transform: scale(1.02);
+}
+
+.clear-carrito-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
 }
 
 .checkout-btn {
@@ -137,6 +196,7 @@
   cursor: pointer;
   font-size: 1rem;
   margin-top: 0.5rem;
+  font-weight: 600;
   transition: background 0.3s ease;
 }
 

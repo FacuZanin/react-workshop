@@ -18,7 +18,7 @@ const normalizeItem = (item) => {
 export const CarritoProvider = ({ children }) => {
   const { cotizacion } = useCotizacion();
   const [carrito, setCarrito] = useLocalStorage("carrito", []);
-  const [toast, setToast] = useState({ visible: false, message: '' });
+  const [toast, setToast] = useState({ visible: false, message: ''});
 
   const getPrecioCaja = (producto) => {
     return producto.precioCaja || producto.precio || 0;
@@ -115,6 +115,10 @@ export const CarritoProvider = ({ children }) => {
   const hideToast = () => {
     setToast({ visible: false, message: '' });
   };
+
+    const clearCarrito = () => {
+    setCarrito([]);
+  };
   
   // ✅ El cálculo del total ahora suma los "precioTotalItem"
   const total = carrito.reduce((acc, producto) => {
@@ -123,7 +127,7 @@ export const CarritoProvider = ({ children }) => {
 
   return (
     <CarritoContext.Provider
-      value={{ carrito, total, toggleCarrito, decreaseQuantity, toast, hideToast }}
+      value={{ carrito, total, toggleCarrito, decreaseQuantity, clearCarrito,toast, hideToast }}
     >
       {children}
     </CarritoContext.Provider>

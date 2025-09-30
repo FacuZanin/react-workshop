@@ -132,6 +132,7 @@ const ProductInfo = ({ product, variant }) => {
               onClick={() => setSelectedTalle(talleObj.talle)}
             >
               {talleObj.talle}
+              <title>{product.distribucion}</title>
             </button>
           ))}
         </div>

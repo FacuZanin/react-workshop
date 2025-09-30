@@ -5,7 +5,7 @@ import "./CarritoPage.css";
 import PrecioProducto from "../precio/PrecioProducto";
 
 const CarritoPage = () => {
-  const { carrito, decreaseQuantity, total } = useCarrito();
+  const { carrito, decreaseQuantity, total, clearCarrito } = useCarrito();
 
   if (carrito.length === 0) {
     return (
@@ -45,7 +45,7 @@ const CarritoPage = () => {
             cantidad,
             cantidadEnCarrito,
           } = producto;
-          
+
           return (
             <div key={producto.normalizedId} className="carrito-item">
               <img
@@ -96,7 +96,7 @@ const CarritoPage = () => {
                   {/* ✅ Se muestra la nueva propiedad ya calculada */}
                   <p>${precioTotalItem.toLocaleString()}</p>
                 </div>
-              </div>  
+              </div>
               <button
                 className="eliminar-btn"
                 onClick={() => decreaseQuantity(producto)}
@@ -110,6 +110,14 @@ const CarritoPage = () => {
       </div>
 
       <div className="carrito-total">
+        <button
+          className="clear-carrito-btn"
+          onClick={clearCarrito}
+          disabled={carrito.length === 0}
+          title="Eliminar todos los productos"
+        >
+          Limpiar Carrito
+        </button>
         <h3>Total: ${total.toLocaleString()}</h3>
         <button className="checkout-btn">Finalizar Compra</button>
       </div>

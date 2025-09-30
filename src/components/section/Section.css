@@ -255,7 +255,8 @@
 .product-grid.list-view {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 15px; /* Espacio entre las tarjetas de lista */
+  grid-template-columns: 1fr; /* Opcional, pero anula el grid */
 }
 
 .product-card.list-card {
@@ -299,3 +300,4 @@
     padding: 0;
   }
 }
+
