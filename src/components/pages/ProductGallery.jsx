@@ -67,7 +67,7 @@ const YouTubePlayer = ({ videoUrl, isShorts, isActive }) => {
                     modestbranding: 1, 
                     controls: 0, 
                     rel: 0, 
-                    autoplay: isActive ? 1 : 0, 
+                    autoplay: 1, 
                     loop: 1,                   
                     playlist: videoId,         
                     playsinline: 1,

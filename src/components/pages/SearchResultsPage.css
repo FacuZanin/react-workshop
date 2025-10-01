@@ -99,3 +99,25 @@
     border: 1px solid #444;
     border-radius: 4px;
 }
+
+.products-layout-with-filter {
+  display: flex; /* Habilita el layout de barra lateral y contenido */
+  gap: 20px; /* Espacio entre el filtro y la lista de productos */
+  align-items: flex-start; /* Asegura que el filtro esté alineado arriba */
+}
+
+.products-content {
+  /* ... (Estilos existentes) ... */
+  flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
+  min-width: 0; /* Asegura que no desborde en flexbox */
+}
+
+/* ======================================= */
+/* 📌 Adaptación para Mobile/Tablet */
+/* ======================================= */
+
+@media (max-width: 991px) {
+  .products-layout-with-filter {
+    flex-direction: column; /* Apila el filtro y el contenido */
+  }
+}
