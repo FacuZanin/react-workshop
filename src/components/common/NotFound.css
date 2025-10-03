@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 40vh; /* Altura mínima para que sea visible */
+  min-height: 40vh;
   text-align: center;
   padding: 2rem;
 }

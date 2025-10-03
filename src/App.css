@@ -5,11 +5,12 @@
   --color-fondo-secundario: #2c2c2c;
   --color-texto-principal: #f0f0f0;
   --color-primario: #00719B;
+  --color-secundario: #603fb7;
   --color-borde-divisor: #444;
   --color-texto-secundario: #ccc;
   --color-precio-highlight: #ffeb3b;
-  --color-white: white;
-  --color-black: black;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
 }
 
 .logo {
@@ -18,11 +19,17 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.read-the-docs {
+  color: #888;
 }
 
 @keyframes logo-spin {
@@ -40,11 +47,5 @@
   }
 }
 
-.card {
-  padding: 2rem;
-}
 
-.read-the-docs {
-  color: #888;
-}
 

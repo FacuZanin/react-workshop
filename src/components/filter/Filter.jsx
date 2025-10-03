@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+// src/components/filter/Filter.jsx (Asegurando la inyección de la lógica de filtros)
+
+import { useState, useEffect, useMemo } from "react";
 import "./Filter.css";
 import { ChevronDown, X } from "lucide-react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "../hooks/useLocalStorage"; // Asegúrate de que la ruta sea correcta
 
+// Definición de las categorías (ESTO DEBE QUEDAR DENTRO DEL COMPONENTE)
 const filterCategories = [
   { title: "Color", key: "color", options: ["Animal Print","Amarillo","Azul","Beige","Blanco","Bordo","Celeste","Dorado","Fucsia","Gris","Marrón","Naranja","Negro","Rojo","Rosa","Verde","Violeta","Varios"] },
   { title: "Marca", key: "marca", options: ["Adidas","Asics","Boss","CAT","Converse","Fila","Lacoste","Mizuno","New Balance","Nike","Olympikus","Puma","Tommy Hilfiger","Veja","Vans"] },
@@ -11,61 +14,85 @@ const filterCategories = [
   { title: "Origen", key: "origen", options: ["Brasil","China","Argentina"] },
   { title: "Suela", key: "suela", options: ["Caucho TR","EVA","Microexpandido","PVC","Vulcanizado"] },
   { title: "Talles", key: "talle", options: ["21 - 26","27 - 34","35 - 40","39 - 44","45 +"] },
-  { title: "Otros", key: "otros", options: ["Con caja","Sin caja","Colaboración"] },
+  { title: "Otros", key: "otros", options: ["Colaboración", "Suela Antideslizante"] },
 ];
 
-function Filter({ onFilterChange }) {
-  const [selectedFilters, setSelectedFilters] = useLocalStorage("filters", {});
+
+// 📢 Recibimos 'onFilterChange' para comunicar los filtros seleccionados
+const Filter = ({ 
+  totalProductsCount, // Para mostrar el conteo
+  onFilterChange // Función que SearchResultsPage usará para filtrar
+}) => {
+  // Inicializamos el estado de los filtros desde localStorage
+  const [selectedFilters, setSelectedFilters] = useLocalStorage("searchFilters", {});
   const [openIndex, setOpenIndex] = useState(null);
 
-  // sincroniza con el parent al montar (útil si hay filtros guardados en localStorage)
+  // 1. Efecto para notificar a SearchResultsPage cada vez que los filtros cambien
   useEffect(() => {
-    if (onFilterChange) onFilterChange(selectedFilters || {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // onFilterChange debe ser llamado con los filtros actuales
+    onFilterChange(selectedFilters);
+  }, [selectedFilters, onFilterChange]);
 
+
+  // 2. Manejadores de Interacción
   const toggleCategory = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   const handleCheckboxChange = (categoryKey, option) => {
-    const newFilters = { ...selectedFilters };
+    setSelectedFilters((prevFilters) => {
+      const currentOptions = prevFilters[categoryKey] || [];
+      const isSelected = currentOptions.includes(option);
 
-    if (!newFilters[categoryKey]) newFilters[categoryKey] = [];
+      const newOptions = isSelected
+        ? currentOptions.filter((item) => item !== option) // Quitar
+        : [...currentOptions, option]; // Agregar
 
-    if (newFilters[categoryKey].includes(option)) {
-      newFilters[categoryKey] = newFilters[categoryKey].filter((item) => item !== option);
-    } else {
-      newFilters[categoryKey].push(option);
-    }
+      if (newOptions.length === 0) {
+        // Eliminar la categoría si no hay opciones seleccionadas
+        const { [categoryKey]: _, ...rest } = prevFilters;
+        return rest;
+      }
 
-    if (newFilters[categoryKey].length === 0) delete newFilters[categoryKey];
-
-    setSelectedFilters(newFilters);
-    if (onFilterChange) onFilterChange(newFilters);
+      return {
+        ...prevFilters,
+        [categoryKey]: newOptions,
+      };
+    });
   };
 
   const handleRemoveActiveFilter = (categoryKey, option) => {
-    const newFilters = { ...selectedFilters };
-    if (newFilters[categoryKey]) {
-      newFilters[categoryKey] = newFilters[categoryKey].filter((item) => item !== option);
-      if (newFilters[categoryKey].length === 0) delete newFilters[categoryKey];
-      setSelectedFilters(newFilters);
-      if (onFilterChange) onFilterChange(newFilters);
-    }
+    handleCheckboxChange(categoryKey, option); // Reutilizamos la lógica
   };
+
+  const handleClearAllFilters = () => {
+    setSelectedFilters({});
+  };
+
+
+  // 3. Renderizado de Filtros Activos
+  const activeFilters = useMemo(() => {
+    return Object.entries(selectedFilters).filter(([_, options]) => options.length > 0);
+  }, [selectedFilters]);
+
 
   return (
     <div className="sidebar-filter">
-      <h3 className="filter-title">REFINÁ TU BÚSQUEDA</h3>
+      <h3 className="filter-title">Filtros</h3>
 
-      {Object.keys(selectedFilters).length > 0 && (
-        <div className="active-filters">
-          <h4>Filtros Activos</h4>
-          <div className="active-filters-container">
-            {Object.entries(selectedFilters).map(([category, options]) =>
+      {/* Sección de Filtros Activos */}
+      {activeFilters.length > 0 && (
+        <div className="active-filters-container">
+          <div className="active-filters-header">
+            <span>Filtros Activos ({activeFilters.length})</span>
+            <button onClick={handleClearAllFilters} className="clear-all-btn">
+              LIMPIAR
+            </button>
+          </div>
+          <div className="active-filters-list">
+            {activeFilters.map(([category, options]) =>
               options.map((option) => (
-                <span key={option} className="filter-tag">
+                <span key={`${category}-${option}`} className="active-filter-tag">
                   {option}
                   <button className="remove-filter-btn" onClick={() => handleRemoveActiveFilter(category, option)}>
                     <X size={14} />
@@ -77,6 +104,7 @@ function Filter({ onFilterChange }) {
         </div>
       )}
 
+      {/* Acordeones de Categorías */}
       <div className="accordions">
         {filterCategories.map((category, index) => (
           <div key={index} className={`accordion-item ${openIndex === index ? "open" : ""}`}>

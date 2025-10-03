@@ -1,6 +1,3 @@
-// src/components/section/ProductListFooter.jsx
-import React from "react";
-// Asumo que Pagination está en un archivo llamado Pagination.jsx en la misma carpeta
 import Pagination from "./Pagination"; 
 
 const ProductListFooter = ({
@@ -12,14 +9,11 @@ const ProductListFooter = ({
 }) => {
   return (
     <div className="bottom-controls-container">
-      {/* 🔢 Componente de Paginación */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
       />
-
-      {/* 📏 Control de productos por página */}
       <div className="products-per-page-control">
         <label htmlFor="products-per-page-select">MOSTRAR</label>
         <select

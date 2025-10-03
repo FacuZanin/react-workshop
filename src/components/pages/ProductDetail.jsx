@@ -7,8 +7,6 @@ import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
 import VariantCarousel from "./VariantCarousel";
 import "./ProductDetail.css";
-import "./ProductInfo.css";
-import "./VariantCarousel.css";
 import { useFavoritos } from "../section/FavoritosContext";
 import { ChevronDown } from "lucide-react";
 import { useCarrito } from "./CarritoContext";
@@ -18,11 +16,10 @@ const ProductDetail = () => {
   const { id, variantId } = useParams();
   const [product, setProduct] = useState(null);
   const [variant, setVariant] = useState(null);
-  // 💡 Mantenemos el estado de la sección abierta (puede ser "specs" o "description")
   const [openSection, setOpenSection] = useState("");
   const { toast, hideToast } = useCarrito();
 
-  // Función genérica para alternar el estado del acordeón
+
   const toggleAccordion = (sectionName) => {
     setOpenSection(openSection === sectionName ? "" : sectionName);
   };
@@ -31,7 +28,6 @@ const ProductDetail = () => {
     fetch("/data/productos.json")
       .then((res) => res.json())
       .then((data) => {
-        // 🔹 primero buscamos el producto que contenga el variantId
         const foundProduct = data.find((p) =>
           p.variantes?.some((v) => String(v.id) === String(variantId))
         );
@@ -86,8 +82,6 @@ const ProductDetail = () => {
           </div>
         </div>
         <div className="accordion-container">
-          
-          {/* 🟢 NUEVO: ACORDEÓN DE DESCRIPCIÓN */}
           {product.descripcion && (
             <div
               className={`accordion-item ${
@@ -107,7 +101,6 @@ const ProductDetail = () => {
                   <ChevronDown size={24} color="whitesmoke" />
                 </span>
               </div>
-              {/* 💡 Usamos style={{ whiteSpace: 'pre-line' }} para respetar los saltos de línea (\n) del JSON */}
               <div className="accordion-body">
                 <div style={{ whiteSpace: 'pre-line' }}>
                   {product.descripcion}
@@ -115,8 +108,6 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
-
-          {/* 🔹 ACORDEÓN DE ESPECIFICACIONES (Mantenido) */}
           <div
             className={`accordion-item ${
               openSection === "specs" ? "open" : ""
@@ -161,7 +152,6 @@ const ProductDetail = () => {
         <VariantCarousel product={product} />
       </div>
       <Footer />
-      {/* ✅ RENDERIZA el toast solo si es visible */}
       {toast.visible && (
         <ToastNotification message={toast.message} onDismiss={hideToast} />
       )}

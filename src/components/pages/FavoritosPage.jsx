@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useFavoritos } from "../section/FavoritosContext";
-import { Heart } from "lucide-react";
 import "./FavoritosPage.css";
-import PrecioProducto from "../precio/PrecioProducto";
+import ProductCard from '../common/ProductCard'; 
+
 
 const FavoritosPage = ({ products }) => {
   const { favoritos, toggleFavorito } = useFavoritos();
@@ -13,8 +13,26 @@ const FavoritosPage = ({ products }) => {
       .map((variante) => {
         const cardKey =
           variante.id || `${producto.id}-${variante.color?.[0] || "default"}`;
+        
         if (favoritos[cardKey]) {
-          return { producto, variante, cardKey };
+          // Si el precio en la variante no está definido o es 0, usamos el del padre
+          const precioCajaFinal = Number(variante.precioCaja) || Number(producto.precioCaja) || 0;
+          const precioSinCajaFinal = Number(variante.precioSinCaja) || Number(producto.precioSinCaja) || 0;
+          
+          return { 
+            ...variante, // Data original de la variante
+            productoId: producto.id,
+            cardKey: cardKey,
+            
+            // ✅ CORRECCIÓN CLAVE: Sobreescribimos con los precios finales
+            precioCaja: precioCajaFinal, 
+            precioSinCaja: precioSinCajaFinal, 
+            
+            // Propiedades descriptivas
+            productoMarca: producto.marca,   
+            productoNombre: producto.nombre, 
+            productoTipo: producto.fabrica,  
+          }; 
         }
         return null;
       })
@@ -30,47 +48,16 @@ const FavoritosPage = ({ products }) => {
       <div className="favoritos-layout-wrapper">
         <h2>Mis Favoritos</h2>
         <div className="favoritos-grid">
-          {favoritosList.map(({ producto, variante, cardKey }) => {
-            const imagenUrl = variante.imagenes?.[0] || "";
-            const color = variante.color?.[0] || "default";
-
+          {favoritosList.map((product) => {
+            const isFavorito = favoritos[product.cardKey];
+            
             return (
-              <div key={cardKey} className="favorito-card">
-                <Link to={`/producto/${producto.id}/${variante.id}`}>
-                  <img src={imagenUrl} alt="..." className="favorito-img" />
-                  <div className="favorito-info">
-                    <h3>
-                      {producto.marca} {producto.nombre}
-                    </h3>
-                    <p>{color} · {producto.fabrica}</p>
-                    <PrecioProducto
-                      producto={producto}
-                      className="product-price-favorito"
-                    />
-                  </div>
-                </Link>
-
-                <div className="card-actions">
-                  {/* ❤️ Botón Favorito */}
-                  <button
-                    className={`favorite-btn-card ${
-                      favoritos[cardKey] ? "active" : ""
-                    }`}
-                    onClick={() => toggleFavorito(cardKey)}
-                    aria-label={
-                      favoritos[cardKey]
-                        ? "Quitar de favoritos"
-                        : "Agregar a favoritos"
-                    }
-                  >
-                    <Heart
-                      size={20}
-                      strokeWidth={2}
-                      fill={favoritos[cardKey] ? "red" : "none"}
-                    />
-                  </button>
-                </div>
-              </div>
+              <ProductCard
+                key={product.cardKey} 
+                product={product} 
+                isFavorito={isFavorito}
+                toggleFavorito={toggleFavorito}
+              />
             );
           })}
         </div>

@@ -15,56 +15,12 @@
   margin-bottom: 1.5rem;
 }
 
+/* --- Estilos del Contenedor de la Cuadrícula --- */
 .favoritos-grid {
   display: grid;
+  /* El diseño de la cuadrícula es similar al de Section.css */
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
-
-.favorito-card {
-  background: transparent;
-  border-radius: 6px;
-  text-decoration: none;
-  color: inherit;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-}
-
-.favorito-card a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.favorito-card .favorito-info h3 {
-  font-size: 1rem;
-}
-
-.favorito-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: translateY(-3px);
-}
-
-.favorito-img {
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: transparent;
-}
-
-.favorito-info {
-  padding: 0.8rem;
-  font-size: 0.9rem;
-}
-
-.product-card-wrapper {
-  position: relative;
-}
-
-.favorite-btn-card svg {
-  stroke: grey;
+  gap: 0.5rem; /* Usamos un pequeño gap por defecto como en Section */
 }
 
 
@@ -75,13 +31,16 @@
   color: #555;
 }
 
+
+/* --- Media Queries (Ajustes de Columnas y Bordes de Cuadrícula) --- */
+
 @media (max-width: 480px) {
   /* Elimina el padding del contenedor principal para que las cards lleguen a los bordes */
   .favoritos-page {
     padding: 0;
   }
   
-  /* Ajusta el padding del contenedor centrado para evitar que las cards se peguen a los bordes */
+  /* Ajusta el padding del contenedor centrado */
   .favoritos-layout-wrapper {
     padding: 0; 
   }
@@ -95,13 +54,13 @@
 
   /* ✅ NUEVAS REGLAS para la cuadrícula */
   .favoritos-grid {
-    display: grid;
     grid-template-columns: repeat(2, 1fr); /* Crea una cuadrícula de 2 columnas iguales */
     gap: 0; /* Elimina el espacio entre las cards para un efecto de "grilla" */
   }
 
   /* ✅ BORDES para un diseño de cuadrícula limpia */
-  .favorito-card {
+  /* Aplicamos bordes al componente ProductCard (el hijo directo del grid) */
+  .favoritos-grid > * {
     border-radius: 0;
     border: none;
     border-right: 1px solid #e0e0e0;

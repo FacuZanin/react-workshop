@@ -18,7 +18,6 @@
     "lucide-react": "^0.542.0",
     "node-fetch": "^3.3.2",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.10.10",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.30.1"

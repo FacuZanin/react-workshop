@@ -6,7 +6,7 @@ import Section from "../section/Section";
 import Loader from "../common/Loader"; 
 import NotFound from "../common/NotFound";
 import Pagination from "../section/Pagination"; 
-import Filter from "../filter/Filter"; // 🟢 Nuevo: Componente de filtro
+import Filter from "../filter/Filter";
 import productosData from "../../../public/data/productos.json";
 import { LayoutGrid, List, ArrowUpDown } from "lucide-react"; 
 import "./SearchResultsPage.css"; 
@@ -18,35 +18,42 @@ const useQuery = () => {
 const normalizeProductData = (products) => {
   if (!products || !Array.isArray(products)) return [];
 
-  return products.flatMap((product) =>
-    (product.variantes || []).map((variant) => ({
-      ...variant,
-      productoId: product.id,
-      productoNombre: product.nombre,
-      productoMarca: product.marca,
-      productoTipo: product.tipo,
-      precioCaja: product.precioCaja,
-      precioSinCaja: product.precioSinCaja,
-
-      productoFabrica: product.fabrica,
-      productoOrigen: product.origen,
-      esColaboracion: !!product.colaboracion,
-      colaboracionSearchTag: product.colaboracion ? "colaboracion si" : "colaboracion no", 
-      tallesDisponibles: (variant.talles || []).join(" "), 
-      precioTipoEtiqueta: product.precioCaja > 0 ? "con caja" : "sin caja",
+  return products.flatMap((producto) =>
+    (producto.variantes || []).map((variante) => {
       
-      // 🟢 Nuevo: Añadimos 'suela' a la data normalizada para el filtro
-      productoSuela: product.suela || '',
-
-      // 🟢 Nuevo: Precio unificado para el ordenamiento
-      precioDisplay: product.precioCaja > 0 ? product.precioCaja : product.precioSinCaja, 
-    }))
-  ).filter(variant => variant.productoId);
+      // ✅ 1. Lógica de Precio: Prioriza el precio de la variante, si es 0 o nulo, usa el precio del producto padre.
+      const precioCajaFinal = Number(variante.precioCaja) || Number(producto.precioCaja) || 0;
+      const precioSinCajaFinal = Number(variante.precioSinCaja) || Number(producto.precioSinCaja) || 0;
+      
+      return {
+        ...variante, // Data base de la variante (ej: id, imágenes)
+        
+        // Propiedades requeridas por ProductCard/PrecioGrid
+        productoId: producto.id,
+        productoNombre: producto.nombre,
+        productoMarca: producto.marca,
+        
+        // ✅ 2. Tipo de Producto: Usamos 'fabrica' para el campo 'productoTipo'
+        productoTipo: producto.fabrica, 
+        
+        // ✅ 3. PRECIO CORREGIDO: Inyectamos los precios numéricos y con fallback
+        precioCaja: precioCajaFinal, 
+        precioSinCaja: precioSinCajaFinal,
+        
+        // Otras propiedades originales de la normalización
+        productoFabrica: producto.fabrica,
+        productoOrigen: producto.origen,
+        esColaboracion: !!producto.colaboracion,
+        colaboracionSearchTag: producto.colaboracion ? "colaboracion si" : "colaboracion no",
+        tallesDisponibles: (variante.talles || []).join(" "),
+        // Mantener la lógica original para la etiqueta de precio
+        precioTipoEtiqueta: precioCajaFinal > precioSinCajaFinal ? "caja" : "unidad", 
+      };
+    })
+  );
 };
 
-/**
- * Lógica de Ordenamiento reutilizable
- */
+
 const sortProducts = (products, sortBy, sortOrder) => {
   if (products.length === 0) return products;
 
@@ -70,13 +77,6 @@ const sortProducts = (products, sortBy, sortOrder) => {
   return sorted;
 };
 
-// ==============================================
-// 🎯 LÓGICA DE FILTRADO AVANZADA (nueva)
-// ==============================================
-
-/**
- * Mapea la clave del filtro a la propiedad del producto y aplica la lógica de filtrado.
- */
 const applyCategoryFilter = (product, categoryKey, selectedValues) => {
     const productPropMap = {
         'color': 'color', 
@@ -84,19 +84,18 @@ const applyCategoryFilter = (product, categoryKey, selectedValues) => {
         'tipo': 'productoTipo',
         'fabrica': 'productoFabrica',
         'origen': 'productoOrigen',
-        'suela': 'productoSuela', // Usamos la nueva propiedad
+        'suela': 'productoSuela',
     };
     const productKey = productPropMap[categoryKey];
 
-    // Lógica especial para Talles (filtrado por rangos)
     if (categoryKey === 'talle') {
         const productTalles = (product.tallesDisponibles || '').split(' ').map(t => parseInt(t, 10)).filter(n => !isNaN(n));
         
         if (productTalles.length === 0) return false; 
         
         return selectedValues.some(rangeString => {
-            const match = rangeString.match(/(\d+)\s*-\s*(\d+)/); // Rango: "35 - 40"
-            const matchPlus = rangeString.match(/(\d+)\s*\+/); // Rango: "45 +"
+            const match = rangeString.match(/(\d+)\s*-\s*(\d+)/);
+            const matchPlus = rangeString.match(/(\d+)\s*\+/); 
 
             let minTalle = -Infinity;
             let maxTalle = Infinity;
@@ -106,7 +105,6 @@ const applyCategoryFilter = (product, categoryKey, selectedValues) => {
                 maxTalle = parseInt(match[2], 10);
             } else if (matchPlus) {
                 minTalle = parseInt(matchPlus[1], 10);
-                // maxTalle ya es Infinity
             } else {
                 return false; 
             }
@@ -139,9 +137,7 @@ const applyCategoryFilter = (product, categoryKey, selectedValues) => {
     return true;
 };
 
-// ==============================================
-// 🎯 COMPONENT
-// ==============================================
+
 
 const SearchResultsPage = () => {
   const [loading, setLoading] = useState(true);
@@ -293,14 +289,15 @@ const SearchResultsPage = () => {
     <div className="main-container contenedor-centrado"> 
       {/* 🟢 Nuevo: Contenedor para el layout de barra lateral y contenido */}
       <div className="products-layout-with-filter">
-        
+        <div className="desktop-filter">
+
         {/* 1. FILTRO LATERAL */}
         <Filter
             products={normalizedData}
             selectedFilters={selectedFilters}
             onFilterChange={handleFilterChange}
         />
-
+          </div>
         {/* 2. CONTENIDO PRINCIPAL (donde van los resultados) */}
         <div className="products-content" ref={resultsRef}>
           

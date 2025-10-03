@@ -9,7 +9,7 @@ import ProductListFooter from "./ProductListFooter";
 import MobileFilterOverlay from "./MobileFilterOverlay";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useSearchParams } from "react-router-dom";
-import "./MyComponent.css";
+import "./ProductList.css"
 
 // Función para comparar objetos JSON (para la lógica de filtros)
 const areFiltersEqual = (obj1, obj2) => {
@@ -286,52 +286,45 @@ const ProductList = () => {
   if (loading) return <Loader />;
   if (error) return <div>Error: {error}</div>;
 
-  return (
-    <div className="main-container contenedor-centrado">
-      {/* Filtro de escritorio */}
-      <div className="desktop-filter">
-        <Filter onFilterChange={handleFilterChange} />
-      </div>
+return (
+  // 1. Contenedor Global (Solo centrado y ancho máximo)
+  <div className={`main-container contenedor-centrado`}>
+    
+    {/* 🟢 NUEVO WRAPPER: Contenedor para el layout de 2 columnas */}
+    <div className="products-layout-with-filter">
+        {/* Filtro de escritorio */}
+        <div className="desktop-filter">
+          <Filter onFilterChange={handleFilterChange} />
+        </div>
 
-      <div className="products-content" ref={productsContainerRef}>
-        {/* Controles superiores */}
-        <ProductListControls
-          startIndex={startIndex}
-          endIndex={endIndex}
-          totalProductsCount={totalProductsCount}
-          sortBy={sortBy}
-          // 🚨 IMPORTANTE: Usamos los handlers que reinician la página
-          setSortBy={handleSortByChange} 
-          setSortOrder={handleSortOrderChange}
-          sortOrder={sortOrder}
-          viewType={viewType}
-          setViewType={setViewType}
-          setShowMobileFilter={setShowMobileFilter}
-        />
-
-        {/* Renderizado de productos */}
-        <Section products={paginatedProducts} viewType={viewType} />
-
-        {/* Controles inferiores / Paginación */}
-        {totalPages > 1 && (
-          <ProductListFooter
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            productsPerPage={productsPerPage}
-            onProductsPerPageChange={handleProductsPerPageChange}
+        <div className="products-content" ref={productsContainerRef}>
+          {/* Controles superiores */}
+          <ProductListControls
+            startIndex={startIndex}
+            // ... (el resto de las props)
           />
-        )}
-      </div>
 
-      {/* Overlay de filtro móvil */}
-      <MobileFilterOverlay
-        showMobileFilter={showMobileFilter}
-        setShowMobileFilter={setShowMobileFilter}
-        onFilterChange={handleFilterChange}
-      />
+          {/* Renderizado de productos */}
+          <Section products={paginatedProducts} viewType={viewType} />
+
+          {/* Controles inferiores / Paginación */}
+          {totalPages > 1 && (
+            <ProductListFooter
+              // ... (el resto de las props)
+            />
+          )}
+        </div>
     </div>
-  );
+    {/* 🔴 FIN DEL WRAPPER FLEXIBLE */}
+
+    {/* Overlay de filtro móvil */}
+    <MobileFilterOverlay
+      showMobileFilter={showMobileFilter}
+      setShowMobileFilter={setShowMobileFilter}
+      onFilterChange={handleFilterChange}
+    />
+  </div>
+);
 };
 
 export default ProductList;

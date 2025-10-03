@@ -3,7 +3,12 @@
   padding: 1rem;
   border-right: 1px solid #ddd;
   background-color: transparent;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-right: 15px;
+  color: white;
 }
+
 
 /* Título */
 .filter-title {
@@ -103,6 +108,7 @@
   margin-left: 10px;
   pointer-events: none;
 }
+
 /* ✅ Estilos para los filtros activos */
 .active-filters {
   margin-bottom: 1.5rem;
@@ -152,13 +158,8 @@
   opacity: 0.8;
 }
 
-/* ✅ Estilos para hacer el filtro scrollable */
-.sidebar-filter {
-  max-height: 100vh;
-  overflow-y: auto;
-  padding-right: 15px; /* Evita que el scrollbar se superponga con el contenido */
-  color: white;
-}
+
+
 
 /* ✅ Hacemos scroll dentro de cada acordeón si el contenido es muy largo */
 .accordion-body {

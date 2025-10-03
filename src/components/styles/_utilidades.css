@@ -1,28 +1,34 @@
 .contenedor-centrado {
     max-width: 1280px;
     margin: 0 auto;
+    background: var(--color-fondo-principal); 
+    color: var(--color-texto-principal);
 }
 
-
-
-/* 🟢 Top Section Layout - Usado en ProductListControls */
 .top-section-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--color-borde-divisor); 
+  border-bottom: 1px solid var(--color-borde-divisor);
+  color: var(--color-texto-principal); 
   margin-bottom: 1rem;
 }
+.top-section-info p{
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
-/* 🟢 Products Controls Group */
 .products-controls {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 
-/* 🟢 Selects y Labels (Controles de Orden y "Mostrar por página") */
+
 .products-sort-controls {
   display: flex;
   align-items: center;
@@ -36,10 +42,17 @@
   color: var(--color-texto-principal);
   border: 1px solid var(--color-borde-divisor);
   border-radius: 4px;
+  cursor: pointer;
 }
 
-/* 🟢 Botón de Orden (Asc/Desc) */
-.sort-order-btn {
+.products-sort-controls select:focus,
+.products-per-page-control select:focus {
+  outline: none;
+  border-color: var(--color-primario);
+}
+
+.sort-order-btn,
+.view-btn {
   background: var(--color-fondo-secundario);
   color: var(--color-texto-principal);
   border: 1px solid var(--color-borde-divisor);
@@ -52,8 +65,20 @@
   justify-content: center;
 }
 
-/* 🟢 Controles de Vista (Grid/Lista) */
-.products-view-controls .view-btn {
+
+.sort-order-btn svg,
+.view-btn svg {
+  color: var(--color-texto-primario);
+}
+
+.sort-order-btn:hover,
+.view-btn:hover:not(.active) {
+  background: #3a3a3a;
+  border-color: #666;
+}
+
+
+.products-view-controls {
   background: var(--color-fondo-secundario);
   color: var(--color-texto-principal); 
   border: 1px solid var(--color-borde-divisor); 
@@ -63,14 +88,12 @@
   border-radius: 4px;
 }
 
-.products-view-controls .view-btn.active {
+.products-view-controls,
+.view-btn.active {
   background: var(--color-primario); 
   border-color: var(--color-primario);
 }
 
-
-
-/* 🟢 Bottom Section Layout - Usado en ProductListFooter */
 .bottom-controls-container {
   display: flex;
   justify-content: space-between;
@@ -79,22 +102,30 @@
   border-top: 1px solid var(--color-borde-divisor);
 }
 
-/* 🟢 Products Per Page Control */
-.products-per-page-control {
+.products-per-page-control label,
+.products-sort-controls label {
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+  white-space: nowrap;
+}
+
+.products-per-page-control,
+.products-sort-controls,
+.products-view-controls {
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 0.9rem;
     color: var(--color-texto-principal); 
+
 }
 
-/* 🟢 Estilos de Paginación (Mover desde Pagination.css) */
+/* 🟢 Estilos de Paginación */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  /* El padding de 1rem 0 lo debe manejar el .bottom-controls-container si está dentro */
 }
 
 .pagination-btn {
@@ -126,4 +157,32 @@
 .pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+
+.products-layout-with-filter {
+  display: flex; /* Mantiene el filtro y el contenido lado a lado */
+  gap: 20px;
+  align-items: flex-start; /* Hace que el filtro no se estire */
+}
+
+/* 🟢 FILTRO STICKY: Se aplica al contenedor 'desktop-filter' */
+.desktop-filter {
+  min-width: 250px;
+  /* 🔑 Propiedades clave para el efecto sticky: */
+  position: sticky; 
+  top: 20px; /* Ajusta el margen superior. Considera el alto de tu barra de navegación/header. */
+  align-self: flex-start; /* Evita que se estire en el contenedor flex */
+  /* --- Propiedades de scroll --- */
+  max-height: calc(100vh - 40px); /* 100vh menos el 'top' y un margen inferior */
+  overflow-y: auto;
+}
+
+/* 🟢 CONTENIDO DE PRODUCTOS */
+.products-content {
+  flex: 1; /* Ocupa el espacio restante */
+  min-width: 0; /* IMPORANTE: Previene problemas de desbordamiento en contenedores flex */
+  /* Asegura que el contenido sea vertical, si es necesario */
+  display: flex;
+  flex-direction: column;
 }
