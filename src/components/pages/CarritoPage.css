@@ -1,4 +1,3 @@
-/* CarritoPage.css */
 .carrito-page {
   display: flex;
   align-items: center;
@@ -53,12 +52,11 @@
   background: #f9f9f9;
 }
 
-/* ✅ REGLAS CORREGIDAS: Le asignamos menos espacio */
 .carrito-info {
   flex: 1.5; 
   padding: 0 1rem;
 }
-/* ✅ REGLAS CORREGIDAS: Aumentamos el espacio para las especificaciones */
+
 .carrito-specs-container {
   flex: 1;
   display: flex;
@@ -97,6 +95,7 @@
   flex: 0.5;
   text-align: center;
 }
+
 .carrito-cantidad-cantidad p {
   margin: 0;
   font-weight: bold;
@@ -106,6 +105,7 @@
   flex: 0.5;
   text-align: center;
 }
+
 .carrito-precio p {
   margin: 0;
 }
@@ -122,32 +122,21 @@
   transform: scale(1.1);
 }
 
-/* CarritoPage.css */
-
 .carrito-total {
   padding-top: 1rem;
   border-top: 2px solid #eee;
-  /* 🚨 CAMBIO CLAVE: Usa flexbox para alinear los elementos */
   display: flex; 
-  align-items: center; /* Centra verticalmente */
-  justify-content: space-between; /* Distribuye espacio */
-  
-  width: 100%; /* Asegura que ocupe todo el ancho */
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 1rem;
 }
 
-/* Ajustamos el h3 para que no tenga margen automático */
 .carrito-total h3 {
   margin: 0;
-  /* El total ahora estará a la derecha */
 }
 
-/* Agrupamos los botones de acción si es necesario, pero manteniendo 
-   el botón Limpiar Carrito separado en el centro es más simple */
-
-/* Si quieres que el Total y el Finalizar Compra estén juntos a la derecha: */
 .carrito-total .checkout-btn {
-    /* Mantenemos tus estilos de checkout-btn */
     background: #2e7d32;
     color: #fff;
     border: none;
@@ -155,15 +144,13 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
-    margin-left: 1rem; /* Espacio entre el total y el botón */
+    margin-left: 1rem;
     transition: background 0.3s ease;
 }
 
 
-/* Estilo para el botón Limpiar Carrito */
 .clear-carrito-btn {
-  /* Estilo visual */
-  background: #d32f2f; /* Rojo de peligro */
+  background: #d32f2f;
   color: #fff;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -173,8 +160,6 @@
   font-weight: 600;
   margin-top: 0.5rem;
   transition: background 0.3s ease;
-  
-  /* Posicionamiento: Mantenido en el centro por el 'justify-content: space-between' */
 }
 
 .clear-carrito-btn:hover {
@@ -202,78 +187,6 @@
 
 .checkout-btn:hover {
   background: #1b5e20;
-}
-
-
-/* 1. Estilo para el Link de la IMAGEN */
-/* Usamos el selector de atributo a[href] para máxima especificidad en el Link */
-.carrito-item .carrito-img-link,
-.carrito-item .carrito-img-link:link,
-.carrito-item .carrito-img-link:visited {
-    text-decoration: none; /* Elimina el subrayado */
-    color: inherit; /* Hereda el color del contenedor (generalmente whitesmoke en tu app) */
-}
-
-/* 2. Estilo para el Link del NOMBRE/MARCA */
-/* Apuntamos al contenedor del Link y sus estados (link, visited, hover) */
-.carrito-item .carrito-title-link,
-.carrito-item .carrito-title-link:link,
-.carrito-item .carrito-title-link:visited {
-    text-decoration: none; /* Elimina el subrayado */
-    color: inherit; /* Hereda el color del contenedor */
-    width: 280px;
-}
-
-/* Opcional: Para mantener el color del texto blanco/whitesmoke que ya tienes en marca/nombre */
-.carrito-item .carrito-title-link .carrito-marca,
-.carrito-item .carrito-title-link .carrito-nombre {
-    color: whitesmoke !important; /* Forzamos el color */
-}
-
-/* Opcional: Pequeño efecto al pasar el mouse (hover) para indicar que es clickeable */
-.carrito-item .carrito-title-link:hover .carrito-nombre,
-.carrito-item .carrito-title-link:hover .carrito-marca {
-    color: #ccc !important; /* Color un poco más claro al pasar el mouse */
-}
-
-/* Media Queries para Tablet */
-@media (max-width: 768px) {
-  .carrito-img {
-    width: 100px;
-    height: 100px;
-  }
-  .carrito-especificaciones p {
-    color: whitesmoke;
-    font-size: small;
-  }
-}
-
-/* Media Queries para Mobile */
-@media (max-width: 480px) {
-  .carrito-item {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    height: 150px;
-  }
-
-  .carrito-img {
-    width: 100px;
-    height: 100px;
-  }
-
-  .carrito-info {
-    display: flex;
-    padding: 0.2rem;
-    flex-direction: column;
-  }
-  .carrito-info h3{
-    font-size: small;
-  }
-
-  .carrito-specs-container {
-      display: none;
-  }
 }
 
 .carrito-header {
@@ -305,3 +218,72 @@
   width: 36px;
   height: 36px;
 }
+
+.carrito-item .carrito-img-link,
+.carrito-item .carrito-img-link:link,
+.carrito-item .carrito-img-link:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.carrito-item .carrito-title-link,
+.carrito-item .carrito-title-link:link,
+.carrito-item .carrito-title-link:visited {
+    text-decoration: none;
+    color: inherit;
+    width: 280px;
+}
+
+
+.carrito-item .carrito-title-link .carrito-marca,
+.carrito-item .carrito-title-link .carrito-nombre {
+    color: whitesmoke !important;
+}
+
+
+.carrito-item .carrito-title-link:hover .carrito-nombre,
+.carrito-item .carrito-title-link:hover .carrito-marca {
+    color: #ccc !important;
+}
+
+@media (max-width: 480px) {
+  .carrito-item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 150px;
+  }
+
+  .carrito-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .carrito-info {
+    display: flex;
+    padding: 0.2rem;
+    flex-direction: column;
+  }
+  .carrito-info h3{
+    font-size: small;
+  }
+
+  .carrito-specs-container {
+      display: none;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .carrito-img {
+    width: 100px;
+    height: 100px;
+  }
+  .carrito-especificaciones p {
+    color: whitesmoke;
+    font-size: small;
+  }
+}
+
+
+

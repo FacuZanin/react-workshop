@@ -1,18 +1,16 @@
 .section {
-  background-color: #1a1a1a;
-  color: #f0f0f0;
+  background-color: var(--color-fondo-principal);
+  color: var(--color-texto-principal);
 }
 
 .section-title {
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #fff;
+  color: var(--color-texto-principal);
 }
 
-/* ============================= */
-/* 📌 Grid de productos */
-/* ============================= */
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -20,11 +18,8 @@
   align-items: stretch;
 }
 
-/* ============================= */
-/* 📌 Card de producto */
-/* ============================= */
 .product-card {
-  background: #2c2c2c;
+  background: var(--color-fondo-secundario);
   border-radius: 6px;
   text-decoration: none;
   color: inherit;
@@ -41,9 +36,6 @@
   transform: translateY(-5px);
 }
 
-/* ============================= */
-/* 📌 Contenido de la Card */
-/* ============================= */
 .product-link {
   display: flex;
   flex-direction: column;
@@ -99,7 +91,7 @@
 .product-title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #f5f5f5;
+  color: var(--color-texto-principal);
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -111,20 +103,49 @@
 
 .product-type {
   font-size: 0.85rem;
-  color: #ccc;
+  color: var(--color-texto-secundario);
 }
 
 .product-price {
   font-weight: bold;
   font-size: 1rem;
-  color: #fff;
+  color: var(--color-texto-principal);
   display: block;
   margin-top: auto;
 }
 
-/* ============================= */
-/* 📌 Botón de Favoritos */
-/* ============================= */
+.product-grid.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  grid-template-columns: 1fr; 
+}
+
+.product-card.list-card {
+  display: flex;
+  flex-direction: row;
+  height: auto; 
+  border: 1px solid var(--color-borde-divisor);
+}
+
+.product-card.list-card .product-image-container {
+  width: 150px;
+  min-width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.product-card.list-card .product-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  flex: 1;
+}
+
+.product-card.list-card .favorite-btn-card {
+  display: none;
+}
+
 .favorite-btn-card {
   position: absolute;
   top: 10px;
@@ -148,7 +169,7 @@
 }
 
 .favorite-btn-card svg {
-  stroke: #bbb;
+  stroke: var(--color-texto-secundario);
   width: 18px;
   height: 18px;
 }
@@ -158,26 +179,39 @@
   stroke: red;
 }
 
-/* ============================= */
-/* 📌 Estilos para Scrollbar del filtro */
-/* ============================= */
+
 .filter-options::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de desplazamiento */
+  width: 8px; 
 }
 
 .filter-options::-webkit-scrollbar-track {
-  background: transparent; /* Ahora es transparente */
+  background: transparent; 
 }
 
 .filter-options::-webkit-scrollbar-thumb {
-  background-color: #555; /* Color del "thumb" o "pulgar" */
+  background-color: #555; 
   border-radius: 4px;
 }
 
 .filter-options::-webkit-scrollbar-thumb:hover {
-  background-color: #777; /* Color al pasar el cursor */
+  background-color: #777; 
 }
 
+
+@media (min-width: 481px) {
+  .product-grid.list-view {
+    grid-template-columns: none;
+    gap: 1rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .product-card.list-card {
+    flex-direction: row; 
+    padding: 0;
+  }
+}
 
 /* ➡️ Mobile pequeño (hasta 480px): 2 columnas */
 @media (max-width: 480px) {
@@ -190,8 +224,8 @@
     .product-card {
     border-radius: 0;
     border: none;
-    border-right: 1px solid #444;
-    border-bottom: 1px solid #444;
+    border-right: 1px solid var(--color-borde-divisor);
+    border-bottom: 1px solid var(--color-borde-divisor);
   }
   .product-grid > *:nth-child(2n) {
     border-right: none;
@@ -216,8 +250,8 @@
   .product-card {
     border-radius: 0;
     border: none;
-    border-right: 1px solid #444;
-    border-bottom: 1px solid #444;
+    border-right: 1px solid var(--color-borde-divisor);
+    border-bottom: 1px solid var(--color-borde-divisor);
   }
   .product-grid > *:nth-child(3n) {
     border-right: none;
@@ -229,7 +263,7 @@
     display: none;
   }
 }
-
+/* ➡️ Desktop (1025px en adelante): 4 columnas */
 @media (min-width: 1025px) {
   .product-grid {
     grid-template-columns: repeat(4, 1fr);
@@ -246,58 +280,6 @@
   }
 }
 
-/* ... (código anterior) ... */
 
-/* ✅ NUEVOS ESTILOS PARA LA VISTA DE LISTA */
-/* ======================================= */
 
-/* El grid se convierte en una columna para la vista de lista */
-.product-grid.list-view {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Espacio entre las tarjetas de lista */
-  grid-template-columns: 1fr; /* Opcional, pero anula el grid */
-}
-
-.product-card.list-card {
-  display: flex;
-  flex-direction: row;
-  height: auto; /* La altura se ajusta al contenido */
-  border: 1px solid #444;
-}
-
-.product-card.list-card .product-image-container {
-  width: 150px; /* Tamaño fijo para la imagen en vista de lista */
-  min-width: 150px; /* Evita que se encoja */
-  height: 150px;
-  overflow: hidden;
-}
-
-.product-card.list-card .product-info {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  flex: 1; /* Ocupa el espacio restante */
-}
-
-/* Ocultar el botón de favorito en la vista de lista */
-.product-card.list-card .favorite-btn-card {
-  display: none;
-}
-
-/* Oculta los estilos de grid de la vista de lista */
-@media (min-width: 481px) {
-  .product-grid.list-view {
-    grid-template-columns: none;
-    gap: 1rem;
-  }
-}
-
-/* Ajustes de responsive para vista de lista en móviles */
-@media (max-width: 480px) {
-  .product-card.list-card {
-    flex-direction: row; /* Mantén el diseño en fila en móviles para la lista */
-    padding: 0;
-  }
-}
 

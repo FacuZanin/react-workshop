@@ -1,7 +1,6 @@
-/* Variantes recomendadas / Productos relacionados */
 .related-products {
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: var(--max-width-main); 
   position: relative;
 }
 
@@ -9,7 +8,7 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 20px;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
   text-align: left;
 }
 
@@ -17,7 +16,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center; /* ✅ centra el carrusel */
+  justify-content: center;
 }
 
 .related-grid {
@@ -29,27 +28,30 @@
   scrollbar-width: none;
   max-width: 100%;
 }
+
 .related-grid::-webkit-scrollbar {
   display: none;
 }
 
 .related-card {
   flex: 0 0 220px;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-borde-divisor);
   border-radius: 12px;
   padding: 12px;
-  background: #1a1a1a;
+  background: var(--color-fondo-secundario); 
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   text-decoration: none;
+  color: var(--color-texto-principal)
 }
 
 .related-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15), 0 0 10px rgba(255, 255, 255, 0.1); 
+  border-color: var(--color-primario);
 }
 
 .related-img-wrapper {
@@ -80,7 +82,7 @@
 .related-name {
   font-size: 1rem;
   font-weight: 500;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -89,30 +91,29 @@
 
 .related-color {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-texto-secundario); 
 }
 
 .related-price {
   font-weight: bold;
   font-size: 1rem;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
   margin-top: 4px;
-  text-decoration: none; /* 👈 evita subrayado */
-  display: inline-block; /* 👈 asegura que respete el estilo de texto */
+  text-decoration: none;
+  display: inline-block; 
 }
 
 .related-card .related-price {
-  color: whitesmoke !important; /* 👈 fuerza color sobre el <Link> */
+  color: var(--color-texto-principal) !important;
 }
 
-
-/* ✅ Flechas del carrusel */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid #ddd;
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-borde-divisor);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -125,8 +126,11 @@
 }
 
 .carousel-arrow:hover {
-  background: #f5f5f5;
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--color-white);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 15px rgba(var(--color-primario-rgb), 0.5);
 }
 
 .carousel-arrow.left {

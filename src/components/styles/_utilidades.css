@@ -1,0 +1,129 @@
+.contenedor-centrado {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+
+
+/* 🟢 Top Section Layout - Usado en ProductListControls */
+.top-section-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-borde-divisor); 
+  margin-bottom: 1rem;
+}
+
+/* 🟢 Products Controls Group */
+.products-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 🟢 Selects y Labels (Controles de Orden y "Mostrar por página") */
+.products-sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.products-sort-controls select,
+.products-per-page-control select {
+  padding: 8px;
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-borde-divisor);
+  border-radius: 4px;
+}
+
+/* 🟢 Botón de Orden (Asc/Desc) */
+.sort-order-btn {
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-borde-divisor);
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🟢 Controles de Vista (Grid/Lista) */
+.products-view-controls .view-btn {
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal); 
+  border: 1px solid var(--color-borde-divisor); 
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 4px;
+}
+
+.products-view-controls .view-btn.active {
+  background: var(--color-primario); 
+  border-color: var(--color-primario);
+}
+
+
+
+/* 🟢 Bottom Section Layout - Usado en ProductListFooter */
+.bottom-controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-borde-divisor);
+}
+
+/* 🟢 Products Per Page Control */
+.products-per-page-control {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: var(--color-texto-principal); 
+}
+
+/* 🟢 Estilos de Paginación (Mover desde Pagination.css) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  /* El padding de 1rem 0 lo debe manejar el .bottom-controls-container si está dentro */
+}
+
+.pagination-btn {
+  background: var(--color-fondo-secundario); 
+  color: var(--color-texto-principal); 
+  border: 1px solid var(--color-borde-divisor); 
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+}
+
+.pagination-btn.active {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+  color: var(--color-texto-principal);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

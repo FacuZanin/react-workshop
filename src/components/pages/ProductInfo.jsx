@@ -175,7 +175,7 @@ const ProductInfo = ({ product, variant }) => {
 
       <div className="cart-fav-section">
         <button 
-          className="add-to-cart"
+          className="btn-primario add-to-cart"
           onClick={handleAddToCart}
           disabled={!selectedTalle}
           style={{ opacity: selectedTalle ? 1 : 0.6 }}
@@ -200,7 +200,7 @@ const ProductInfo = ({ product, variant }) => {
               aria-label="Compartir producto"
                title={shareTitle}
             >
-              <Send size={20} stroke="whitesmoke" />
+              <Send size={20} />
             </button>
         </div>
       </div>

@@ -1,8 +1,10 @@
+@import 'components\styles\_utilidades.css'; 
+
 html {
-  overflow-y: scroll; /* Fuerza la barra de scroll vertical SIEMPRE */
+  overflow-y: scroll;
 }
 
 body {
-  background-color: #1a1a1a; /* Establece el fondo principal en un color oscuro */
-  color: #f0f0f0;            /* Color del texto principal para que sea legible */
+  background-color: #1a1a1a;
+  color: #f0f0f0;
 }

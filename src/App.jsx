@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="main-app-container">
+    <div className="main-app-container contenedor-centrado">
       <header>
         <Header />
         <MyCarousel />

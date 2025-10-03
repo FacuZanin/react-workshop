@@ -287,7 +287,7 @@ const ProductList = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="main-container">
+    <div className="main-container contenedor-centrado">
       {/* Filtro de escritorio */}
       <div className="desktop-filter">
         <Filter onFilterChange={handleFilterChange} />

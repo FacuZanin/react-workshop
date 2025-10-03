@@ -1,20 +1,15 @@
 .image-gallery-wrapper {
-    /* Es clave que este sea el primer elemento de la sección de producto 
-       y que ProductInfo sea el segundo para que el overlay de zoom 
-       aparezca justo al lado del info-column. */
-    flex: 1; /* Ocupa el espacio destinado a la imagen */
+    flex: 1;
     position: relative; 
-    z-index: 10; /* Asegura que la galería y el zoom estén por encima de otros elementos */
+    z-index: 10;
 }
 
-/* Contenedor de la imagen individual */
 .image-container {
     position: relative;
     width: 100%;
-    /* Ajusta el alto/aspecto según sea necesario */
-    padding-top: 100%; /* Ejemplo de aspecto 1:1. Puedes usar un height fijo si lo prefieres. */
+    padding-top: 100%;
     overflow: hidden;
-    cursor: crosshair; /* Indicador visual de la función de zoom */
+    cursor: crosshair;
 }
 
 .image-container img {
@@ -23,28 +18,28 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Para que la imagen se vea completa sin cortar */
+    object-fit: contain;
     transition: opacity 0.3s ease;
 }
+
 .main-image-container-gallery {
   position: relative;
   width: 100%;
-  height: 500px; /* ya tienes esto en ProductDetail.css; mantener consistente */
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: visible; /* permitimos overlay fuera del contenedor */
+  overflow: visible;
 }
 
-/* Flechas de navegación */
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 5;
     background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
+    color: var(--color-texto-principal);
+    border: 1px solid var(--color-borde-divisor);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -52,7 +47,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.2s;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.15);
+    transition: all 0.2s;
 }
 
 .nav-arrow.left {
@@ -64,8 +60,12 @@
 }
 
 .nav-arrow:hover {
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--color-primario);
+    border-color: var(--color-primario);
+    color: var(--color-texto-principal);
+    box-shadow: 0 0 10px rgba(var(--color-primario-rgb), 0.8);
 }
+
 .main-image {
   max-width: 100%;
   max-height: 100%;
@@ -85,15 +85,15 @@
   border-radius: 6px;
 }
 
-/* 🚀 ESTILO CLAVE PARA EL ZOOM (OVERLAY) 🚀 */
 .zoom-view-overlay {
   position: absolute;
   pointer-events: none;
   z-index: 20;
   background-repeat: no-repeat;
   border-radius: 8px;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.6);
-  background-color: #1a1a1a;
+  border: 1px solid var(--color-borde-divisor); 
+   box-shadow: 0 8px 18px rgba(255, 255, 255, 0.15);
+  background-color: var(--color-fondo-secundario); 
   overflow: hidden;
 }
 
@@ -106,7 +106,6 @@
   height: 100%;
   object-fit: cover; 
   display: block;
-  /* Asegúrate de que el borde coincida con tus otras miniaturas */
   border-radius: 6px; 
 }
 
@@ -144,17 +143,12 @@
   overflow: hidden; 
 }
 
-/* 🟢 CLAVE: El reproductor (el div #youtube-player-container) */
-/* Debe ocupar 100% del contenedor padre (.video-container--vertical) */
 .video-container--vertical #youtube-player-container {
     height: 100%; 
-    width: 56.25%; /* 9/16 = 0.5625. Mantiene la proporción vertical. */
+    width: 56.25%;
     position: relative; 
-    /* El estilo de opacidad se maneja directamente en el JSX */
 }
 
-/* Puedes añadir estilos al placeholder si quieres algo más elaborado */
 .video-placeholder {
-    /* Por si acaso */
     z-index: 10; 
 }

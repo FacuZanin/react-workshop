@@ -1,94 +1,33 @@
-/* src/pages/SearchResultsPage.css */
-
-/* ============================= */
-/* 📌 Layout principal (Centrado) */
-/* ============================= */
-
 .main-container {
-  /* La clave para centrar y limitar el ancho */
-  max-width: 1280px; 
-  margin: 0 auto;
   padding: 20px;
-  background: #1a1a1a;
-  color: #f0f0f0;
+  background: var(--color-fondo-principal); 
+  color: var(--color-texto-principal);
 }
 
 .products-content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1; 
+  min-width: 0;
 }
 
-/* ==================================== */
-/* 🟢 Controles Superiores (top-section-info) */
-/* ==================================== */
-.top-section-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #333;
-  margin-bottom: 1rem;
-}
 
 .results-count {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #aaa;
+  color: var(--color-texto-secundario);
   text-transform: uppercase;
 }
 
-.products-controls {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.products-view-controls .view-btn {
-  background: #2c2c2c;
-  color: #fff;
-  border: 1px solid #444;
-  padding: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-  border-radius: 4px;
-}
-
 .products-view-controls .view-btn.active {
-  background: #00719B;
-  border-color: #00719B;
+  background: var(--color-primario);
+  border-color: var(--color-primario);
 }
 
 .products-sort-controls {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #fff;
-}
-
-.products-sort-controls select {
-    padding: 8px;
-    background: #2c2c2c;
-    color: #fff;
-    border: 1px solid #444;
-    border-radius: 4px;
-}
-
-/* ======================================= */
-/* 🟢 Controles Inferiores y Paginación */
-/* ======================================= */
-.bottom-controls-container {
-  display: flex;
-  justify-content: space-between; /* Alinear paginación a la izquierda y control de página a la derecha */
-  align-items: center;
-  padding: 1.5rem 0;
-  border-top: 1px solid #333;
-}
-
-.products-per-page-control {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.9rem;
     color: #fff;
 }
 
@@ -101,23 +40,15 @@
 }
 
 .products-layout-with-filter {
-  display: flex; /* Habilita el layout de barra lateral y contenido */
-  gap: 20px; /* Espacio entre el filtro y la lista de productos */
-  align-items: flex-start; /* Asegura que el filtro esté alineado arriba */
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 }
 
-.products-content {
-  /* ... (Estilos existentes) ... */
-  flex-grow: 1; /* Permite que el contenido ocupe el espacio restante */
-  min-width: 0; /* Asegura que no desborde en flexbox */
-}
 
-/* ======================================= */
-/* 📌 Adaptación para Mobile/Tablet */
-/* ======================================= */
 
 @media (max-width: 991px) {
   .products-layout-with-filter {
-    flex-direction: column; /* Apila el filtro y el contenido */
+    flex-direction: column;
   }
 }

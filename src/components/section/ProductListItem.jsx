@@ -226,7 +226,7 @@
           {/* Botón Agregar al Carrito (Debajo) */}
           <button
             // ✅ Clase Renombrada
-            className="list-add-to-cart"
+            className="btn-primario list-add-to-cart"
             onClick={handleAddToCart}
             disabled={!selectedTalle}
             style={{ opacity: selectedTalle ? 1 : 0.6 }}

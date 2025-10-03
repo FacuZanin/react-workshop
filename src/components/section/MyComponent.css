@@ -1,14 +1,8 @@
-/* ============================= */
-/* 📌 Layout principal           */
-/* ============================= */
-
 .main-container {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  background: #1a1a1a;
-  max-width: 1280px;
-  margin: 0 auto;
+  background: var(--color-fondo-principal); 
 }
 
 .products-content {
@@ -22,10 +16,6 @@
   max-height: 100vh;
   overflow-y: auto;
 }
-
-/* ============================= */
-/* 📱 Filtros móviles            */
-/* ============================= */
 
 .mobile-filter-btn-container {
   display: none;
@@ -71,7 +61,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #fff;
+  color: var(--color-texto-principal);
   z-index: 1001;
 }
 
@@ -84,14 +74,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid #ddd;
-  background: #f0f0f0;
-  color: #1a1a1a;
+  border-bottom: 1px solid var(--color-texto-principal);
+  background: var(--color-texto-principal);
+  color: var(--color-fondo-principal);
 }
-
-/* ============================= */
-/* 🔝 Barra superior productos   */
-/* ============================= */
 
 .top-section-info {
   display: flex;
@@ -99,32 +85,28 @@
   align-items: center;
   gap: 1rem;
   padding: 16px 20px;
-  border-bottom: 1px solid #444;
-  color: #f0f0f0;
+  border-bottom: 1px solid var(--color-borde-divisor);
+  color: var(--color-texto-principal);
 }
 .top-section-info p{
   margin: 0;
   font-size: 0.9rem;
-  color: #ccc;
+  color: var(--color-texto-secundario);
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .product-count p {
   font-size: 14px;
-  color: #a0a0a0;
+  color: var(--color-texto-secundario);
   text-transform: uppercase;
 }
 
 .product-count span {
   font-size: 16px;
   font-weight: bold;
-  color: #fff;
+  color: var(--color-texto-principal);
 }
-
-/* ============================= */
-/* 🎛️ Controles de productos     */
-/* ============================= */
 
 .products-controls {
   display: flex;
@@ -143,15 +125,15 @@
 .products-per-page-control label,
 .products-sort-controls label {
   font-size: 0.9rem;
-  color: #ccc;
+  color: var(--color-texto-secundario);
   white-space: nowrap;
 }
 
 .products-per-page-control select,
 .products-sort-controls select {
-  background: #1a1a1a;
-  color: #fff;
-  border: 1px solid #444;
+  background: var(--color-fondo-principal);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-borde-divisor);
   padding: 6px 10px;
   border-radius: 4px;
   cursor: pointer;
@@ -160,13 +142,13 @@
 .products-sort-controls select:focus,
 .products-per-page-control select:focus {
   outline: none;
-  border-color: #00719B;
+  border-color: var(--color-primario);
 }
 
 .sort-order-btn,
 .view-btn {
   background: none;
-  border: 1px solid #444;
+  border: 1px solid var(--color-borde-divisor);
   padding: 6px;
   border-radius: 4px;
   cursor: pointer;
@@ -178,7 +160,7 @@
 
 .sort-order-btn svg,
 .view-btn svg {
-  stroke: #fff;
+  color: var(--color-texto-primario);
 }
 
 .sort-order-btn:hover,
@@ -188,13 +170,9 @@
 }
 
 .view-btn.active {
-  background: #00719B;
-  border-color: #00719B;
+ background: var(--color-primario);
+  border-color: var(--color-primario);
 }
-
-/* ============================= */
-/* 🔢 Paginación                 */
-/* ============================= */
 
 .pagination-container {
   display: flex;
@@ -208,9 +186,9 @@
 }
 
 .pagination-btn {
-  background: #2c2c2c;
-  color: #fff;
-  border: 1px solid #444;
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-borde-divisor);
   border-radius: 4px;
   padding: 8px 12px;
   min-width: 40px;
@@ -221,8 +199,8 @@
 
 .pagination-btn:hover:not(:disabled),
 .pagination-btn.active {
-  background: #00719B;
-  border-color: #00719B;
+  background: var(--color-primario); 
+  border-color: var(--color-primario);
   font-weight: bold;
 }
 
@@ -231,9 +209,36 @@
   cursor: not-allowed;
 }
 
-/* ============================= */
-/* 📐 Responsive                 */
-/* ============================= */
+.bottom-controls-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 1.5rem 20px;
+   border-top: 1px solid var(--color-borde-divisor);
+}
+
+
+.pagination-container {
+  padding: 0;
+}
+
+.pagination {
+  justify-content: flex-start; 
+}
+
+
+.bottom-controls-container .products-per-page-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bottom-controls-container .products-per-page-control label {
+  font-size: 0.9rem;
+  color: var(--color-texto-secundario);
+  white-space: nowrap;
+}
+
 
 @media (max-width: 767px) {
   .main-container {
@@ -269,43 +274,4 @@
     flex-grow: 1;
     justify-content: flex-start;
   }
-}
-/* MyComponent.css */
-
-/* ... (todos los estilos anteriores) */
-
-
-/* ============================= */
-/* 🔢 Paginación y Controles Inf. */
-/* ============================= */
-
-/* ✅ Nuevo contenedor principal para los controles inferiores */
-.bottom-controls-container {
-  display: flex;
-  justify-content: space-between; /* <-- La clave para alinear a los extremos */
-  align-items: center;
-  padding: 1.5rem 20px;
-  border-top: 1px solid #444;
-}
-
-/* ❌ Eliminamos el padding del antiguo contenedor */
-.pagination-container {
-  padding: 0;
-}
-
-.pagination {
-  justify-content: flex-start; 
-}
-
-
-.bottom-controls-container .products-per-page-control {
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Espacio entre "MOSTRAR", el selector, y "POR PÁGINA" */
-}
-
-.bottom-controls-container .products-per-page-control label {
-  font-size: 0.9rem;
-  color: #ccc;
-  white-space: nowrap;
 }

@@ -1,7 +1,6 @@
-// ProductImageGallery.jsx
 import { useState, useRef, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import './ProductImageGallery.css'; // Asegúrate de crear este archivo CSS
+import './ProductImageGallery.css'; 
 
 const ZOOM_FACTOR = 2.5; // Factor de amplificación para el zoom
 

@@ -1,3 +1,8 @@
+/* src/pages/ProductInfo.css (Depurado y Ordenado) */
+
+/* ======================================= */
+/* 1. Layout Principal y Títulos           */
+/* ======================================= */
 .info-column-info {
   flex: 1;
   display: flex;
@@ -8,27 +13,40 @@
 
 .info-column-info .brand {
   font-size: 1.2rem;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
 }
 
 .info-column-info .title {
   font-size: 1.8rem;
   font-weight: 600;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
 }
 
-.info-column-info .price {
+.info-column-info .price,
+.info-column-info .product-prices strong {
   font-size: 1.6rem;
   font-weight: 500;
-  color: whitesmoke;
+  color: var(--color-texto-principal);
 }
 
-.info-column-info .product-prices strong {
-  color: whitesmoke;
+.info-column-info .brand-logo-container {
+  display: flex; 
+  align-items: center;
+  margin-bottom: 0.5rem; 
 }
 
+.info-column-info .brand-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain; 
+}
+
+
+/* ======================================= */
+/* 2. Sección de Talles (Botones)          */
+/* ======================================= */
 .info-column-info .talles-section {
-  color: whitesmoke;
+  color: var(--color-texto-principal);
   font-family: 'Barlow Semi Condensed', 'Barlow Semi Condensed Fallback', 'Barlow Semi Condensed Fallback Linux', sans-serif;
   text-transform: uppercase;
 }
@@ -41,25 +59,64 @@
 
 .info-column-info .talle-btn {
   padding: 0.4rem 0.8rem;
-  border: 1px solid #ccc;
-  background: #555;
+  border: 1px solid var(--color-borde-divisor);
+  background: var(--color-fondo-secundario);
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
-  color: white;
+  color: var(--color-texto-principal);
   font-weight: bold;
 }
 
 .info-column-info .talle-btn:hover {
-  background: #006591;
+  /* Usar el primario oscuro para un mejor efecto visual */
+  background: var(--color-primario-oscuro); 
 }
 
 .info-column-info .talle-btn.active {
+  /* 💡 ATENCIÓN: #603FB7 es el único valor fijo que mantengo aquí por su box-shadow */
   border-color: #603FB7;
-  background: #006591;
-  color: white;
+  background: var(--color-primario);
+  color: var(--color-texto-principal);
+  /* Sugerencia: Añadir box-shadow si se eliminó */
+  box-shadow: 0 0 10px rgba(96, 63, 183, 0.5); 
 }
 
+
+/* ======================================= */
+/* 3. Sección de SKU y Guía de Talles      */
+/* ======================================= */
+.info-column-info .sku-id {
+  font-size: 0.95rem;
+  color: var(--color-texto-secundario); /* ANTES: #aaa */
+  margin-top: -0.5rem; 
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.info-column-info .size-guide-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: var(--color-primario);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  width: fit-content;
+}
+
+.info-column-info .size-guide-link:hover {
+  /* 💡 ATENCIÓN: #0096cc es un valor fijo. */
+  color: var(--color-primario-oscuro); /* SUGERENCIA: Reemplazar por variable */
+}
+
+
+/* ======================================= */
+/* 4. Sección de Carrito y Acciones (Iconos) */
+/* ======================================= */
 .info-column-info .cart-fav-section {
   display: flex;
   align-items: center;
@@ -67,57 +124,82 @@
   margin-top: 20px;
 }
 
+/* El botón Add-to-cart debería usar la clase global .btn-primario en el JSX */
 .info-column-info .add-to-cart {
+  /* Estilos que complementan a .btn-primario */
   padding: 0.8rem 1.2rem;
-  background: #006591;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease;
   height: 44px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-grow: 1; /* CRÍTICO: Estilo de layout */
+
+  /* 💡 ATENCIÓN: Estilos que pueden ser redundantes si usas .btn-primario */
+  background: var(--color-primario);
+  color: var(--color-texto-principal);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .info-column-info .add-to-cart:disabled {
-  background: #006591;
+  /* 💡 ATENCIÓN: #006591 es un valor fijo. */
+  background: var(--color-secundario-oscuro); /* SUGERENCIA: Reemplazar por variable */
   opacity: 0.8;
   cursor: not-allowed;
 }
 
 .info-column-info .add-to-cart:hover {
-  background: #0174a6;
-;
+  /* 💡 ATENCIÓN: #0174a6 es un valor fijo. */
+  background: var(--color-primario-oscuro); /* SUGERENCIA: Reemplazar por variable */
 }
 
-.info-column-info .favorite-btn-info {
+.info-column-info .icon-buttons-container {
+  display: flex;
+  gap: 12px; 
+}
+
+/* Estilos consolidados para ambos botones de icono */
+.info-column-info .favorite-btn-info,
+.info-column-info .share-btn-info {
+  background: transparent;
+  border: 1px solid var(--color-borde-divisor);
+  color: var(--color-borde-divisor);
   width: 44px;
   height: 44px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s; 
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25); 
 }
 
-.info-column-info .favorite-btn-info:hover {
-  background: #f8f8f8;
+/* Efecto hover general consolidado */
+.info-column-info .favorite-btn-info:hover,
+.info-column-info .share-btn-info:hover {
+  background: var(--color-fondo-resaltado);
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.info-column-info .favorite-btn-info svg {
-  stroke: #555;
+
+/* ======================================= */
+/* 5. Estilos de Iconos (Stroke/Fill)      */
+/* ======================================= */
+
+/* Estilos base para iconos (no activo) */
+.info-column-info .favorite-btn-info svg,
+.info-column-info .share-btn-info svg {
+  stroke: grey;
   transition: all 0.25s ease;
 }
 
+/* Estilos específicos de Favorito */
 .info-column-info .favorite-btn-info.active svg {
   fill: red;
   stroke: red;
@@ -128,82 +210,9 @@
   stroke: red; 
 }
 
-.info-column-info .share-btn-info:hover {
-  background: #f8f8f8;
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.info-column-info .share-btn-info svg {
-  stroke: #555;
-  transition: all 0.25s ease;
-}
-
+/* Estilos específicos de Compartir */
 .info-column-info .share-btn-info:hover svg {
   stroke: white;
+  fill: black;
+
 }
-
-.info-column-info .sku-id {
-  font-size: 0.95rem;
-  color: #aaa; 
-  margin-top: -0.5rem; 
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-
-
-.info-column-info .size-guide-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: #00719B;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.2s;
-  width: fit-content;
-}
-
-.info-column-info .size-guide-link:hover {
-  color: #0096cc;
-}
-
-.info-column-info .icon-buttons-container {
-    display: flex;
-    gap: 12px; 
-}
-
-.info-column-info .favorite-btn-info,
-.info-column-info .share-btn-info {
-  background: transparent;
-  border: 1px solid #444;
-  color: #444;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.info-column-info .favorite-btn-info:hover,
-.info-column-info .share-btn-info:hover {
-    background: #333;
-}
-
-.info-column-info .brand-logo-container {
-    display: flex; 
-    align-items: center;
-    margin-bottom: 0.5rem; 
-}
-
-.info-column-info .brand-logo {
-    width: 55px;
-    height: 55px;
-    object-fit: contain; 
-}
-

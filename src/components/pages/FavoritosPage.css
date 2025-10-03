@@ -18,7 +18,6 @@
 .favoritos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-
 }
 
 .favorito-card {
@@ -33,14 +32,16 @@
   position: relative;
   height: 100%;
 }
+
 .favorito-card a {
   text-decoration: none;
   color: inherit;
 }
 
 .favorito-card .favorito-info h3 {
-  font-size: 1rem; /* Ejemplo de color oscuro para el título */
+  font-size: 1rem;
 }
+
 .favorito-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-3px);
@@ -58,44 +59,14 @@
   font-size: 0.9rem;
 }
 
-/* 🔹 Ahora usamos product-card-wrapper para posicionar botones */
 .product-card-wrapper {
   position: relative;
 }
 
-
-.favorite-btn-card {
-  position: absolute;
-  bottom: 10px;
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  border-radius: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease, background 0.2s ease;
-  padding: 0;
-}
-
-
-
 .favorite-btn-card svg {
-  stroke: whitesmoke;
+  stroke: grey;
 }
 
-.favorite-btn-card.active svg {
-  fill: red;
-  stroke: red;
-}
-
-.favorite-btn-card:not(.active):hover svg {
-  fill: rgba(255, 0, 0, 0.5);
-  stroke: red;
-}
 
 .no-favs {
   font-size: 1.2rem;

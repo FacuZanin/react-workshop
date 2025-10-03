@@ -290,7 +290,7 @@ const SearchResultsPage = () => {
   // ==============================================
   return (
     // 🟢 Contenedor principal para centrar y limitar ancho
-    <div className="main-container"> 
+    <div className="main-container contenedor-centrado"> 
       {/* 🟢 Nuevo: Contenedor para el layout de barra lateral y contenido */}
       <div className="products-layout-with-filter">
         

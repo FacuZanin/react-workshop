@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // ✅ Importa los iconos de las flechas
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./VariantCarousel.css";
 import PrecioGrid from "../precio/PrecioGrid";
 
@@ -47,8 +47,7 @@ const VariantCarousel = ({ product }) => {
             className="carousel-arrow left"
             onClick={() => scrollCarousel(-1)}
           >
-            {/* ✅ Usa el componente ChevronLeft */}
-            <ChevronLeft size={24} color="#111" />
+            <ChevronLeft size={24} />
           </button>
         )}
 
@@ -81,8 +80,7 @@ const VariantCarousel = ({ product }) => {
             className="carousel-arrow right"
             onClick={() => scrollCarousel(1)}
           >
-            {/* ✅ Usa el componente ChevronRight */}
-            <ChevronRight size={24} color="#111" />
+            <ChevronRight size={24} />
           </button>
         )}
       </div>
